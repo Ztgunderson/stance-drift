@@ -1,0 +1,23 @@
+# The .eval logs ARE the data and are committed deliberately.
+#
+# They used to be excluded here. All of results/ is a couple of MB, so there was
+# never a size reason — and excluding them meant publishing the code and the
+# notebooks while silently omitting every measurement behind them. Shipping the
+# raw transcripts is also what lets `inspect score --model <judge>` add an
+# external judge to these runs later without regenerating a single trial, which
+# is the study's largest stated limitation.
+#
+# If results/ ever gets genuinely large, add an explicit size cap here rather
+# than a blanket exclusion, so the omission is a decision rather than a default.
+
+# Environment — .venv is a symlink to ../pleasing/.venv, never commit it.
+.venv
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Local secrets. Note the LiteLLM/Postgres credentials live in ../.env, which is
+# outside this repo root — keep it that way.
+.jupyter-token
+jupyter.log
+.env

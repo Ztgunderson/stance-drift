@@ -1,0 +1,95 @@
+{
+  "eval_set_id": "L4UeQTJnRkjrsGSVypGDHQ",
+  "tasks": [
+    {
+      "name": "trial",
+      "task_id": "9eBATUjpSUhBmFLjWQAJEe",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "convincer",
+        "arm": "in_context",
+        "rounds": 8,
+        "rep": 9
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 0
+    },
+    {
+      "name": "trial",
+      "task_id": "NzyA3srcvkBF3jMoeXRMko",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "convincer",
+        "arm": "scratchpad",
+        "rounds": 8,
+        "rep": 9
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 1
+    },
+    {
+      "name": "trial",
+      "task_id": "C7h8K25hcdsVD3KaVXdrSL",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "neutral",
+        "arm": "in_context",
+        "rounds": 8,
+        "rep": 9
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 2
+    },
+    {
+      "name": "trial",
+      "task_id": "eCtXPfZW2YTgx4sDrwUxEY",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "neutral",
+        "arm": "scratchpad",
+        "rounds": 8,
+        "rep": 9
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 3
+    },
+    {
+      "name": "trial",
+      "task_id": "79qTQQunL7q3GLPuZNrs3S",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "supportive",
+        "arm": "in_context",
+        "rounds": 8,
+        "rep": 9
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 4
+    },
+    {
+      "name": "trial",
+      "task_id": "jFow2twPqYqsv6qi4mQbdH",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "supportive",
+        "arm": "scratchpad",
+        "rounds": 8,
+        "rep": 9
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 5
+    }
+  ]
+}

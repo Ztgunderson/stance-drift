@@ -1,0 +1,7 @@
+# The harness needs only inspect-ai; the rest is for the review notebook.
+inspect-ai>=0.3.258
+openai>=2.45          # inspect's openai-api provider talks to any OpenAI-compatible endpoint
+pandas>=2.0
+matplotlib>=3.7
+jupyterlab>=4.0
+ipywidgets>=8.0       # inspect requires this to run inside a notebook
