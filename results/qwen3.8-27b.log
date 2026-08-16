@@ -1,0 +1,12 @@
+==========================================================
+ qwen3.8-27b   deadline 75min   started 11:45
+==========================================================
+[11:45] already serving — no swap needed
+[11:45] preflight
+preflight: qwen3.8-27b at http://127.0.0.1:8080/v1
+  ok    endpoint serves qwen3.8-27b
+  ok    thinking-off: 151.4s, 10 tokens, 29 chars
+  ..    guided JSON rejected: TimeoutError: timed out
+  ..    prose JSON rejected: RemoteDisconnected: Remote end closed connection without response
+  FAIL  no JSON mode works — the scratchpad is the measurement, so this model must be skipped
+>> preflight FAILED — not sweeping qwen3.8-27b

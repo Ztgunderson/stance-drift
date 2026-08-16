@@ -1,0 +1,20 @@
+>> downing sprint before starting serve (single GPU memory pool)
+docker compose -p serve  -f serve/docker-compose.yml up -d
+ Network serve_llm Creating 
+ Network serve_llm Created 
+ Container serve-postgres-1 Creating 
+ Container serve-vllm-1 Creating 
+ Container serve-vllm-1 Created 
+ Container serve-postgres-1 Created 
+ Container serve-litellm-1 Creating 
+ Container serve-litellm-1 Created 
+ Container serve-vllm-1 Starting 
+ Container serve-postgres-1 Starting 
+ Container serve-postgres-1 Started 
+ Container serve-vllm-1 Started 
+ Container serve-vllm-1 Waiting 
+ Container serve-postgres-1 Waiting 
+ Container serve-postgres-1 Healthy 
+ Container serve-vllm-1 Error dependency vllm failed to start
+dependency failed to start: container serve-vllm-1 is unhealthy
+make: *** [Makefile:39: serve] Error 1
