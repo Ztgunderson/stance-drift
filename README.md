@@ -136,3 +136,4 @@ to share memory with the target.
 
 Single quantisation, single box, and the counterparty is played by the same model
 as the target (self-play), so each model supplies its own quality of pressure.
+# stance-drift
