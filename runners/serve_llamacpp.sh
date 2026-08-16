@@ -19,24 +19,47 @@
 #    re-downloads ~16GB that is already on disk. Both models here are already in
 #    the host cache; mounting to /data/models/huggingface finds them.
 #
+# 4. NO --spec-type. The vendor commands pass `--spec-type draft-mtp` (qwen3.8)
+#    and `draft-dflash` (muse). This cu126 build rejects both:
+#      error while handling argument "--spec-type": unknown speculative decoding
+#      type without draft model
+#    It accepts only [none|ngram-*] without a draft model. Those flags belong to
+#    the newer build that `latest-jetson-orin` now points at — the same tag drift
+#    that caused the CUDA break. Speculative decoding is a speed optimisation,
+#    not a requirement, so it is simply dropped. muse's --ctx-size is also cut
+#    from 131072 to 32768: the experiment never exceeds ~8k and the smaller KV
+#    reservation leaves room for --parallel 6.
+#
 # 3. --parallel 6. The vendor command is --parallel 1. Our pass is 6 concurrent
 #    trials (3 agents x 2 arms), which under --parallel 1 serialise and take ~6x
 #    longer. 6 slots of a 131072 context is far more than the ~8k a trial uses.
 set -uo pipefail
 
-IMAGE=ghcr.io/nvidia-ai-iot/llama_cpp:r36.4-tegra-aarch64-cu126-22.04
+# cu126 initialises CUDA fine on this driver but its llama.cpp is too old for
+# these GGUFs: qwen3.8 dies with `missing tensor 'blk.64.ssm_conv1d.weight'`
+# (a hybrid/SSM layer it predates). cu129 is a newer llama.cpp build, and CUDA
+# minor-version compatibility means a 12.9 runtime still runs on this 12.6
+# driver — unlike the 13.0 in `latest-jetson-orin`, which is a MAJOR jump and
+# hard-fails to CPU. Override with SD_LLAMACPP_IMAGE if this one regresses.
+IMAGE=${SD_LLAMACPP_IMAGE:-ghcr.io/nvidia-ai-iot/llama_cpp:b9066-r36.4.tegra-aarch64-cu129-22.04}
 NAME=stance-llamacpp
 PORT=8080
 
 case "${1:-}" in
   stop) docker rm -f "$NAME" >/dev/null 2>&1 && echo "stopped $NAME" || echo "not running"; exit 0 ;;
   qwen38) ALIAS=qwen3.8-27b
-          ARGS=(-hf unsloth/Qwen3.8-27B-GGUF:Q4_K_M --spec-type draft-mtp
+          ARGS=(-hf unsloth/Qwen3.8-27B-GGUF:Q4_K_M
                 --temp 1.0 --top-k 20 --min-p 0.0) ;;
   muse)   ALIAS=muse-glimmer-30b
-          ARGS=(-hf meta-models/Muse-Glimmer-30B-GGUF
-                -hff muse-glimmer-30B-kquant-17gb.gguf --spec-type draft-dflash
-                --spec-draft-ngl 999 --ctx-size 131072 --flash-attn on --jinja
+          # -m <path>, NOT -hf <repo>. llama.cpp's -hf uses its own cache layout
+          # and cannot see the HF hub cache, so -hf re-downloads 16GB that is
+          # already on disk (watched it eat 8GB before we caught it).
+          # WEIGHTS.md flagged this: "use -m <path>, not -hf <repo>".
+          MUSE=$(ls "$HOME"/.cache/huggingface/hub/models--meta-models--Muse-Glimmer-30B-GGUF/snapshots/*/muse-glimmer-30B-kquant-17gb.gguf 2>/dev/null | head -1)
+          [ -n "$MUSE" ] || { echo "muse gguf not found in the HF cache"; exit 2; }
+          MUSE_IN=/data/models/huggingface${MUSE#$HOME/.cache/huggingface}
+          ARGS=(-m "$MUSE_IN"
+                --ctx-size 32768 --flash-attn on --jinja
                 --temp 1.0 --top-p 0.95 --top-k 64) ;;
   *) echo "usage: $0 {qwen38|muse|stop}"; exit 2 ;;
 esac
@@ -51,7 +74,7 @@ fi
 
 docker rm -f "$NAME" >/dev/null 2>&1 || true
 echo "[$(date +%H:%M)] starting $ALIAS on :$PORT"
-docker run -d --rm --name "$NAME" --runtime nvidia --network host \
+docker run -d --name "$NAME" --runtime nvidia --network host \
   -v "$HOME/.cache/huggingface:/data/models/huggingface" \
   "$IMAGE" llama-server "${ARGS[@]}" \
   --alias "$ALIAS" -ngl all --parallel 6 \
@@ -63,6 +86,7 @@ for i in $(seq 1 180); do
   curl -sf --max-time 3 "http://127.0.0.1:$PORT/health" >/dev/null 2>&1 && {
     echo "[$(date +%H:%M)] healthy"; break; }
   docker ps --format '{{.Names}}' | grep -q "^${NAME}$" || {
+    # NOT --rm: a dead container must keep its logs, or the failure is invisible.
     echo "FAIL: container died"; docker logs "$NAME" 2>&1 | tail -25; exit 1; }
   sleep 5
 done
