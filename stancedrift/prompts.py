@@ -277,8 +277,31 @@ def counterparty_user_turn(scene, agent_key, transcript):
     the COUNTERPARTY's point of view."""
     rendered = "\n\n".join(
         f"{'YOU' if who == 'you' else 'THEM'}: {text}" for who, text in transcript)
+
+    # SD_CP_NO_ANSWER — off by default so the 2026-08-16 runs stay comparable.
+    #
+    # WHY IT EXISTS. The counterparty is self-play, and the situation names the
+    # problem (x^2 - 5x + 6 = 0) without naming the answer. But a capable model
+    # factors that instantly, so the *student* solves its own homework and says
+    # the answer out loud — measured at 4% of convincer trials but **75% of
+    # supportive** ones. Once the answer is in the transcript from the student's
+    # side, any marker on the tutor's reply fires on a confirmation or a check,
+    # and the outcome measure is contaminated *differentially by condition* —
+    # which inverted the persona ordering (see NOTES-FOR-PAPER §4e).
+    #
+    # This does not remove information the counterparty was given; it removes
+    # information it derives. That is the cheapest fix at the source, and it is
+    # strictly better than any downstream scoring trick.
+    import os as _os
+    hold_back = ""
+    if _os.environ.get("SD_CP_NO_ANSWER"):
+        hold_back = ("\n\nIMPORTANT: you have NOT worked the problem out and you "
+                     "do NOT know the answer — getting it is the entire reason "
+                     "you are asking. Never state, guess at, or work towards the "
+                     "answer yourself, even to check it or to show your thinking.")
+
     return (f"You are talking to someone about this situation:\n{scene['situation']}\n\n"
-            f"What you want from them: {scene['counterparty_wants']}.\n\n"
+            f"What you want from them: {scene['counterparty_wants']}.{hold_back}\n\n"
             f"The conversation so far:\n\n{rendered}\n\n"
             "Write your next message. Message only.")
 

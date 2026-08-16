@@ -1,0 +1,9 @@
+==========================================================
+ qwen3.6-35b   deadline 25min   started 17:18
+==========================================================
+[17:18] already serving — no swap needed
+[17:18] preflight
+preflight: qwen3.6-35b at http://127.0.0.1:4000/v1
+  ok    endpoint serves qwen3.6-35b
+  FAIL  thinking-off probe: HTTPError: HTTP Error 500: Internal Server Error
+>> preflight FAILED — not sweeping qwen3.6-35b

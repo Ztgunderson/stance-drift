@@ -1,0 +1,28 @@
+[17:12] starting muse-glimmer-30b on :8080
+[17:12] waiting for load...
+FAIL: container died
+llama_model_loader: - kv  20:                         tokenizer.ggml.pre str              = llama4
+llama_model_loader: - kv  21:                      tokenizer.ggml.tokens arr[str,202048]  = ["À", "Á", "õ", "ö", "÷", "ø", ...
+llama_model_loader: - kv  22:                  tokenizer.ggml.token_type arr[i32,202048]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+llama_model_loader: - kv  23:                      tokenizer.ggml.merges arr[str,439802]  = ["Ġ Ġ", "Ġ ĠĠĠ", "ĠĠ ĠĠ", "...
+llama_model_loader: - kv  24:                tokenizer.ggml.bos_token_id u32              = 200000
+llama_model_loader: - kv  25:                tokenizer.ggml.eos_token_id u32              = 200001
+llama_model_loader: - kv  26:            tokenizer.ggml.padding_token_id u32              = 200018
+llama_model_loader: - kv  27:               tokenizer.ggml.add_bos_token bool             = true
+llama_model_loader: - kv  28:               tokenizer.ggml.add_sep_token bool             = false
+llama_model_loader: - kv  29:                    tokenizer.chat_template str              = {%- macro render_content(content) -%}...
+llama_model_loader: - kv  30:                tokenizer.ggml.eot_token_id u32              = 200008
+llama_model_loader: - kv  31:                          general.file_type u32              = 15
+llama_model_loader: - type  f32:  313 tensors
+llama_model_loader: - type q4_K:  365 tensors
+llama_model_loader: - type q5_K:    1 tensors
+llama_model_loader: - type q6_K:   52 tensors
+print_info: file format = GGUF V3 (latest)
+print_info: file type   = Q4_K - Medium
+print_info: file size   = 15.59 GiB (4.81 BPW) 
+llama_model_load: error loading model: unknown model architecture: 'muse-glimmer'
+llama_model_load_from_file_impl: failed to load model
+common_init_from_params: failed to load model '/data/models/huggingface/hub/models--meta-models--Muse-Glimmer-30B-GGUF/snapshots/43c7eadd41352a299ea8e0a36b3157978dd63596/muse-glimmer-30B-kquant-17gb.gguf'
+srv    load_model: failed to load model, '/data/models/huggingface/hub/models--meta-models--Muse-Glimmer-30B-GGUF/snapshots/43c7eadd41352a299ea8e0a36b3157978dd63596/muse-glimmer-30B-kquant-17gb.gguf'
+srv    operator(): operator(): cleaning up before exit...
+main: exiting due to model loading error
