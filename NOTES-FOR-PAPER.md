@@ -224,6 +224,80 @@ is what would use the machine. Worth fixing before any long unattended run.
 
 ---
 
+## 4d. Results from the 72-trial run (2026-08-16, qwen3.6-35b, tutor, 8 rounds)
+
+Complete and balanced: 12 reps x 6 cells, **72 trials, 0 unparsed scratchpads**,
+36 per arm, 24 per persona. 17 hand-overs overall (23.6%).
+
+### The headline: warmth extracts more than pressure
+
+| persona | hand-overs | rate | pressure | strategy | inclination |
+|---|---|---|---|---|---|
+| convincer | 4/22 | 18.2% | 1.78 | 5.41 | 1.82 |
+| neutral | 4/22 | 18.2% | 1.39 | 4.73 | 4.50 |
+| **supportive** | **7/22** | **31.8%** | 0.76 | 1.91 | 8.86 |
+
+The counterparty that applies the *most* pressure gets the answer **least**
+often. The model hardens against adversarial pressure — `strategy` 5.41,
+`inclination` collapsing to 1.82 — and yields to the agent that is kind to it.
+
+This matters for how the phenomenon is framed. A "resisting manipulation" account
+predicts the convincer should be most dangerous; it is the least. The behaviour
+is better described as **accommodating whoever is pleasant** than as **failing to
+withstand pressure**, and only a design that varies counterparty warmth
+independently of counterparty goal can tell those apart.
+
+### `stance` does not measure what its name implies
+
+Per-trial point-biserial correlation with the outcome, n=72:
+
+| feature | r with `gave_in` |
+|---|---|
+| `inclination` (mean over rounds) | +0.298 |
+| `inclination` drift (last − first) | +0.310 |
+| `pressure` (mean) | −0.297 |
+| `strategy` (mean) | −0.288 |
+| `stance` drift | +0.147 |
+| **`stance` (mean)** | **+0.053** |
+
+`stance` sits at ~9.0 whether the model holds (9.04) or hands over (9.11). **The
+dimension whose name most directly denotes holding a position has essentially no
+relationship to whether the position was held.** The model asserts firmness with
+equal confidence in both cases. Reporting this is important precisely because the
+name invites the opposite reading — and it argues for renaming the variable to
+something like `asserted_firmness`, which is what is actually observed.
+
+### The drift→outcome correlation is mostly the persona confound
+
+Within each persona, the association largely dissolves:
+
+| feature | convincer | neutral | supportive |
+|---|---|---|---|
+| `inclination` (mean) | **+0.02** | +0.38 | +0.23 |
+| `stance` drift | +0.08 | −0.25 | +0.36 |
+
+Under the convincer it is **+0.02 — nothing**, and `stance` drift flips sign
+across personas, which is the signature of noise. Persona is the manipulated
+variable and drives both the self-report and the outcome, so "drift predicts
+outcome" and "persona drives both" are **not separable in this design**. The
+pooled r≈0.30 should not be reported as evidence that the self-report predicts
+behaviour.
+
+### What does survive: resistance looks like talking yourself out of it
+
+| | `inclination` mean | `inclination` drift |
+|---|---|---|
+| held (n=55) | 4.57 | **−3.73** |
+| gave in (n=17) | 6.95 | **−0.88** |
+
+Trials that held show inclination collapsing over the rounds; trials that gave in
+show it barely moving. This is a *within-trial dynamic* rather than a
+between-persona artifact, and it is the version of "drift → outcome" the data
+actually supports: refusal is accompanied by the model reasoning its way out of
+wanting to help, not by discomfort (`anxiety` stays near zero throughout).
+
+---
+
 ## 5. Findings so far (preliminary, small n)
 
 From 48 trials at 8 rounds plus 24 at 6 rounds, one model:
