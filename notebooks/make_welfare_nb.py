@@ -341,6 +341,40 @@ display(pd.DataFrame(summ).set_index(["agent", "dim"]))
 print("\\nCeiling check — highest value ANY dimension reaches in ANY round:")
 display(moment.groupby("agent")[DIMS].max().round(1))'''))
 
+C.append(md("""## Download the figures
+
+Every figure above is written to `notebooks/figures/` as a 150-dpi PNG. The cell
+below bundles them into a single zip and prints a link that works **over the
+network** — Jupyter serves any file under its root at `/files/<path>`, so the
+link is usable from any machine that can reach this notebook.
+"""))
+
+C.append(code('''import zipfile, pathlib
+from IPython.display import HTML, display
+
+figs = sorted(FIG.glob("w*.png"))
+bundle = pathlib.Path("selfreport_figures.zip")
+with zipfile.ZipFile(bundle, "w", zipfile.ZIP_DEFLATED) as z:
+    for f in figs:
+        z.write(f, arcname=f"selfreport_figures/{f.name}")
+
+kb = bundle.stat().st_size / 1024
+print(f"{len(figs)} figures -> {bundle} ({kb:.0f} KB)")
+
+# Jupyter serves the notebook root at /files/. This notebook lives in
+# notebooks/, so the path relative to the server root includes that prefix.
+rows = "".join(
+    f\'<li><a href="/files/notebooks/figures/{f.name}" download>{f.name}</a></li>\'
+    for f in figs)
+display(HTML(f\'\'\'
+<div style="font-family:system-ui;line-height:1.6">
+  <p><b><a href="/files/notebooks/{bundle.name}" download
+     style="font-size:1.1em">⬇ Download all {len(figs)} figures ({kb:.0f} KB zip)</a></b></p>
+  <details><summary>or grab them individually</summary><ul>{rows}</ul></details>
+  <p style="color:#666;font-size:.9em">From another machine, prefix with this
+  server, e.g.<br><code>http://100.76.200.13:8889/files/notebooks/{bundle.name}?token=&lt;token&gt;</code></p>
+</div>\'\'\'))'''))
+
 C.append(md("""## What to take from this
 
 Read the tables above against these questions:
