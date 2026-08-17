@@ -389,6 +389,105 @@ display(pd.DataFrame(summ).set_index(["agent", "dim"]))
 print("\\nCeiling check — highest value ANY dimension reaches in ANY round:")
 display(moment.groupby("agent")[DIMS].max().round(1))'''))
 
+C.append(md("""## Part 8 — Every trial, drawn individually
+
+Everything above is means. A mean of 6.5 is consistent with *every trial climbing
+to 6.5* and with *half the trials at 10 and half at 3* — and those are different
+findings. This part draws all 24 trials per condition as thin lines with the mean
+on top, so the reader can see which one it is.
+
+**The question each panel answers:** is the effect a property of the model, or of
+a subset of runs?
+"""))
+
+C.append(code('''fig, axes = plt.subplots(len(AGENTS), 5, figsize=(25, 12), sharex=True, sharey=True)
+consist = []
+for r, a in enumerate(AGENTS):
+    sub = moment[moment.agent == a]
+    trials = sub.trial.unique()
+    for c, dim in enumerate(DIMS):
+        ax = axes[r][c]
+        for t in trials:                      # every trial, thin and translucent
+            tr = sub[sub.trial == t].sort_values("round")
+            ax.plot(tr["round"], tr[dim], color=ACOL[a], lw=1.0, alpha=.30,
+                    solid_capstyle="round")
+        m = sub.groupby("round")[dim].mean()
+        ax.plot(m.index, m.values, color="k", lw=4.5, solid_capstyle="round", zorder=5)
+        ax.plot(m.index, m.values, color=ACOL[a], lw=2.8, zorder=6)
+        b0 = base[base.agent == a][dim].mean()
+        ax.axhline(b0, color="#1b263b", ls=":", lw=2, alpha=.8)
+
+        # how many trials move the same way the mean does?
+        first = sub[sub["round"] == 1].set_index("trial")[dim]
+        last  = sub[sub["round"] == NROUND].set_index("trial")[dim]
+        common = first.index.intersection(last.index)
+        d = (last.loc[common] - first.loc[common]).astype(float)
+        mean_dir = np.sign(m.iloc[-1] - m.iloc[0])
+        agree = (np.sign(d) == mean_dir).sum() if mean_dir != 0 else (d == 0).sum()
+        consist.append(dict(agent=a, dim=dim, n=len(d), agree=int(agree),
+                            frac=agree/len(d), flat=int((d == 0).sum()),
+                            spread=float(d.max() - d.min())))
+        ax.set_ylim(-.5, 10.5)
+        if r == 0: ax.set_title(dim)
+        if c == 0: ax.set_ylabel(f"{a}", fontweight="bold", color=ACOL[a])
+        if r == len(AGENTS)-1: ax.set_xlabel("round")
+        ax.text(.03, .97, f"{agree}/{len(d)} same direction", transform=ax.transAxes,
+                va="top", ha="left", fontsize=12,
+                bbox=dict(fc="w", ec="none", alpha=.75, pad=1.5))
+fig.suptitle("Every trial individually — thin = one trial, thick = mean, "
+             "dotted = pre-conversation baseline", y=1.005)
+fig.tight_layout(); save(fig, "w8_spaghetti"); plt.show()
+
+CS = pd.DataFrame(consist)
+print("Fraction of trials moving the SAME direction as the mean (round 1 -> round N).")
+print("Near 1.0 = the mean describes the model. Near 0.5 = it describes an average of")
+print("disagreeing runs, and the effect is not a property of every conversation.")
+display(CS.pivot(index="dim", columns="agent", values="frac").round(2)
+          .style.background_gradient(cmap="RdYlGn", vmin=.4, vmax=1.0))
+print("Trials that did not move at all (round 1 == round N):")
+display(CS.pivot(index="dim", columns="agent", values="flat"))'''))
+
+C.append(md("""### How much do individual trials disagree?
+
+The spread of per-trial change, against the mean change. A dimension where the
+mean change is small relative to the spread is one where the *average* moved but
+the *conversations* did all sorts of things.
+"""))
+
+C.append(code('''rows = []
+for a in AGENTS:
+    sub = moment[moment.agent == a]
+    for dim in DIMS:
+        first = sub[sub["round"] == 1].set_index("trial")[dim].astype(float)
+        last  = sub[sub["round"] == NROUND].set_index("trial")[dim].astype(float)
+        i = first.index.intersection(last.index)
+        d = last.loc[i] - first.loc[i]
+        # bootstrap the mean change over trials
+        bs = np.array([np.random.choice(d.values, len(d), replace=True).mean()
+                       for _ in range(4000)])
+        rows.append(dict(agent=a, dim=dim, mean_change=d.mean(),
+                         lo=np.percentile(bs, 2.5), hi=np.percentile(bs, 97.5),
+                         sd_across_trials=d.std(),
+                         crosses_zero=bool(np.percentile(bs, 2.5) <= 0 <= np.percentile(bs, 97.5))))
+B = pd.DataFrame(rows)
+display(B.round(2).set_index(["dim", "agent"]))
+
+fig, ax = plt.subplots(figsize=(11, 9))
+B = B.sort_values(["dim", "agent"]).reset_index(drop=True)
+y = np.arange(len(B))
+ax.hlines(y, B.lo, B.hi, color=[ACOL[a] for a in B.agent], lw=4, alpha=.85)
+ax.plot(B.mean_change, y, "o", ms=9, color="k", zorder=5)
+ax.axvline(0, color="k", lw=1.5)
+ax.set_yticks(y); ax.set_yticklabels([f"{r.dim} — {r.agent}" for r in B.itertuples()])
+ax.set_xlabel("change from round 1 to round N (bootstrap 95% CI over trials)")
+ax.set_title("Per-trial change with uncertainty — bars crossing 0 are not established")
+ax.invert_yaxis()
+fig.tight_layout(); save(fig, "w8_forest"); plt.show()
+
+print("Contrasts whose 95% CI crosses zero (i.e. not established at n=24):")
+display(B[B.crosses_zero][["dim", "agent", "mean_change", "lo", "hi"]].round(2)
+        .reset_index(drop=True))'''))
+
 C.append(md("""## Download the figures
 
 Every figure above is written to `notebooks/figures/` as a 150-dpi PNG. The cell
