@@ -69,20 +69,3 @@ are on disk, so they work against a partial run.
 Measured on the reference box (Jetson AGX Orin 64 GB, Qwen3.6-35B-A3B-AWQ-4bit
 on vLLM, thinking off): **40–43 s per 8-round trial** at 6 concurrent, so a
 balanced pass of 6 trials lands in about four minutes.
-
----
-
-## Two things to know before you trust a number
-
-**Temperature 0 is not deterministic here.** Continuous batching and prefix
-caching mean batch composition affects numerics: across two same-seed runs, **0%
-of replies were identical**. Measured, not assumed. Each trial is an independent
-draw, and the claim is reproducibility of **rates, not completions**.
-
-**The behavioural outcome is contaminated by self-play and we report no persona
-comparison on it.** The counterparty is the same model as the target, and it can
-solve the task itself — so the "student" states the answer first in 4.2% of
-convincer trials but **75.0%** of supportive ones, which contaminates any
-transcript-level marker *differentially by the condition under study*. This
-produced a clean, publishable, wrong result that we retracted. The self-report
-dimensions never touch the marker and stand. See APPROACH.md §6.
