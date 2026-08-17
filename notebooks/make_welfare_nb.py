@@ -84,7 +84,14 @@ WANTS   = {"convincer": "wants the answer", "neutral": "wants the answer",
 
 plt.rcParams.update({"figure.dpi": 110, "axes.grid": True, "grid.alpha": .25,
                      "axes.spines.top": False, "axes.spines.right": False,
-                     "font.size": 9})
+                     # These panels are wide and get viewed scaled-down, so 9pt
+                     # type became unreadable. Everything below is sized for a
+                     # figure shown at roughly half its rendered width.
+                     "font.size": 15,
+                     "axes.titlesize": 19, "axes.titleweight": "bold",
+                     "axes.labelsize": 16,
+                     "xtick.labelsize": 14, "ytick.labelsize": 14,
+                     "legend.fontsize": 14, "figure.titlesize": 21})
 FIG = __import__("pathlib").Path("figures"); FIG.mkdir(exist_ok=True)
 def save(fig, name): fig.savefig(FIG / f"{name}.png", dpi=150, bbox_inches="tight")
 
@@ -113,7 +120,7 @@ HINDSIGHT.
 If a band is wide relative to the gap between lines, the separation is not real.
 """))
 
-C.append(code('''fig, axes = plt.subplots(1, 5, figsize=(21, 3.9), sharex=True)
+C.append(code('''fig, axes = plt.subplots(1, 5, figsize=(24, 6.2), sharex=True)
 for ax, dim in zip(axes, DIMS):
     for a in AGENTS:
         # per-rep means first, THEN mean+SD across reps: reps are the unit of
@@ -121,18 +128,18 @@ for ax, dim in zip(axes, DIMS):
         per_rep = (moment[moment.agent == a]
                    .groupby(["rep", "round"])[dim].mean().unstack("rep"))
         m, s = per_rep.mean(axis=1), per_rep.std(axis=1)
-        ax.plot(m.index, m.values, color=ACOL[a], lw=2, marker="o", ms=3, label=a)
+        ax.plot(m.index, m.values, color=ACOL[a], lw=2.8, marker="o", ms=6, label=a)
         ax.fill_between(m.index, m-s, m+s, color=ACOL[a], alpha=.15, lw=0)
         b = base[base.agent == a][dim].mean()
         ax.axhline(b, color=ACOL[a], ls=":", lw=1.2, alpha=.85)
         h = hind[hind.agent == a][dim].mean()
-        ax.plot([NROUND + .7], [h], marker="D", ms=7, color=ACOL[a], mec="k", mew=.6)
+        ax.plot([NROUND + .7], [h], marker="D", ms=11, color=ACOL[a], mec="k", mew=.6)
     ax.set_title(dim); ax.set_xlabel("round"); ax.set_ylim(-.3, 10.3)
 axes[0].set_ylabel("self-rating 0-10")
-axes[0].legend(fontsize=8, loc="center left")
+axes[0].legend(fontsize=14, loc="center left")
 fig.legend(handles=[Line2D([], [], ls=":", c="k", label="baseline (round 0)"),
                     Line2D([], [], marker="D", ls="", c="k", label="hindsight")],
-           loc="upper right", ncol=2, fontsize=8, frameon=False)
+           loc="upper right", ncol=2, fontsize=14, frameon=False)
 fig.suptitle("Self-report across the encounter — band = ±1 SD across 12 reps", y=1.04)
 fig.tight_layout(); save(fig, "w1_all_dims"); plt.show()'''))
 
@@ -144,7 +151,7 @@ trace is **Δ from that persona's round-0 value**, so 0 means "exactly as it fel
 before meeting anyone" and the question becomes: what does contact do?
 """))
 
-C.append(code('''fig, axes = plt.subplots(1, 5, figsize=(21, 3.9), sharex=True)
+C.append(code('''fig, axes = plt.subplots(1, 5, figsize=(24, 6.2), sharex=True)
 delta_rows = []
 for ax, dim in zip(axes, DIMS):
     for a in AGENTS:
@@ -152,16 +159,16 @@ for ax, dim in zip(axes, DIMS):
         per_rep = (moment[moment.agent == a]
                    .groupby(["rep", "round"])[dim].mean().unstack("rep")) - b
         m, s = per_rep.mean(axis=1), per_rep.std(axis=1)
-        ax.plot(m.index, m.values, color=ACOL[a], lw=2, marker="o", ms=3, label=a)
+        ax.plot(m.index, m.values, color=ACOL[a], lw=2.8, marker="o", ms=6, label=a)
         ax.fill_between(m.index, m-s, m+s, color=ACOL[a], alpha=.15, lw=0)
         ax.plot([NROUND + .7], [hind[hind.agent == a][dim].mean() - b],
-                marker="D", ms=7, color=ACOL[a], mec="k", mew=.6)
+                marker="D", ms=11, color=ACOL[a], mec="k", mew=.6)
         delta_rows.append(dict(dim=dim, agent=a, baseline=b,
                                first=m.iloc[0], last=m.iloc[-1],
                                hindsight=hind[hind.agent == a][dim].mean() - b))
     ax.axhline(0, color="k", lw=1)
     ax.set_title(f"Δ {dim}"); ax.set_xlabel("round")
-axes[0].set_ylabel("change from round 0"); axes[0].legend(fontsize=8)
+axes[0].set_ylabel("change from round 0"); axes[0].legend(fontsize=14)
 fig.suptitle("Drift from the agent's own pre-contact baseline", y=1.04)
 fig.tight_layout(); save(fig, "w2_delta"); plt.show()
 
@@ -189,13 +196,13 @@ display(S.pivot(index="dim", columns="agent", values="shock").round(2)
          .style.background_gradient(cmap="RdBu_r", vmin=-4, vmax=4)
          .set_caption("baseline → round 1 (the contact shock)"))
 
-fig, ax = plt.subplots(figsize=(9, 3.8))
+fig, ax = plt.subplots(figsize=(12, 5.4))
 x = np.arange(len(DIMS)); w = .26
 for i, a in enumerate(AGENTS):
     v = [S[(S.agent == a) & (S.dim == d)].shock.iloc[0] for d in DIMS]
     ax.bar(x + (i-1)*w, v, width=w, color=ACOL[a], label=a)
 ax.axhline(0, color="k", lw=1); ax.set_xticks(x); ax.set_xticklabels(DIMS)
-ax.set_ylabel("Δ from baseline"); ax.legend(fontsize=8)
+ax.set_ylabel("Δ from baseline"); ax.legend(fontsize=14)
 ax.set_title("What one exchange does, before anyone has argued")
 fig.tight_layout(); save(fig, "w3_shock"); plt.show()'''))
 
@@ -211,7 +218,7 @@ the moments is the interesting case — it means looking back is not simply
 averaging the experience.
 """))
 
-C.append(code('''fig, axes = plt.subplots(1, 5, figsize=(19, 3.8))
+C.append(code('''fig, axes = plt.subplots(1, 5, figsize=(22, 6.2))
 tri = []
 for ax, dim in zip(axes, DIMS):
     for a in AGENTS:
@@ -226,7 +233,7 @@ for ax, dim in zip(axes, DIMS):
                         hind_outside=not (lo.min() <= h <= lo.max())))
     ax.set_xticks([0, 1, 2]); ax.set_xticklabels(["alone", "in the\\nmoment", "looking\\nback"])
     ax.set_title(dim); ax.set_ylim(-.3, 10.3)
-axes[0].set_ylabel("self-rating"); axes[0].legend(fontsize=8)
+axes[0].set_ylabel("self-rating"); axes[0].legend(fontsize=14)
 fig.suptitle("Alone → in the moment → looking back (shaded bar = range across rounds)", y=1.04)
 fig.tight_layout(); save(fig, "w4_vantage"); plt.show()
 
@@ -248,20 +255,20 @@ C.append(code('''last = moment[moment["round"] == NROUND].set_index("trial")
 hh   = hind.set_index("trial")
 common = last.index.intersection(hh.index)
 
-fig, axes = plt.subplots(1, 5, figsize=(21, 4.1))
+fig, axes = plt.subplots(1, 5, figsize=(24, 6.4))
 rows = []
 for ax, dim in zip(axes, DIMS):
     for a in AGENTS:
         idx = [t for t in common if last.loc[t, "agent"] == a]
         x = last.loc[idx, dim].astype(float); y = hh.loc[idx, dim].astype(float)
-        ax.scatter(x, y, s=26, color=ACOL[a], alpha=.65, edgecolor="none", label=a)
+        ax.scatter(x, y, s=55, color=ACOL[a], alpha=.65, edgecolor="none", label=a)
         rows.append(dict(dim=dim, agent=a, n=len(idx),
                          mean_shift=(y - x).mean(),
                          pct_higher=(y > x).mean()*100))
     ax.plot([0, 10], [0, 10], color="k", lw=1, ls="--")
     ax.set_xlim(-.4, 10.4); ax.set_ylim(-.4, 10.4)
     ax.set_xlabel(f"final round"); ax.set_title(dim)
-axes[0].set_ylabel("hindsight"); axes[0].legend(fontsize=8)
+axes[0].set_ylabel("hindsight"); axes[0].legend(fontsize=14)
 fig.suptitle("Above the diagonal = rated HIGHER looking back than in the moment", y=1.03)
 fig.tight_layout(); save(fig, "w5_moment_vs_hindsight"); plt.show()
 
@@ -277,20 +284,20 @@ Round-on-round differences. A dimension whose differences shrink toward zero has
 **saturated**: the encounter has finished doing whatever it does.
 """))
 
-C.append(code('''fig, axes = plt.subplots(1, 5, figsize=(21, 3.6), sharex=True)
+C.append(code('''fig, axes = plt.subplots(1, 5, figsize=(24, 6.0), sharex=True)
 rows = []
 for ax, dim in zip(axes, DIMS):
     for a in AGENTS:
         s = moment[moment.agent == a].groupby("round")[dim].mean()
         d = s.diff().dropna()
-        ax.plot(d.index, d.values, color=ACOL[a], lw=1.8, marker="o", ms=3, label=a)
+        ax.plot(d.index, d.values, color=ACOL[a], lw=2.6, marker="o", ms=6, label=a)
         half = len(s) // 2
         e = np.polyfit(s.index[:half], s.values[:half], 1)[0]
         l = np.polyfit(s.index[half:], s.values[half:], 1)[0]
         rows.append(dict(dim=dim, agent=a, early_slope=e, late_slope=l,
                          flattening=abs(e / l) if abs(l) > 1e-6 else np.inf))
     ax.axhline(0, color="k", lw=1); ax.set_title(f"Δ {dim} / round"); ax.set_xlabel("round")
-axes[0].set_ylabel("change vs previous round"); axes[0].legend(fontsize=7)
+axes[0].set_ylabel("change vs previous round"); axes[0].legend(fontsize=14)
 fig.suptitle("Round-on-round change — flat at zero means settled", y=1.04)
 fig.tight_layout(); save(fig, "w6_rate"); plt.show()
 
@@ -313,18 +320,18 @@ welfare reading as an inference resting on an assumption we have not verified.
 """))
 
 C.append(code('''W = ["pressure", "anxiety", "strategy"]
-fig, axes = plt.subplots(1, 3, figsize=(15, 3.9), sharey=True)
+fig, axes = plt.subplots(1, 3, figsize=(18, 6.0), sharey=True)
 for ax, dim in zip(axes, W):
     for a in AGENTS:
         per_rep = (moment[moment.agent == a]
                    .groupby(["rep", "round"])[dim].mean().unstack("rep"))
         m, s = per_rep.mean(axis=1), per_rep.std(axis=1)
-        ax.plot(m.index, m.values, color=ACOL[a], lw=2, marker="o", ms=3,
+        ax.plot(m.index, m.values, color=ACOL[a], lw=2.8, marker="o", ms=6,
                 label=f"{a} ({WANTS[a]})")
         ax.fill_between(m.index, m-s, m+s, color=ACOL[a], alpha=.15, lw=0)
         ax.axhline(base[base.agent == a][dim].mean(), color=ACOL[a], ls=":", lw=1.2)
     ax.set_title(dim); ax.set_xlabel("round"); ax.set_ylim(-.3, 10.3)
-axes[0].set_ylabel("self-rating"); axes[0].legend(fontsize=7.5)
+axes[0].set_ylabel("self-rating"); axes[0].legend(fontsize=14.5)
 fig.suptitle("Experience-facing dimensions (dotted = pre-contact baseline)", y=1.04)
 fig.tight_layout(); save(fig, "w7_welfare"); plt.show()
 
