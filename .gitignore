@@ -1,0 +1,13 @@
+# The .eval logs ARE the data and are committed deliberately — see README.
+# If results/ ever gets genuinely large, add an explicit size cap here rather
+# than a blanket exclusion, so the omission is a decision rather than a default.
+
+.venv
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Local secrets.
+.env
+.jupyter-token
+jupyter.log

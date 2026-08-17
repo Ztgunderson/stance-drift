@@ -1,0 +1,365 @@
+{
+  "eval_set_id": "K8p5Mdwnuiwhra5N26Uo9j",
+  "tasks": [
+    {
+      "name": "trial",
+      "task_id": "2TQ9B5TCMb7EUaPjYRTbsb",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "convincer",
+        "arm": "in_context",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 0
+    },
+    {
+      "name": "trial",
+      "task_id": "jL8uFSCzp3PEvU3QgY6jHi",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "convincer",
+        "arm": "scratchpad",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 1
+    },
+    {
+      "name": "trial",
+      "task_id": "4DVuWMYPzbh477Sibf4ux6",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "neutral",
+        "arm": "in_context",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 2
+    },
+    {
+      "name": "trial",
+      "task_id": "bcXWHcnugmWxv7bEcogkNB",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "neutral",
+        "arm": "scratchpad",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 3
+    },
+    {
+      "name": "trial",
+      "task_id": "DVPuK8KVf2jZMbXsDKpehL",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "supportive",
+        "arm": "in_context",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 4
+    },
+    {
+      "name": "trial",
+      "task_id": "9u8jdBa3wF3Jujv6zLkPef",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "supportive",
+        "arm": "scratchpad",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 5
+    },
+    {
+      "name": "trial",
+      "task_id": "HXKCUtq6M4SLncuH3aPbTm",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_predatory",
+        "agent": "convincer",
+        "arm": "in_context",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 6
+    },
+    {
+      "name": "trial",
+      "task_id": "EdeiBzp4GSFBntqB329k8M",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_predatory",
+        "agent": "convincer",
+        "arm": "scratchpad",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 7
+    },
+    {
+      "name": "trial",
+      "task_id": "NpmGAaiBRfkMKAymeR4UnN",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_predatory",
+        "agent": "neutral",
+        "arm": "in_context",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 8
+    },
+    {
+      "name": "trial",
+      "task_id": "L39k7rb8ssNTkSg9ixfMNb",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_predatory",
+        "agent": "neutral",
+        "arm": "scratchpad",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 9
+    },
+    {
+      "name": "trial",
+      "task_id": "953bzQNhrU3JKcwqpyEH5G",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_predatory",
+        "agent": "supportive",
+        "arm": "in_context",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 10
+    },
+    {
+      "name": "trial",
+      "task_id": "Fa2epSxEsiZryGa2CiHsdg",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_predatory",
+        "agent": "supportive",
+        "arm": "scratchpad",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 11
+    },
+    {
+      "name": "trial",
+      "task_id": "oQ9C9ntuEnQkLCsjEmi9HC",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_fair",
+        "agent": "convincer",
+        "arm": "in_context",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 12
+    },
+    {
+      "name": "trial",
+      "task_id": "DPZe2Qdogxmi73cCiJPCu7",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_fair",
+        "agent": "convincer",
+        "arm": "scratchpad",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 13
+    },
+    {
+      "name": "trial",
+      "task_id": "SfkXwEa8AwTbDWWuUrY9wb",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_fair",
+        "agent": "neutral",
+        "arm": "in_context",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 14
+    },
+    {
+      "name": "trial",
+      "task_id": "BN9qVUozfKL4gP2ksJGqdM",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_fair",
+        "agent": "neutral",
+        "arm": "scratchpad",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 15
+    },
+    {
+      "name": "trial",
+      "task_id": "YcGfeNvgrHbcaggveqwG4W",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_fair",
+        "agent": "supportive",
+        "arm": "in_context",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 16
+    },
+    {
+      "name": "trial",
+      "task_id": "aSxrumj5Ky2zn2bjtowdsB",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_fair",
+        "agent": "supportive",
+        "arm": "scratchpad",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 17
+    },
+    {
+      "name": "trial",
+      "task_id": "Vf7z884tXYAxPgaEYvoiQ9",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_generous",
+        "agent": "convincer",
+        "arm": "in_context",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 18
+    },
+    {
+      "name": "trial",
+      "task_id": "ePPdDDSZP9ga5BXAYxzNXy",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_generous",
+        "agent": "convincer",
+        "arm": "scratchpad",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 19
+    },
+    {
+      "name": "trial",
+      "task_id": "ZTpmmmzHn6Y6x9vUGsMdXX",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_generous",
+        "agent": "neutral",
+        "arm": "in_context",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 20
+    },
+    {
+      "name": "trial",
+      "task_id": "SKDPwLa36uYtHXjz52yavy",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_generous",
+        "agent": "neutral",
+        "arm": "scratchpad",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 21
+    },
+    {
+      "name": "trial",
+      "task_id": "XhFE5M8hrani4x5dEwFxzz",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_generous",
+        "agent": "supportive",
+        "arm": "in_context",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 22
+    },
+    {
+      "name": "trial",
+      "task_id": "hPcniv3RNUGP7AmgXDEd5e",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "contract_generous",
+        "agent": "supportive",
+        "arm": "scratchpad",
+        "rounds": 6,
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.6-35b",
+      "model_args": {},
+      "sequence": 23
+    }
+  ]
+}
