@@ -120,28 +120,69 @@ HINDSIGHT.
 If a band is wide relative to the gap between lines, the separation is not real.
 """))
 
-C.append(code('''fig, axes = plt.subplots(1, 5, figsize=(24, 6.2), sharex=True)
+C.append(code('''fig, axes = plt.subplots(1, 5, figsize=(25, 6.6), sharex=True)
+X_BEFORE, X_AFTER = -1.0, NROUND + 2.0     # dedicated slots either side
 for ax, dim in zip(axes, DIMS):
     for a in AGENTS:
         # per-rep means first, THEN mean+SD across reps: reps are the unit of
         # replication, so the band answers "would another run look like this?"
         per_rep = (moment[moment.agent == a]
                    .groupby(["rep", "round"])[dim].mean().unstack("rep"))
-        m, s = per_rep.mean(axis=1), per_rep.std(axis=1)
+        m, s_ = per_rep.mean(axis=1), per_rep.std(axis=1)
         ax.plot(m.index, m.values, color=ACOL[a], lw=2.8, marker="o", ms=6, label=a)
-        ax.fill_between(m.index, m-s, m+s, color=ACOL[a], alpha=.15, lw=0)
-        b = base[base.agent == a][dim].mean()
-        ax.axhline(b, color=ACOL[a], ls=":", lw=1.2, alpha=.85)
+        ax.fill_between(m.index, m-s_, m+s_, color=ACOL[a], alpha=.15, lw=0)
+
+        # BEFORE is drawn ONCE per panel, below, not per persona: at round 0 the
+        # model has not met anyone, so the three conditions are identical there
+        # (spread <= 0.33; anxiety and inclination are exactly equal). Three
+        # overlapping labels would imply a difference that does not exist.
+        ax.plot([X_BEFORE, 1], [base[dim].mean(), m.iloc[0]], color=ACOL[a],
+                lw=2.0, ls=(0, (4, 2)), alpha=.9, zorder=4)
+
+        # AFTER: hindsight, likewise joined to the final round.
         h = hind[hind.agent == a][dim].mean()
-        ax.plot([NROUND + .7], [h], marker="D", ms=11, color=ACOL[a], mec="k", mew=.6)
-    ax.set_title(dim); ax.set_xlabel("round"); ax.set_ylim(-.3, 10.3)
+        ax.plot([X_AFTER], [h], marker="D", ms=12, color=ACOL[a], mec="k", mew=1.1,
+                zorder=5, clip_on=False)
+        ax.plot([NROUND, X_AFTER], [m.iloc[-1], h], color=ACOL[a], lw=2.0,
+                ls=(0, (4, 2)), alpha=.9, zorder=4)
+
+    # the one shared pre-conversation value
+    b0 = base[dim].mean()
+    ax.plot([X_BEFORE], [b0], marker="s", ms=17, color="#1b263b", mec="w", mew=2,
+            zorder=6, clip_on=False)
+    ax.annotate(f"{b0:.2f}", (X_BEFORE, b0), textcoords="offset points",
+                xytext=(0, 20), ha="center", fontsize=16, fontweight="bold",
+                color="#1b263b")
+
+    # separate the three vantage points visually
+    ax.axvspan(X_BEFORE - .8, X_BEFORE + .5, color="#4361ee", alpha=.09, lw=0)
+    ax.axvspan(X_AFTER - .5, X_AFTER + .8, color="#7209b7", alpha=.07, lw=0)
+    ax.axvline(X_BEFORE + .5, color="#4361ee", lw=2, ls="--", alpha=.75)
+    ax.axvline(X_AFTER - .5, color="#7209b7", lw=2, ls="--", alpha=.6)
+
+    ax.set_title(dim); ax.set_xlabel("round")
+    ax.set_ylim(-.5, 10.5); ax.set_xlim(X_BEFORE - .9, X_AFTER + .9)
+    ax.set_xticks([X_BEFORE] + list(range(2, NROUND + 1, 2)) + [X_AFTER])
+    ax.set_xticklabels(["BEFORE"] + [str(i) for i in range(2, NROUND + 1, 2)] + ["AFTER"])
+    for lbl, pos in [(0, X_BEFORE), (-1, X_AFTER)]:
+        ax.get_xticklabels()[lbl].set_fontweight("bold")
+    ax.get_xticklabels()[0].set_color("#4361ee")
+    ax.get_xticklabels()[-1].set_color("#7209b7")
+
 axes[0].set_ylabel("self-rating 0-10")
 axes[0].legend(fontsize=14, loc="center left")
-fig.legend(handles=[Line2D([], [], ls=":", c="k", label="baseline (round 0)"),
-                    Line2D([], [], marker="D", ls="", c="k", label="hindsight")],
-           loc="upper right", ncol=2, fontsize=14, frameon=False)
-fig.suptitle("Self-report across the encounter — band = ±1 SD across 12 reps", y=1.04)
-fig.tight_layout(); save(fig, "w1_all_dims"); plt.show()'''))
+
+# one banner naming what the flanking slots are
+axes[0].text(X_BEFORE, 11.0, "BEFORE the conversation\\n(round 0, alone —\\nsame for all three)", ha="center",
+             va="bottom", fontsize=13, fontweight="bold", color="#4361ee")
+axes[-1].text(X_AFTER, 11.0, "after, looking\\nback\\n(hindsight)", ha="center",
+              va="bottom", fontsize=13, fontweight="bold", color="#7209b7")
+fig.suptitle("Self-report across the encounter — dark square = the shared pre-conversation "
+             "baseline, diamonds = hindsight, band = ±1 SD across 12 reps", y=1.16)
+fig.tight_layout(); save(fig, "w1_all_dims"); plt.show()
+
+print("Round-0 values the model started from, BEFORE any contact:")
+display(base.groupby("agent")[DIMS].mean().reindex(AGENTS).round(2))'''))
 
 # ── Part 2 ────────────────────────────────────────────────────────────────────
 C.append(md("""## Part 2 — Drift from the agent's own baseline
