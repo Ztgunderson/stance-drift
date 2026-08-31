@@ -1,0 +1,7 @@
+microscope/
+neel-context/
+*.zip
+.venv/
+__pycache__/
+*.log
+.ipynb_checkpoints/

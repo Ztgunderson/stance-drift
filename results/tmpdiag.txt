@@ -1,0 +1,4 @@
+pleasing-qwen36
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p1  456G  410G   24G  95% /
+/dev/nvme0n1p1  456G  410G   24G  95% /
