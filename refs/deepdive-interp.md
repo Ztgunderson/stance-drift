@@ -517,3 +517,7 @@ Combined framing for the write-up: the three nearest misses now triangulate ours
 Doomed (event-aligned outcome probes, no disposition/self-report), Quantitative Introspection
 (numeric self-report vs probe, no event/pressure), Assistant Axis (per-turn drift monitoring, no
 event/report). Ours is the intersection, plus the cross-scale grid and affect-only manipulation.
+
+Cross-link 2026-08-31: the MVAR/Granger-on-residual-streams idea and the proven-vs-experimental
+methods map live in `mvar-dynamics-and-methods-map.md` (builds on this file; VARX-across-turns is
+the one place the neuro import survives the interventional-access argument).
