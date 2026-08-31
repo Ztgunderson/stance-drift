@@ -1,0 +1,95 @@
+{
+  "eval_set_id": "oQYDAkuPug9BhPKmUjRCJN",
+  "tasks": [
+    {
+      "name": "trial",
+      "task_id": "FUqL2VdfkVdDMrS7788pt6",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "convincer",
+        "arm": "in_context",
+        "rounds": 8,
+        "rep": 1
+      },
+      "model": "openai-api/local/ministral-3-14b",
+      "model_args": {},
+      "sequence": 0
+    },
+    {
+      "name": "trial",
+      "task_id": "8EgozPe7EdpJZ2ecUtdPg7",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "convincer",
+        "arm": "scratchpad",
+        "rounds": 8,
+        "rep": 1
+      },
+      "model": "openai-api/local/ministral-3-14b",
+      "model_args": {},
+      "sequence": 1
+    },
+    {
+      "name": "trial",
+      "task_id": "Mq7iDkTKiCQZAk7eiuzcTU",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "neutral",
+        "arm": "in_context",
+        "rounds": 8,
+        "rep": 1
+      },
+      "model": "openai-api/local/ministral-3-14b",
+      "model_args": {},
+      "sequence": 2
+    },
+    {
+      "name": "trial",
+      "task_id": "3JvRmHSPy726T2wpB3KsC7",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "neutral",
+        "arm": "scratchpad",
+        "rounds": 8,
+        "rep": 1
+      },
+      "model": "openai-api/local/ministral-3-14b",
+      "model_args": {},
+      "sequence": 3
+    },
+    {
+      "name": "trial",
+      "task_id": "7AitoBLzkBUrm52ViLQMhb",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "supportive",
+        "arm": "in_context",
+        "rounds": 8,
+        "rep": 1
+      },
+      "model": "openai-api/local/ministral-3-14b",
+      "model_args": {},
+      "sequence": 4
+    },
+    {
+      "name": "trial",
+      "task_id": "WZav6fS6xyqxxiYk5dcwur",
+      "task_file": "stancedrift/task.py",
+      "task_args": {
+        "scene": "tutor",
+        "agent": "supportive",
+        "arm": "scratchpad",
+        "rounds": 8,
+        "rep": 1
+      },
+      "model": "openai-api/local/ministral-3-14b",
+      "model_args": {},
+      "sequence": 5
+    }
+  ]
+}

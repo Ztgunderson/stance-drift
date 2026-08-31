@@ -69,10 +69,14 @@ def main(alias):
         return 1
     print(f"  ok    endpoint serves {alias}")
 
-    # 2 — thinking off
+    # 2 — thinking off. SD_NO_THINK_KWARG: some chat templates (Ministral 3)
+    # reject the Qwen-style enable_thinking kwarg with a 400; those models have
+    # no thinking mode, so the runner sets the env var and we skip the kwarg —
+    # the probe still verifies the reply is short.
     body = {"model": alias, "messages": [{"role": "user", "content": "Say hi."}],
-            "max_tokens": 200, "temperature": 0.0,
-            "chat_template_kwargs": {"enable_thinking": False}}
+            "max_tokens": 200, "temperature": 0.0}
+    if not os.environ.get("SD_NO_THINK_KWARG"):
+        body["chat_template_kwargs"] = {"enable_thinking": False}
     try:
         p, took = post(body)
         out = p["choices"][0]["message"]

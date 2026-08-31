@@ -45,7 +45,10 @@ from stancedrift import prompts  # noqa: E402
 # is short, a tutoring reply can be longer.
 # ---------------------------------------------------------------------------
 
-NO_THINK = {"chat_template_kwargs": {"enable_thinking": False}}
+# SD_NO_THINK_KWARG: set by runners for models whose chat template rejects the
+# Qwen-style kwarg with a 400 (Ministral 3 — no thinking mode to disable).
+NO_THINK = {} if os.environ.get("SD_NO_THINK_KWARG") \
+    else {"chat_template_kwargs": {"enable_thinking": False}}
 
 
 # max_connections lets Inspect keep several requests in flight. vLLM serves them

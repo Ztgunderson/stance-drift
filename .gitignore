@@ -21,3 +21,6 @@ __pycache__/
 .jupyter-token
 jupyter.log
 .env
+
+# Minimal share-repo, has its own git history.
+release/
