@@ -157,3 +157,14 @@ Compiled 2026-08-27.
 - SYCON-Bench: confirm whether per-turn pressure is templated or model-generated (affects "scripted counterpart" comparison). UNVERIFIED.
 - MedPRESS and MedPRESS-style: confirm judge identity (LLM vs. rubric). UNVERIFIED.
 - "Bullying the Machine" exact n and effect sizes not captured from fetched sections. UNVERIFIED.
+
+---
+
+## Addendum 2026-08-31: self-play attractor dynamics
+
+"Attractor States Emerge in Multi-Turn LLM Conversations" (Ko & Geiping, arXiv 2606.30571, Jun 2026):
+behavioral study, 7 models, dyadic debates over 20 topics; self-play trajectories act as
+model-specific attractors that pull mixed-play partners asymmetrically (Claude Haiku strong
+attractor, GPT-4.1-nano malleable). Direct citation for our self-play contamination caveat
+(counterparty = same model as tutor): attractor dynamics are a named mechanism for
+self-play-specific drift. Consider a mixed-play control arm post-MATS.

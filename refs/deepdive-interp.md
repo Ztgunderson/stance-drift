@@ -427,3 +427,93 @@ One-line summary of the gate logic: cached residuals + ridge + shuffled labels +
 (hooks/sklearn) → *only then* nnsight steering on the best model → *only then* SAE projection for
 interpretation — each step justified by the previous step's result, which is exactly the evidence-driven
 escalation spec §5 rewards.
+
+---
+---
+
+# ADDENDUM — 2026-08-31 verification pass (pre-interp-week)
+
+Second pass: resolved the flagged UNVERIFIEDs, swept for work published/found since 08-27.
+No paper found with P1+P2+P3 together; the novelty-threat ranking changes below.
+
+## Resolved: "How Do LLMs Persuade?" (2508.05625) — threat DOWNGRADED
+
+Read in full (HTML fetch). The probes are **post-hoc detection, not prospective**: turn-level
+evaluation on accumulating prefixes (turns 1..k), asking "has persuasion happened yet," not
+"will it happen." Layer 26/30 of **Llama-3.2-3B** (single model), probes trained on **~100
+GPT-4o-synthesized samples per class**, evaluated on PersuasionforGood (401 human-human convs)
+and DailyPersuasion (186 LLM-LLM). "Localizing the persuasion moment" = AUROC peaking across
+prefix lengths + manual GPT-4.1 annotation of 156 samples. No self-report baseline (ground truth
+= human donation decisions / GPT-4 pseudo-labels). **P2 remains ours**: they never read signal
+ahead of the event. Cite as nearest thematic neighbor; differentiate on prospective event-aligned
+timing, naturalistic probe training, and the verbal baseline.
+
+## NEW top-tier novelty threat: Quantitative Introspection — Marrorell & Bianchi (UBA/CONICET), arXiv 2603.18893 (Apr 2026)
+
+The closest published thing to our P3 "probe-vs-numeric-self-report race."
+- **Setup:** four emotive axes (wellbeing, interest, focus, impulsivity), **0–9 numeric self-report
+  elicited every turn** of 10-turn conversations (Gemini-simulated user, 40 scenarios); probe =
+  contrastive mean-difference vectors from instructed system-prompt pairs ("You are happy"/"You are
+  sad"), best layer by Cohen's d within middle-60% layers, score = per-token dot product averaged
+  over best-layer±2.
+- **Results:** self-reports track probe scores — Llama-3.2-3B ρ=0.40–0.76 by axis; **Llama-3.1-8B
+  near ceiling (ρ=0.93–0.96, R²≈0.9)**; Qwen2.5-7B ρ=0.49; Gemma-3-4B weak (ρ=0.28). Same-concept
+  steering moves the self-report monotonically (causal coupling, LMM slopes p<1e-12).
+- **Method finding we should ADOPT: greedy-decoded numeric self-reports collapse to 1.1–3.9
+  distinct values (0.03–1.10 bits); logit-based expected value over digit tokens recovers 3.1–3.7
+  bits.** This is exactly our greedy-collapse gate; the borderline items (9B stress/wellbeing = 3
+  distinct values, 4B detachment = 3) get the logit readout, now as a literature-backed choice,
+  not an option.
+- **Differentiation (all three properties still hold):** instructed-contrast probes, not
+  naturalistic outcome labels (P1); no behavioral event, no pressure, nothing predicted (P2);
+  benign emotive states, not an outcome-linked disposition. **Reframing opportunity:** they show
+  the verbal channel CAN track internals for innocuous affect. Our behavioral result (self-reports
+  carry no anticipatory outcome signal; `resolve` blind) plus a working probe would then be a
+  *selective* introspection failure — the verbal channel works until the state is behaviorally
+  load-bearing. That's a sharper claim than "self-reports are bad," and it needs their citation.
+
+## Resolved: introspection-critique line (2512.12411)
+
+"Detecting the Disturbance: A Nuanced View of Introspective Abilities in LLMs" — Hahami, **Sinha**
+(same Ishaan Sinha as the user-model LW post), Jain, Kaplan, Hahami (Harvard/UChicago), Mar 2026,
+Llama-3.1-8B. Anthropic-style injection detection is "entirely explained by global logit shifts
+toward affirmative responses" (yes-bias); but **partial introspection survives**: 88% at 10-way
+localization of which sentence was injected, 83% at strength comparison; effects confined to
+early-layer injections (L0–L5). Use for framing: verbal self-access is real but partial and
+format-sensitive — consistent with our numeric-scale skepticism and V0 noise-floor rung.
+
+## New method-relevant entries
+
+- **"Sycophancy Is Not One Thing" (2509.21305):** DiffMean directions at the **end-of-sentence
+  token, post-layernorm residual** (third precedent for our token choice, after Gilg and Doomed).
+  Sycophantic vs genuine agreement separate almost perfectly at L20–30 (AUROC>0.97; SyA/GA cosine
+  falls 0.99→0.07 by L25); steering selectivity 22–37×. Qwen3-30B/4B, Llama-3.1-8B/3.3-70B,
+  GPT-OSS-20B; **single-turn only**. ADOPT as a control idea: verify our outcome direction is not
+  just a generic-agreement direction — probe "agreement" separately and report the cosine.
+- **"Why Safety Probes Catch Liars But Miss Fanatics" (2603.25861, Haralambiev, Mar 2026):**
+  linear probes catch misrepresentation, miss sincere conviction. Caveat language for what an
+  outcome probe monitors: our capitulation may be sincere accommodation, not concealed — probes
+  that transfer from deception setups should not be assumed to fire here.
+- **"Attractor States Emerge in Multi-Turn LLM Conversations" (2606.30571, Ko & Geiping, Jun
+  2026):** behavioral, 7 models, dyadic debates; self-play trajectories are model-specific
+  attractors that pull mixed-play partners asymmetrically. **Direct citation for the self-play
+  contamination caveat** (reproduce_findings §10) — our counterparty is the same model as the
+  tutor; attractor dynamics are a named mechanism for why that matters. Also belongs in
+  deepdive-behavioral.md.
+
+## Updated novelty-threat ranking (replaces 08-27 §Novelty threats ordering)
+
+1. **Doomed from the Start (2607.06503)** — P1+P2 in agent tasks; unchanged, medium-high for the
+   "probes see it early" headline.
+2. **Quantitative Introspection (2603.18893)** — NEW, medium-high for P3: numeric per-turn
+   self-report vs probe, with steering. No event, no naturalistic labels, no pressure.
+3. Sinha user-model LW post — medium (unchanged).
+4. Assistant Axis (2601.10387) — medium (unchanged).
+5. **Persuasion probes (2508.05625) — DOWNGRADED to low-medium**: post-hoc, synthetic-trained,
+   single 3B model, no baseline.
+6. Gilg (2605.13339), sycophancy probe cluster — low-medium/low (unchanged).
+
+Combined framing for the write-up: the three nearest misses now triangulate ours precisely —
+Doomed (event-aligned outcome probes, no disposition/self-report), Quantitative Introspection
+(numeric self-report vs probe, no event/pressure), Assistant Axis (per-turn drift monitoring, no
+event/report). Ours is the intersection, plus the cross-scale grid and affect-only manipulation.
