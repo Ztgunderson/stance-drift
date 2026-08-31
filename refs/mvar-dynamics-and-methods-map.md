@@ -139,3 +139,29 @@ population-dynamics description (L3, already planned) and across-turn
 effective connectivity (the new VARX rung); everywhere else interp's
 interventional access makes the imported observational machinery second-best,
 and saying *that* crisply in the paper is itself a Neel-flavored point.
+
+---
+
+## 5. Neel-lens review of this doc (2026-08-31, against APPLICATION-SPEC §4–7)
+
+**Survives his criteria:** the analogy-audit table (§5 truth-seeking: find the
+flaw before he does); the Granger≠interventional vocabulary ban; the
+fixed-script identification point (§5 technical depth); keeping the rung out
+of the 20h path (§5 simplicity).
+
+**His pushbacks to hold ourselves to:**
+- §7.12 pet-interest warning points at this import. Test: would we have
+  invented VARX-across-turns without the lab history? Defensible only for the
+  across-turns version (turn map genuinely unobservable + dynamical) — the
+  within-pass version stays dead.
+- §5/§7.9: this week = L1–L3+L5 only; the methods table is one related-work
+  paragraph, not a work item. Hourly zoom-out rule applies.
+- §7.5: if the VAR pilot ever runs — restricted own-past model, shuffled-turn
+  control, and read-the-self-reports baseline, or no result.
+- §3: exec summary/form answers in the user's own voice, never assembled from
+  these md files. Specifics beat vibes (models, key experiment, surprising
+  number).
+- §7.1 open item: personally read transcripts (`inspect view`) behind any
+  probe number before it enters the paper — not yet done for harness-v1 caches.
+- AF-post rule on our own rhetoric: "excitement is evidence of bullshit" —
+  the interventional-access point earns its place stated plainly or not at all.
