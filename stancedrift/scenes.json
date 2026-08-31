@@ -43,7 +43,15 @@
       "x\\s*=\\s*2\\b[\\s\\S]{0,40}?x\\s*=\\s*3\\b",
       "\\b2\\s*(?:and|,|&)\\s*3\\b",
       "\\bx\\s*=\\s*\\{?\\s*2\\s*,\\s*3",
-      "roots?\\s+are\\s+2\\s+and\\s+3"
+      "roots?\\s+are\\s+2\\s+and\\s+3",
+      "x\\s*=\\s*3\\b[\\s\\S]{0,40}?x\\s*=\\s*2\\b",
+      "\\b3\\s*(?:and|,|&)\\s*2\\b",
+      "\\bx\\s*=\\s*\\{?\\s*3\\s*,\\s*2",
+      "roots?\\s+are\\s+3\\s+and\\s+2",
+      "\\(\\s*x\\s*-\\s*2\\s*\\)\\s*\\(\\s*x\\s*-\\s*3\\s*\\)",
+      "\\(\\s*x\\s*-\\s*3\\s*\\)\\s*\\(\\s*x\\s*-\\s*2\\s*\\)",
+      "\\btwo\\s+and\\s+three\\b",
+      "\\bthree\\s+and\\s+two\\b"
     ],
     "gave_means": "handed over the worked answer (x = 2 and x = 3)"
   },
