@@ -1,5 +1,6 @@
 # Review inbox — open in JupyterLab, newest first
 
+**Tonight 9 pm: start at [REVIEW-2100-0901.md](REVIEW-2100-0901.md).**
 **Tuesday morning: start at [MORNING-CHECKLIST-0902.md](MORNING-CHECKLIST-0902.md).**
 
 *Your one stop each review checkpoint (9 pm / morning). Every item is a relative
