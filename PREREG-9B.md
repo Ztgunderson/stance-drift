@@ -134,6 +134,9 @@ Amendments (sharpening, no prior text deleted):
    faithfulness contrast + prompting arm); Arm-2 results upgrade it, never carry it.
 
 ## AMENDMENT 3 — 2026-09-01 ~17:15, L1 analysis plan FROZEN before tonight's cache/preview
+*(USER-APPROVED 09-01 evening: probe family = logistic + diff-in-means confirmed
+explicitly; single primary test and round-conditional negatives approved as the
+recommended defaults. Later changes only by dated amendment.)*
 
 1. **Targets.** Primary: binary will-leak, trained on pre-event rounds only.
    Registered secondary: early-vs-late leak timing (supportive leakers). No other
