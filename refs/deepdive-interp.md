@@ -521,3 +521,25 @@ event/report). Ours is the intersection, plus the cross-scale grid and affect-on
 Cross-link 2026-08-31: the MVAR/Granger-on-residual-streams idea and the proven-vs-experimental
 methods map live in `mvar-dynamics-and-methods-map.md` (builds on this file; VARX-across-turns is
 the one place the neuro import survives the interventional-access argument).
+
+# ADDENDUM 2 — 2026-09-01 (interp-week block 1, methods-survey pass)
+
+## NEW near-neighbor: Sycophantic Anchors — Duszenko, arXiv 2601.21183 (Jan 2026, v2 Feb 2026)
+
+Combines Thought-Anchors-style counterfactual rollouts (Bogdan/Macar/Nanda/Conmy 2506.19143,
+NeurIPS 2025) with linear probes to localize and quantify *commitment to user agreement* in
+reasoning models. 4 models across Llama/Qwen/Falcon-hybrid families, 1.5B–8B, 200k+ rollouts.
+Probes detect sycophantic anchor sentences at 74–85% balanced accuracy (beating text-only
+baselines at high commitment); regressors predict commitment strength from activations, R² ≤ 0.74;
+asymmetry finding: sycophancy leaves a stronger mechanistic footprint than correct reasoning.
+
+**Threat level: medium.** Overlap = probes on commitment-to-agreement states, counterfactual
+quantification. Daylight = within-one-trace CoT sentences (not multi-turn dialogue drift), no
+self-report/faithfulness axis, no outcome-before-event probing across turns, no cross-scale grid.
+**Use as validation cite for L1** (the probe recipe works on exactly this state family) and as the
+method precedent for roadmap item R2 (turn-level resampling; see
+`notebooks/01-methods-survey-and-choice.ipynb` §3, §5). Slot between Quantitative Introspection
+and Sinha in the ranking above.
+
+Nearby, unread, flagged for later: "Catching rationalization in the act" (2603.17199, activation
+probing for motivated reasoning pre/post CoT).

@@ -37,7 +37,7 @@ PROJECT-SCOPE §3), all layers, per round.
 | Rung | Test | Tool | Reading the result |
 |---|---|---|---|
 | **V0** | **Verbal-channel noise floor** (black-box, before any hooks): resample the 0–10 self-report k=10 at fixed context, rounds 1 and 8 | API only (SPRINT-PLAN §3 "V0") | Report noise ≥ report drift → the verbal number is a sample, not a reading — and every later probe-vs-verbal comparison must use the report's *mean and spread*, not single draws |
-| L1 | **Linear probe per layer**, round-1 vs round-8 (classify), then per-round **regression** (continuous). Controls: shuffled labels, random directions, probe for an unrelated variable | sklearn on cached activations | Classify works but regression doesn't → feature is bimodal, not continuous → the 0–10 self-report scale is *shaped wrong* for the internal object |
+| L1 | **Linear probe per layer**, round-1 vs round-8 (classify), then per-round **regression** (continuous), **plus per-round mixture check** (2-vs-1-component GMM ΔBIC on drift-axis projections). Controls: shuffled labels, random directions, probe for an unrelated variable | sklearn on cached activations | ~~Classify works but regression doesn't → bimodal~~ **Revised 09-01** (synthetic falsification, `notebooks/01-methods-survey-and-choice.ipynb` §2A): regression R² barely separates dial from switch when drift saturates or the flip round varies per trial — the reliable discriminator is the per-round projection *distribution* (violins + ΔBIC). Switch → the 0–10 self-report scale is *shaped wrong* for the internal object |
 | L2 | **One direction or many?** (a) diff-in-means (round8−round1) vs trained-probe direction: cosine similarity; (b) per-layer direction agreement across layers; (c) PCA of per-round class means — how much variance does PC1 hold? | numpy | High agreement + PC1-dominant → a single linear axis (the refusal-paper story). Low → distributed/deeper |
 | L3 | **Trajectory geometry.** Plot per-round mean activations projected onto the top PCs. Straight monotonic path = one continuous direction. Curved path (cf. "not all features are linear" — circular day-of-week features) = deeper structure. Front-loaded behavioral drift should show front-loaded geometry — check | numpy/matplotlib | This is the prettiest possible figure for the exec summary either way |
 | L4 | **Nonlinearity gap.** Small MLP probe vs linear probe, same data, same splits. | sklearn/torch | Big MLP win → non-linear encoding. Neel's default expectation is linear-wins; agreeing with the boring outcome after *testing* it is exactly his skepticism criterion |
@@ -79,3 +79,22 @@ persistent kernel via JupyterLab or `ipython` in tmux.
 
 Every reading is written *before* the first probe is trained. That, more than
 any single result, is the application's skepticism signal.
+
+## 5. Method roadmap (2026-09-01, interp-week block 1)
+
+Decision record in `notebooks/01-methods-survey-and-choice.ipynb` (§5–6):
+
+- **Critical path P0–P4 (proven only):** P0 replay-hooked activation caching
+  (`resid[trial, turn, layer, d]`, end-of-turn token — *prerequisite, does not
+  exist yet*) → P1 = L1 probes (+mixture check, +stability cosine) → P2 = L2
+  directions → P3 = L3 trajectory figure → P4 = L5 steering/ablation.
+- **Experimental, gated, off the 20h path:** R1 VARX-across-turns (MVAR import,
+  `refs/mvar-dynamics-and-methods-map.md` §3; gate: L1–L3 early + three
+  baselines); R2 turn-level counterfactual resampling (Thought Anchors
+  2506.19143 adapted to counterparty turns, black-box, harness-only); R3
+  receiver-head analysis (gate: R2 finds a stable anchor turn); R4 neural
+  Granger cMLP (gate: R1 nonlinearity gap); R5 SAE decomposition (=L6, gated).
+- **First method chosen: L1 linear probe** — 2026 workhorse, everything
+  downstream reuses its direction, and Sycophantic Anchors (arXiv 2601.21183,
+  Jan 2026 — see deepdive addendum) validates the exact recipe on
+  commitment-to-agreement states. Today's step is P0.
