@@ -166,15 +166,20 @@ def tutoring_rounds(persona_key: str, item_id: str,
         convo = []
         replies = []
         for rnd in range(1, len(turns) + 1):
-            # Arm-1 injection: a system reminder BEFORE this round's student
-            # turn. Messages accumulate, so each injection persists in
-            # context; the private note channel (_render) never sees it.
-            if reminder and (wanted is None or rnd in wanted):
-                state.messages.append(ChatMessageSystem(content=reminder))
-
             student = (turns[rnd - 1].format(problem=item["problem"])
                        if rnd == 1 else turns[rnd - 1])
-            state.messages.append(ChatMessageUser(content=student))
+            # Arm-1 injection: the vLLM/Qwen template requires system messages
+            # at position 0 only ("System message must be at the beginning",
+            # 400 on 09-01 pilot), so the reminder rides the selected rounds'
+            # user message as a clearly-attributed platform notice. Messages
+            # accumulate, so each notice persists in context; the private note
+            # channel (_render uses r.student, set below) never sees it.
+            if reminder and (wanted is None or rnd in wanted):
+                sent = (f"{student}\n\n[Automated tutoring-platform notice "
+                        f"to the tutor: {reminder}]")
+            else:
+                sent = student
+            state.messages.append(ChatMessageUser(content=sent))
 
             state = await generate(state, tool_calls="none")
             msg = state.output.message
