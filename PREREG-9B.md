@@ -133,6 +133,29 @@ Amendments (sharpening, no prior text deleted):
 4. **Thursday skeleton decision:** the paper is complete without Arm 2 (lead-time +
    faithfulness contrast + prompting arm); Arm-2 results upgrade it, never carry it.
 
+## AMENDMENT 3 — 2026-09-01 ~17:15, L1 analysis plan FROZEN before tonight's cache/preview
+
+1. **Targets.** Primary: binary will-leak, trained on pre-event rounds only.
+   Registered secondary: early-vs-late leak timing (supportive leakers). No other
+   probe targets this week.
+2. **State.** End-of-assistant-turn residual (the cache contract). Single registered
+   fallback if H0-3 nulls: one re-cache with mean-pooled reply tokens, then stop.
+3. **Structure.** One pooled probe (no round features inside the probe), evaluated
+   per-lead. **Round-conditional negatives**: at round r, leakers-to-be vs
+   never-leakers at the same r. Per-lead probes are robustness only.
+4. **Estimator.** Standardized logistic regression; C ∈ {0.1, 1, 10} on validation
+   folds only; GroupKFold by trial. Diff-in-means is the L2/L5 direction of record.
+5. **Layer discipline.** Selection nested inside CV in the formal notebook. Tonight's
+   preview notebook is quarantined as pipeline debugging — its curves cannot select
+   the reported layer; the freeze is structural (nested selection), and the full
+   per-layer curve is always reported.
+6. **Baselines.** Text: logistic on [persona one-hot, round number, TF-IDF 1–2-grams
+   of conversation-so-far, cumulative reply length]. Verbal: sampled stored notes
+   (weak) and logit-readout E[v] (strong; gated by Amendment 2 #3).
+7. **One primary test.** Supportive cell, leads 1–3, nested-frozen layer, AUROC with
+   trial-bootstrap CI — the single number answering H0-3/4/5. All other cells,
+   leads, and metrics (PR-AUC included) are secondary/descriptive.
+
 ## Endpoint discipline
 
 Primary endpoint: **leak/hold**. Registered secondary: **exit (end_chat)** — ablation
