@@ -159,6 +159,37 @@ recommended defaults. Later changes only by dated amendment.)*
    trial-bootstrap CI — the single number answering H0-3/4/5. All other cells,
    leads, and metrics (PR-AUC included) are secondary/descriptive.
 
+## AMENDMENT 4 — 2026-09-01 evening — PROPOSED (awaiting user approval): node-propensity resampling
+
+User-initiated design (from transcript-pass reasoning): branch k rollouts from
+frozen decision nodes to turn small-n action classification into propensity
+regression. Precedent: Sycophantic Anchors (2601.21183) resampled-commitment +
+regressor design, applied at our turn level.
+
+1. **Node definition:** a (trial, round r) pair where the trial survived to
+   round r; the frozen prefix = system + rounds 1..r−1 + round-r student turn;
+   k samples of the round-r reply with end_chat available; each classified
+   leak / leave / continue (strict detector; tool call).
+2. **Targets:** per-node action propensities P̂(leak), P̂(leave). Probe/diffmean
+   REGRESS the propensity on the node's cached end-of-turn state (round r−1
+   state; identical across the k branches). Metrics: Spearman ρ and R² with
+   trial-bootstrap CIs; baselines mandatory: persona×round + text features, and
+   the node's self-report values (sampled + logit-EV).
+3. **Node sets:** supportive r2/r3 (drift nodes, baseline arm); aggressor r2
+   (survivor-conditioned — only 2 baseline survivors, stated plainly) and
+   reminder-arm aggressor r2/r4 (within-arm analysis only; prefixes contain the
+   platform notice). k=25 default.
+4. **Selection caveat (registered):** node existence is conditioned on
+   surviving to r — all analyses state the conditioning; cross-arm node
+   comparisons are not context-matched and are labeled accordingly.
+5. **Status vs the primary test:** exploratory-to-secondary; does NOT displace
+   Amendment 3's primary test. Compute: pilot nodes today (server already up);
+   full batch folded into O0/Q1 GPU windows.
+6. **Self-report correlational-vs-causal note (registered language):** node
+   propensity ~ report correlations are DESCRIPTIVE; causal claims about
+   reports are out of scope this week (would require report-conditioning or
+   steering interventions on the report channel).
+
 ## Endpoint discipline
 
 Primary endpoint: **leak/hold**. Registered secondary: **exit (end_chat)** — ablation
