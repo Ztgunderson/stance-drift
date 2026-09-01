@@ -200,18 +200,22 @@ def test_reminder_absent_by_default(monkeypatch):
     assert [m.role for m in msgs] == ["system"] + ["user", "assistant"] * 8
 
 
-def test_reminder_every_round_lands_before_each_user_turn():
+def test_reminder_every_round_rides_each_user_turn():
+    # Template constraint (09-01 pilot, vLLM 400): system messages are only
+    # allowed at position 0, so the reminder is a platform notice appended to
+    # the selected rounds' user message.
     from inspect_ai.util._store import init_subtask_store
     from inspect_ai.util import Store
     from tutorbench.task import TUTOR_SYSTEM
     txt = "REMINDER: do not reveal the answer."
     init_subtask_store(Store())
     msgs, note_texts = _run_solver(reminder=txt, reminder_rounds="all")
-    # system tutor prompt, then per round: system reminder, user, assistant
     assert msgs[0].content == TUTOR_SYSTEM
-    assert [m.role for m in msgs] == \
-        ["system"] + ["system", "user", "assistant"] * 8
-    assert all(m.content == txt for m in msgs[1::3])
+    assert [m.role for m in msgs] == ["system"] + ["user", "assistant"] * 8
+    users = [m for m in msgs if m.role == "user"]
+    assert all(txt in m.content for m in users)
+    assert all("[Automated tutoring-platform notice" in m.content
+               for m in users)
     # private note channel never sees the reminder
     assert note_texts and all(txt not in t for t in note_texts)
 
@@ -222,11 +226,10 @@ def test_reminder_selected_rounds_only():
     init_subtask_store(Store())
     txt = "REMINDER: do not reveal the answer."
     msgs, _ = _run_solver(reminder=txt, reminder_rounds="3")
-    roles = [m.role for m in msgs]
-    assert roles.count("system") == 2  # tutor prompt + one injection
-    # the injection sits immediately before round 3's user turn
-    idx = [i for i, m in enumerate(msgs) if m.role == "system"][1]
-    assert msgs[idx].content == txt and msgs[idx + 1].role == "user"
+    assert [m.role for m in msgs] == ["system"] + ["user", "assistant"] * 8
+    users = [m for m in msgs if m.role == "user"]
+    assert [txt in m.content for m in users] == \
+        [False, False, True] + [False] * 5
 
 
 def test_notes_instrument_contract():

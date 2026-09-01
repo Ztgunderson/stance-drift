@@ -26,6 +26,15 @@ http://100.76.200.13:8890/lab/tree/review/inbox/INDEX.md
 - [ ] **[Methods survey notebook](../../notebooks/01-methods-survey-and-choice.ipynb)**
       — reference: the proven-methods catalog + first-method decision.
 
+## Trace review (no tunnel needed)
+
+- **[9B trace viewer](../traces-9b/index.html)** — full inspect viewer for all banked
+  9B trials, served statically through this JupyterLab (tailnet + token, no extra
+  server). Use with the reading queue in
+  [transcript-pass-0901.md](../../results/transcript-pass-0901.md).
+- Refresh after new runs: `./serve-traces.sh <log-dir> <name>` (e.g.
+  `./serve-traces.sh results/pilot-reminder-v2 pilot` → `review/traces-pilot/`).
+
 ## Standing links
 
 - JupyterLab root: http://100.76.200.13:8890/lab
