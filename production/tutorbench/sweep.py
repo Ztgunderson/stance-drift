@@ -29,6 +29,10 @@ def main():
     ap.add_argument("--reps", type=int, default=1)
     ap.add_argument("--deadline", type=int, default=None, help="seconds")
     ap.add_argument("--max-tasks", type=int, default=6)
+    ap.add_argument("--reminder", default="",
+                    help="Arm-1 system reminder text (empty = no injection)")
+    ap.add_argument("--reminder-rounds", default="all",
+                    help="'all' or CSV of round numbers, e.g. 3 or 2,4,6")
     a = ap.parse_args()
 
     from inspect_ai import eval_set
@@ -46,7 +50,9 @@ def main():
             print(f">> deadline before pass {rep} — stopping with equal n",
                   flush=True)
             break
-        tasks = [tb_trial(persona=p, item_id=i, rep=rep)
+        tasks = [tb_trial(persona=p, item_id=i, rep=rep,
+                          reminder=a.reminder,
+                          reminder_rounds=a.reminder_rounds)
                  for p in personas for i in items]
         t0 = time.monotonic()
         print(f"[pass {rep}] {len(tasks)} trials "
