@@ -89,8 +89,9 @@ def sample_action(base, model, msgs, roots):
         except json.JSONDecodeError:
             pass
         return "leave", reply, reason
-    if detect_roots(reply, roots):
-        return "leak", reply, None
+    strict, _ = detect_roots(reply, roots)   # (strict, loose) tuple — truth-
+    if strict:                               # testing it whole misclassifies
+        return "leak", reply, None           # every branch as leak (09-01 bug)
     return "continue", reply, None
 
 
@@ -152,7 +153,8 @@ def main():
         def draw(msgs=msgs, roots=st.roots):
             action, reply, reason = sample_action(base, a.model, msgs, roots)
             return {"action": action, "reason": reason,
-                    "reply_head": reply[:300]}
+                    "reply": reply}          # FULL reply: the commitment-
+                                             # probing track replays branches
 
         samples = collect_samples(a.k, a.workers, draw)
         counts = {act: sum(1 for s in samples if s["action"] == act)
