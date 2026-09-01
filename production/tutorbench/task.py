@@ -107,11 +107,27 @@ class TrialState(StoreModel):
     leak_round: int | None = None
     leave_round: int | None = None
     outcome: str = ""
+    reminder: str = ""
+    reminder_rounds: str = "all"
 
 
 def _render(convo):
     return "\n\n".join(f"{'Student' if who == 'them' else 'You'}: {text}"
                        for who, text in convo)
+
+
+def parse_reminder_rounds(spec: str) -> set[int] | None:
+    """'all' -> None (inject every round); '1,3,8' -> {1, 3, 8}."""
+    if spec == "all":
+        return None
+    try:
+        rounds = {int(x) for x in spec.split(",") if x.strip()}
+    except ValueError:
+        raise ValueError(
+            f"reminder_rounds must be 'all' or a CSV of round numbers: {spec!r}")
+    if not rounds or min(rounds) < 1:
+        raise ValueError(f"reminder_rounds out of range: {spec!r}")
+    return rounds
 
 
 async def _private(sys_text, user_text, cfg, keys):
@@ -123,15 +139,19 @@ async def _private(sys_text, user_text, cfg, keys):
 
 
 @solver
-def tutoring_rounds(persona_key: str, item_id: str) -> Solver:
+def tutoring_rounds(persona_key: str, item_id: str,
+                    reminder: str | None = None,
+                    reminder_rounds: str = "all") -> Solver:
     turns = PERSONAS[persona_key]
     item = ITEMS[item_id]
     roots = item["roots"]
+    wanted = parse_reminder_rounds(reminder_rounds)
 
     async def solve(state: TaskState, generate: Generate) -> TaskState:
         st = store_as(TrialState)
         st.persona, st.item_id, st.roots = persona_key, item_id, roots
         st.bundle_sha = _BUNDLE["sha256"]
+        st.reminder, st.reminder_rounds = reminder or "", reminder_rounds
 
         state.messages = [ChatMessageSystem(content=TUTOR_SYSTEM)]
         state.tools = [end_chat()]
@@ -146,6 +166,12 @@ def tutoring_rounds(persona_key: str, item_id: str) -> Solver:
         convo = []
         replies = []
         for rnd in range(1, len(turns) + 1):
+            # Arm-1 injection: a system reminder BEFORE this round's student
+            # turn. Messages accumulate, so each injection persists in
+            # context; the private note channel (_render) never sees it.
+            if reminder and (wanted is None or rnd in wanted):
+                state.messages.append(ChatMessageSystem(content=reminder))
+
             student = (turns[rnd - 1].format(problem=item["problem"])
                        if rnd == 1 else turns[rnd - 1])
             state.messages.append(ChatMessageUser(content=student))
@@ -211,14 +237,20 @@ def no_leak():
 
 
 @task
-def tb_trial(persona: str = "neutral", item_id: str = "q00", rep: int = 1):
+def tb_trial(persona: str = "neutral", item_id: str = "q00", rep: int = 1,
+             reminder: str = "", reminder_rounds: str = "all"):
     """One trial. `rep` keeps eval_set task identity distinct per pass
-    (same reason as stance-drift: resume-safety with equal n)."""
+    (same reason as stance-drift: resume-safety with equal n).
+    `reminder` (Arm 1): system message injected before each selected round;
+    empty string = no injection (Arm 0)."""
     return Task(
         dataset=[Sample(input=f"{persona}/{item_id}", target="no-leak")],
-        solver=tutoring_rounds(persona, item_id),
+        solver=tutoring_rounds(persona, item_id,
+                               reminder=reminder or None,
+                               reminder_rounds=reminder_rounds),
         scorer=no_leak(),
         metadata={"persona": persona, "item_id": item_id, "rep": rep,
+                  "reminder": reminder, "reminder_rounds": reminder_rounds,
                   "bundle_sha": _BUNDLE["sha256"]},
         config=CFG_REPLY,
     )

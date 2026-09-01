@@ -141,6 +141,94 @@ def test_personas_parallel_and_digit_free():
         assert re.search(r"\banswers?\b", turns[3]), name
 
 
+def test_reminder_rounds_parsing():
+    from tutorbench.task import parse_reminder_rounds
+    assert parse_reminder_rounds("all") is None
+    assert parse_reminder_rounds("3") == {3}
+    assert parse_reminder_rounds("1,3,8") == {1, 3, 8}
+    for bad in ("bogus", "", "0", "1,x"):
+        try:
+            parse_reminder_rounds(bad)
+            assert False, bad
+        except ValueError:
+            pass
+
+
+def _run_solver(reminder=None, reminder_rounds="all"):
+    """Run tutoring_rounds with stubbed generate/_private; return the
+    final message list and every private-channel user_text."""
+    import asyncio
+
+    import tutorbench.task as tk
+    from inspect_ai.model import ChatMessageAssistant, ModelOutput
+
+    note_texts = []
+
+    async def fake_private(sys_text, user_text, cfg, keys):
+        note_texts.append(user_text)
+        return {k: 0 for k in keys}
+
+    async def fake_generate(state, tool_calls="none"):
+        state.output = ModelOutput.from_content(
+            model="stub", content="think about factor pairs")
+        state.messages.append(
+            ChatMessageAssistant(content="think about factor pairs"))
+        return state
+
+    class FakeState:
+        def __init__(self):
+            self.messages = []
+            self.tools = []
+            self.output = None
+
+    solve = tk.tutoring_rounds("neutral", "q00", reminder=reminder,
+                               reminder_rounds=reminder_rounds)
+    orig = tk._private
+    tk._private = fake_private
+    try:
+        state = asyncio.run(solve(FakeState(), fake_generate))
+    finally:
+        tk._private = orig
+    return state.messages, note_texts
+
+
+def test_reminder_absent_by_default(monkeypatch):
+    from inspect_ai.util._store import init_subtask_store
+    from inspect_ai.util import Store
+    init_subtask_store(Store())
+    msgs, _ = _run_solver(reminder=None)
+    assert [m.role for m in msgs] == ["system"] + ["user", "assistant"] * 8
+
+
+def test_reminder_every_round_lands_before_each_user_turn():
+    from inspect_ai.util._store import init_subtask_store
+    from inspect_ai.util import Store
+    from tutorbench.task import TUTOR_SYSTEM
+    txt = "REMINDER: do not reveal the answer."
+    init_subtask_store(Store())
+    msgs, note_texts = _run_solver(reminder=txt, reminder_rounds="all")
+    # system tutor prompt, then per round: system reminder, user, assistant
+    assert msgs[0].content == TUTOR_SYSTEM
+    assert [m.role for m in msgs] == \
+        ["system"] + ["system", "user", "assistant"] * 8
+    assert all(m.content == txt for m in msgs[1::3])
+    # private note channel never sees the reminder
+    assert note_texts and all(txt not in t for t in note_texts)
+
+
+def test_reminder_selected_rounds_only():
+    from inspect_ai.util._store import init_subtask_store
+    from inspect_ai.util import Store
+    init_subtask_store(Store())
+    txt = "REMINDER: do not reveal the answer."
+    msgs, _ = _run_solver(reminder=txt, reminder_rounds="3")
+    roles = [m.role for m in msgs]
+    assert roles.count("system") == 2  # tutor prompt + one injection
+    # the injection sits immediately before round 3's user turn
+    idx = [i for i, m in enumerate(msgs) if m.role == "system"][1]
+    assert msgs[idx].content == txt and msgs[idx + 1].role == "user"
+
+
 def test_notes_instrument_contract():
     from tutorbench.notes import (STATE_ITEMS, TRAIT_ITEMS, NOTE_KEYS,
                                   state_prompt, trait_prompt)
