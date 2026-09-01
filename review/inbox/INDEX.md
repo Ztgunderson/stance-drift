@@ -7,6 +7,19 @@ the top; check items off by striking them through.*
 Open this file at:
 http://100.76.200.13:8890/lab/tree/review/inbox/INDEX.md
 
+## 2026-09-01 evening — your three deliverables
+
+- [ ] **[predictions-0901.md](predictions-0901.md)** — fill AFTER transcripts,
+      BEFORE 9 pm (committed numbers, incl. your P-1b guess *before* opening the
+      results table).
+- [ ] **[02-probe-exercise.ipynb](../../notebooks/02-probe-exercise.ipynb)** —
+      write the four probe functions; asserts grade you. Task 4 shows the round
+      confound scoring AUROC 1.0 with zero real signal.
+- [ ] **[log-0901.md](log-0901.md)** — hourly zoom-outs + end-of-day entry.
+- [ ] **P-1b raw table** at the bottom of
+      [2026-09-01-pilots.md](../../results/2026-09-01-pilots.md) — write YOUR
+      H0-2 reading before asking for mine. (P-1a V0 table lands there too.)
+
 ## 2026-09-01 — session 1 (scoping + pilots)
 
 - [ ] **[PREREG-9B.md](../../PREREG-9B.md)** — the six nulls + Amendments 1 & 2.
