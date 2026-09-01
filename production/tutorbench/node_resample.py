@@ -94,6 +94,18 @@ def sample_action(base, model, msgs, roots):
     return "continue", reply, None
 
 
+def collect_samples(k, workers, draw):
+    """k draws via `draw()` (no args), `workers`-way threaded when workers>1.
+
+    Pure helper so the threading path is unit-testable with a stubbed draw.
+    Order of samples is not meaningful (they are exchangeable draws)."""
+    if workers <= 1:
+        return [draw() for _ in range(k)]
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        return [f.result() for f in [pool.submit(draw) for _ in range(k)]]
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--log-dir", required=True)
@@ -102,6 +114,8 @@ def main():
     ap.add_argument("--rounds", default="2,3")
     ap.add_argument("--k", type=int, default=25)
     ap.add_argument("--n-trials", type=int, default=0, help="0 = all eligible")
+    ap.add_argument("--workers", type=int, default=6,
+                    help="concurrent draws per node (1 = sequential)")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
     base = os.environ.get("LOCAL_BASE_URL", "http://127.0.0.1:8000/v1")
@@ -134,11 +148,13 @@ def main():
         if key in done:
             continue
         t0 = time.time()
-        samples = []
-        for _ in range(a.k):
-            action, reply, reason = sample_action(base, a.model, msgs, st.roots)
-            samples.append({"action": action, "reason": reason,
-                            "reply_head": reply[:300]})
+
+        def draw(msgs=msgs, roots=st.roots):
+            action, reply, reason = sample_action(base, a.model, msgs, roots)
+            return {"action": action, "reason": reason,
+                    "reply_head": reply[:300]}
+
+        samples = collect_samples(a.k, a.workers, draw)
         counts = {act: sum(1 for s in samples if s["action"] == act)
                   for act in ("leak", "leave", "continue")}
         records.append({
