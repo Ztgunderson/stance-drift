@@ -104,7 +104,24 @@ HF/nnsight budgeted at 5–10× vLLM per trial. Both queue nights close with mar
    secondary; self-report movement = exploratory readout. Nothing promoted post hoc.
 10. **Matched decoding** everywhere; steering α within the naturally observed range.
 
-## 6. Schedule — submission Thursday, two GPU nights
+## 6a. Schedule re-cut 09-01 (post-reboot): one 12-hour work session
+
+Ordering per user: **pilots first (baseline + resampling), then straight into probing.**
+GPU nights (Q1/Q2 below) run unattended and don't count against the 12 hours.
+
+| Hours | Work | GPU overlap |
+|---|---|---|
+| 0–0.5 | Stack up ✓ → launch P-1b (≈25 min) then P-1a (≈10 min) | pilots on vLLM |
+| 0.5–3 | P0: replay adapter + logit readout, tested; pilot analysis when they land | 9B replay cache (~2 h) after pilots |
+| 3–6 | **L1 probing**: pre-event probes (condition on rounds-before-event), text baseline, logit-report rival, lead-time AUROC, all controls → `review/04-l1-probes.ipynb` | — |
+| 6–8 | L2 directions + L3 trajectory figure | — |
+| 8–11 | Arm-2 ablation implemented + smoke-tested; queue **Q-night**: 16-turn baseline + 48/cell reps + three-arm trial | overnight queue |
+| 11–12 | Integration, writeup skeleton, pre-registration text finalized | — |
+
+Contingency unchanged: lead-time figure is the promise; causal arm demoted honestly if
+the session ends with L5 unfinished.
+
+## 6b. Original schedule (superseded, kept for reference) — submission Thursday, two GPU nights
 
 **Mon (today, remainder):** container recovery → P-1b + P-1a pilots (~30 min) →
 transcript pass (`inspect view`, the §7.1 debt) → P0 replay/caching module written +
