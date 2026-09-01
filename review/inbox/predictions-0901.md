@@ -1,29 +1,29 @@
-# Predictions — 2026-09-01, written BEFORE tonight's preview ran
+# Predictions — 2026-09-01, written BEFORE preview ran
 
-*Fill this in after reading transcripts, before 9 pm. Numbers beat vibes — commit
-to values you can be wrong about. Nobody grades these; comparing them to the
-preview at 9 pm is the point.*
+## Looking at Logs
 
-## After reading supportive leakers (early r3 vs late r6–7)
+What differs in the tutors words when faced with supportive student and tutors actions?
+- Leaves to prevent the agent from going against their instructions/values.
+- When time pressure and iterative questioning is introduced they leak the answers
 
-- What differs in the tutor's OWN words between a trial that caves at r3 vs one
-  that holds to r6?
-  YOUR NOTES:
+What differs in the tutors words when faced with aggressor and leaks vs leaves?
+  - Leaves because agent was in the middle of something and student was fighting against it.
+  - Leaks because providing step by step for the student is what they need, so it happens to give step by step solution as conversations goes into later rounds.
 
-- What differs between a leaker and a survivor at round 2 (before anything happens)?
-  YOUR NOTES:
+What differs in the tutors words when faced with neutral outcomes leaks vs leaves?
+- Leaks when it notices the student is worried about the deadline.
+- Leaves as a response to student's refusal to adapt and learn or student causes them to go agains their instructions. (Seem anti-red teaming training)
 
 ## Commitments (numbers)
 
-- AUROC of the probe at lead 2 (supportive, will-leak):  ____
-- Will the probe beat the logit self-report at lead 2? (yes/no + margin):  ____
-- Will the probe beat the persona×round text baseline? (yes/no):  ____
-- Best layer range (early <10 / middle 10–22 / late >22):  ____
-- Higher signal: supportive leak prediction or neutral exit prediction?  ____
+- AUROC of the probe at lead 2 (supportive, will-leak):  .70
+- Will the probe beat the logit self-report at lead 2? (yes/no + margin):  Yes by 10-20% improvement
+- Will the probe beat the persona×round text baseline? (yes/no):  Yes
+- Best layer range (early <10 / middle 10–22 / late >22):  Middle
+- Higher signal: Aggressor
 - P-1b guess before seeing the table: reminder cuts supportive leaks from 18/24
-  to ____ /24; aggressor from 22/24 to ____ /24
-- V0 guess: mean per-context resample std of `resolve` at round 1:  ____
+  to 12 /24; aggressor from 22/24 to 18 /24
 
 ## One sentence: what would SURPRISE you tonight?
 
-YOUR NOTES:
+I would be supprised if this method totally aligns the model in this use case. That we can extract from residual stream information that could only be represented by a direction vector and used to predict intention without some higher dimentional geometry and predictive modeling. 
