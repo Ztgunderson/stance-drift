@@ -104,7 +104,37 @@ HF/nnsight budgeted at 5–10× vLLM per trial. Both queue nights close with mar
    secondary; self-report movement = exploratory readout. Nothing promoted post hoc.
 10. **Matched decoding** everywhere; steering α within the naturally observed range.
 
-## 6a. Schedule re-cut 09-01 (post-reboot): one 12-hour work session
+## 6a2. Working-session plan (09-01 afternoon rev): 12 h work + 2 h writing, 6 pm/9 pm/overnight rhythm
+
+Daily rhythm: work session → **6 pm queue launch** → **9 pm review checkpoint** →
+overnight run → morning review of executed notebooks. GPU nights count only the
+overnight portions.
+
+**Today (now → 6 pm, ≈3–4 h):** pilots land (P-1b, P-1a) + pilot analysis;
+PREREG Amendment 1 (done); P0 module lands from fork; finalize tonight's queue.
+→ **6 pm Q0:** stop vLLM → replay-cache all 72 banked 9B trials + logit readouts
+(~1–2 h GPU) → auto-execute `review/04-l1-preview.ipynb` → EVENING-STATUS.md.
+→ **9 pm review:** first honest look at H0-3/4/5 on banked data (the preview
+notebook's morning checklist applies). Decide overnight extension.
+→ **Overnight O0 (if 9 pm is green):** boot vLLM → expand supportive+neutral to
+48/cell at 8 rounds (~1 h) → stop vLLM → replay-cache the new trials.
+
+**Tue session (≈4 h):** formal `04-l1-probes.ipynb` — within-cell discrimination
+probes, persona×round-aware text baseline, logit-report rival, per-lead AUROC with
+bootstrap CIs, layer freeze; L2 directions + L3 trajectory figure; build B2 rounds
+extension (16-turn scripts). → **6 pm Q1:** 16-round supportive/neutral baseline at
+48/cell → replay-cache → re-execute preview on the extended data. 9 pm check.
+
+**Wed session (≈4 h):** Arm-2 ablation (nnsight/HF) implemented + smoke; triggered
+reminder variant; freeze three-arm design numbers from Tue data. → **6 pm Q2:**
+three-arm prevention trial, supportive primary (Arm 0/1 vLLM, Arm 2 HF overnight).
+9 pm check.
+
+**Thu:** morning arms analysis + integration; **2 h writing** in the user's own
+voice; SUBMIT. Contingency rules from §6b unchanged (lead-time figure is the
+promise; causal arm demoted honestly if unfinished).
+
+## 6a. Schedule re-cut 09-01 (post-reboot): one 12-hour work session (superseded by 6a2)
 
 Ordering per user: **pilots first (baseline + resampling), then straight into probing.**
 GPU nights (Q1/Q2 below) run unattended and don't count against the 12 hours.
