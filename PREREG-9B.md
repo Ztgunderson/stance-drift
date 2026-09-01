@@ -159,7 +159,7 @@ recommended defaults. Later changes only by dated amendment.)*
    trial-bootstrap CI — the single number answering H0-3/4/5. All other cells,
    leads, and metrics (PR-AUC included) are secondary/descriptive.
 
-## AMENDMENT 4 — 2026-09-01 evening — PROPOSED (awaiting user approval): node-propensity resampling
+## AMENDMENT 4 — 2026-09-01 evening — USER-APPROVED (user ordered the run, 09-01 ~19:00): node-propensity resampling
 
 User-initiated design (from transcript-pass reasoning): branch k rollouts from
 frozen decision nodes to turn small-n action classification into propensity
