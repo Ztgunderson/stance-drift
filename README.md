@@ -58,7 +58,7 @@ not training probes.
 | OS | Ubuntu 22.04, L4T R36.5.0, **JetPack 6.2.2** |
 | Compute | CUDA 12.6, Python 3.10, aarch64 |
 | Docker | default runtime is already `nvidia` |
-| Remote | Tailscale — `jetson-llm` @ `REDACTED`, SSH on :22 |
+| Remote | Tailscale (tailnet details local-only) |
 
 **The one constraint that governs everything:** 64 GB is shared between CPU and
 GPU, and the existing vLLM stack routinely holds ~53 GB of it. Nothing large

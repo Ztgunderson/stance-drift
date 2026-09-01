@@ -5,3 +5,8 @@ neel-context/
 __pycache__/
 *.log
 .ipynb_checkpoints/
+.jupyter-token
+*.pid
+.pytest_cache/
+default_600k.md
+review/traces-v1/
