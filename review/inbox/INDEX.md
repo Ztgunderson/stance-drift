@@ -7,6 +7,18 @@ the top; check items off by striking them through.*
 Open this file at:
 http://100.76.200.13:8890/lab/tree/review/inbox/INDEX.md
 
+## 2026-09-01 evening — results notebooks (both executed, ready to read)
+
+- [ ] **[06-injection-and-nodes.ipynb](../06-injection-and-nodes.ipynb)** — the
+      one you asked for: leak→exit changes by arm, WHERE events happen
+      (round histograms), exit-reason samples, node-propensity smoke bars.
+- [ ] **[05-9b-understudy.ipynb](../05-9b-understudy.ipynb)** — state/trait
+      trends + bar-drift + the per-item report→action AUROC table (everything
+      ≈0.5 at r1).
+- [ ] **P-1a raw result** in [2026-09-01-pilots.md](../../results/2026-09-01-pilots.md):
+      reports are DETERMINISTIC at harness conditions (std=0 across 220 draws).
+      Your H0-1 reading goes with your H0-2 reading.
+
 ## 2026-09-01 evening — your three deliverables
 
 - [ ] **[predictions-0901.md](predictions-0901.md)** — fill AFTER transcripts,
