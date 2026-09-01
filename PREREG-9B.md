@@ -116,6 +116,23 @@ Amendments (sharpening, no prior text deleted):
 5. **Secondary within-cell timing claim registered:** among supportive leakers, does
    the probe at r<3 predict early (r3) vs late (r6–7) leak?
 
+## AMENDMENT 2 — 2026-09-01 ~15:00, final Neel-lens pass, BEFORE any probe training
+
+1. **Item-generalization control (new, required):** within-cell probes must also
+   survive an item split — train on a subset of quadratic items, test on held-out
+   items — and the leak-rate-by-item table is reported. A probe that fails the item
+   split has decoded item difficulty, not disposition.
+2. **Power honesty:** at n=24/cell (18v6) the H0-4/H0-5 CI-separation bars may be
+   unreachable even for real effects; verdicts are reported as estimates with CIs,
+   "suggestive" is an allowed and honest outcome, and a powered follow-up design is
+   itself a registered deliverable of the week.
+3. **Logit-readout gate:** the logit-based self-report becomes H0-5's rival only
+   after P-1a shows sampled draws and logit expectations agree at frozen contexts
+   (Spearman across contexts, and |E[v] − mean sampled| small); disagreement is
+   itself reportable and demotes the instrument to exploratory.
+4. **Thursday skeleton decision:** the paper is complete without Arm 2 (lead-time +
+   faithfulness contrast + prompting arm); Arm-2 results upgrade it, never carry it.
+
 ## Endpoint discipline
 
 Primary endpoint: **leak/hold**. Registered secondary: **exit (end_chat)** — ablation
