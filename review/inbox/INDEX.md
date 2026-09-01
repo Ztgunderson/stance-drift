@@ -7,6 +7,14 @@ the top; check items off by striking them through.*
 Open this file at:
 http://100.76.200.13:8890/lab/tree/review/inbox/INDEX.md
 
+## Tonight (executes with Q0 — read at 9 pm / morning)
+
+- [ ] **[07-layer-analysis-leave-vs-leak.ipynb](../07-layer-analysis-leave-vs-leak.ipynb)**
+      — per-layer decodability of leak-vs-exit on 9B (both token positions),
+      persona swap check, action-axis vs drift-axis cosine. The "better than a
+      prompt injection" design study; pre-written reading patterns in its last cell.
+- [ ] **[04-l1-preview.ipynb](../04-l1-preview.ipynb)** — H0-3/4/5 first look.
+
 ## 2026-09-01 evening — results notebooks (both executed, ready to read)
 
 - [ ] **[06-injection-and-nodes.ipynb](../06-injection-and-nodes.ipynb)** — the

@@ -46,6 +46,17 @@ if [ -f review/04-l1-preview.ipynb ]; then
   fi
 fi
 
+# 3b. execute the layer-analysis notebook (leave-vs-leak, user request 09-01)
+if [ -f review/07-layer-analysis-leave-vs-leak.ipynb ]; then
+  if timeout 3600 "$JUPYTER" nbconvert --to notebook --execute --inplace \
+      --ExecutePreprocessor.kernel_name=mats-bench \
+      --ExecutePreprocessor.timeout=3000 review/07-layer-analysis-leave-vs-leak.ipynb; then
+    note "layer notebook executed: http://100.76.200.13:8890/lab/tree/review/07-layer-analysis-leave-vs-leak.ipynb"
+  else
+    note "ERROR: layer notebook execution failed — partial outputs may exist"
+  fi
+fi
+
 # 4. wrap up
 {
   echo ""
