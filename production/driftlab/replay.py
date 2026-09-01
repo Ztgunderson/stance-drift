@@ -31,6 +31,11 @@ Output per trial: <out>/<trial-stem>.npz
   resid        float16 [n_assistant_turns, n_layers+1, d_model]
   ends         int     [n_assistant_turns]   token index of each end-of-turn
   resid_rounds int     [n_assistant_turns]   round number of each resid row
+  resid_user   float16 [n_user_turns, n_layers+1, d_model]  PRE-DECISION node
+                       states: end of each student turn — the state round r's
+                       reply is conditioned on (Amendment 4 node regression)
+  user_ends    int     [n_user_turns]
+  user_rounds  int     [n_user_turns]
                        (a round whose reply was empty — pure end_chat call —
                        has no resid row, so align on this, not on position)
   report_ev    float32 [n_rounds, n_items]   E[value] per STATE item; nan
@@ -129,7 +134,8 @@ def assistant_end_indices(tokenizer, msgs):
                     return_offsets_mapping=True)
     ids, offs = enc["input_ids"], enc["offset_mapping"]
     ends, rounds_of, pos, rnd = [], [], 0, 0
-    for i, m in enumerate(msgs):
+    u_ends, u_rounds = [], []          # last content token of each USER turn:
+    for i, m in enumerate(msgs):       # the PRE-DECISION node state for round r
         if m["role"] == "user":
             rnd += 1
         content = (m["content"] or "").strip()
@@ -141,15 +147,19 @@ def assistant_end_indices(tokenizer, msgs):
                 f"message {i} ({m['role']}) content not found in rendered "
                 "template — template transforms content, needs a look")
         pos = j + len(content)
-        if m["role"] == "assistant":
+        if m["role"] in ("assistant", "user"):
             char_end = pos - 1
             tok_i = next(k for k, (a, b) in enumerate(offs)
                          if a <= char_end < b)
-            ends.append(tok_i)
-            rounds_of.append(rnd)
+            if m["role"] == "assistant":
+                ends.append(tok_i)
+                rounds_of.append(rnd)
+            else:
+                u_ends.append(tok_i)
+                u_rounds.append(rnd)
     if not ends:
         raise RuntimeError("no assistant turns located")
-    return ids, ends, rounds_of
+    return ids, ends, rounds_of, u_ends, u_rounds
 
 
 # -- logit self-report readout ----------------------------------------------
@@ -332,7 +342,8 @@ def main():
         if not msgs:
             print(f"[{nfile}/{len(files)}] {stem} EMPTY — skip", flush=True)
             continue
-        ids, ends, rounds_of = assistant_end_indices(tok, msgs)
+        ids, ends, rounds_of, u_ends, u_rounds = \
+            assistant_end_indices(tok, msgs)
         t0 = time.time()
         with torch.no_grad():
             out = model(torch.tensor([ids], device=args.device),
@@ -340,6 +351,11 @@ def main():
         resid = np.stack(
             [torch.stack([h[0, e] for h in out.hidden_states])
                   .to(torch.float16).cpu().numpy() for e in ends])
+        # pre-decision node states: end of each USER (student) turn — the
+        # state the round-r reply decision is conditioned on (Amendment 4)
+        resid_user = np.stack(
+            [torch.stack([h[0, e] for h in out.hidden_states])
+                  .to(torch.float16).cpu().numpy() for e in u_ends])
         del out
 
         if args.no_reports:
@@ -351,6 +367,9 @@ def main():
 
         np.savez_compressed(dst, resid=resid, ends=np.array(ends),
                             resid_rounds=np.array(rounds_of),
+                            resid_user=resid_user,
+                            user_ends=np.array(u_ends),
+                            user_rounds=np.array(u_rounds),
                             report_ev=ev, report_probs=probs)
         with open(os.path.join(args.out, stem + ".json"), "w") as fh:
             json.dump(meta, fh, indent=1)

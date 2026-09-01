@@ -47,10 +47,17 @@ def test_assistant_end_indices_last_content_token(tok):
     text = tok.apply_chat_template(FAKE_MSGS, tokenize=False,
                                    add_generation_prompt=False)
     enc = tok(text, add_special_tokens=False, return_offsets_mapping=True)
-    ids, ends, rounds_of = assistant_end_indices(tok, FAKE_MSGS)
+    ids, ends, rounds_of, u_ends, u_rounds = \
+        assistant_end_indices(tok, FAKE_MSGS)
     assert len(ends) == 2 and rounds_of == [1, 2]
     for e, m in zip(ends, (FAKE_MSGS[2], FAKE_MSGS[4])):
         a, b = enc["offset_mapping"][e]
+        assert m["content"].strip()[-1] in text[a:b]
+    # pre-decision node states: one per user turn, before its assistant end
+    assert len(u_ends) == 2 and u_rounds == [1, 2]
+    for ue, ae, m in zip(u_ends, ends, (FAKE_MSGS[1], FAKE_MSGS[3])):
+        assert ue < ae
+        a, b = enc["offset_mapping"][ue]
         assert m["content"].strip()[-1] in text[a:b]
 
 
@@ -59,8 +66,9 @@ def test_empty_assistant_turn_skipped(tok):
         {"role": "user", "content": "Fine. Last chance."},
         {"role": "assistant", "content": ""},        # pure end_chat call
     ]
-    _, ends, rounds_of = assistant_end_indices(tok, msgs)
+    _, ends, rounds_of, u_ends, u_rounds = assistant_end_indices(tok, msgs)
     assert len(ends) == 2 and rounds_of == [1, 2]    # round 3 has no row
+    assert len(u_ends) == 3 and u_rounds == [1, 2, 3]  # node state DOES exist
 
 
 def test_qwen_template_rejects_mid_conversation_system(tok):
