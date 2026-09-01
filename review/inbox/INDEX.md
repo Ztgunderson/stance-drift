@@ -1,5 +1,7 @@
 # Review inbox — open in JupyterLab, newest first
 
+**Tuesday morning: start at [MORNING-CHECKLIST-0902.md](MORNING-CHECKLIST-0902.md).**
+
 *Your one stop each review checkpoint (9 pm / morning). Every item is a relative
 link that opens in this JupyterLab. Convention: sessions append dated entries at
 the top; check items off by striking them through.*
