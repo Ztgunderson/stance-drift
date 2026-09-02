@@ -1,7 +1,9 @@
 # Review inbox — open in JupyterLab, newest first
 
 **Tonight 9 pm: start at [REVIEW-2100-0901.md](REVIEW-2100-0901.md).**
-**Tuesday morning: start at [MORNING-CHECKLIST-0902.md](MORNING-CHECKLIST-0902.md).**
+**Tuesday morning: [MORNING-CHECKLIST-0902.md](MORNING-CHECKLIST-0902.md) for run
+health, then [FALSIFICATION-0902.md](FALSIFICATION-0902.md) — the worksheet: five
+findings to try to break, visuals to inspect, your verdict blanks.**
 
 *Your one stop each review checkpoint (9 pm / morning). Every item is a relative
 link that opens in this JupyterLab. Convention: sessions append dated entries at
