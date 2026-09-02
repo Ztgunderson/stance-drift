@@ -41,3 +41,10 @@ Kernel = the bench venv, registered as `mats-bench`.
 - `03-interp-bridge.ipynb` — ridge probes residual→self-report per layer,
   and per-turn outcome decodability, each with trial-level shuffled
   controls, qwen3.5-9b + ministral-3-14b (C5–C6).
+
+## Averaging rule (2026-09-01, user-set)
+
+Any plotted mean over trials/items/nodes MUST show its spread: ±sd band
+(fill_between) or per-point error bars, in addition to (not instead of) the
+per-trial spaghetti. Tables that report a mean report sd (or a CI) beside it.
+A bare mean line is not reviewable.
