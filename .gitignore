@@ -10,3 +10,6 @@ __pycache__/
 .pytest_cache/
 default_600k.md
 review/traces-v1/
+review/traces-9b/
+review/traces-all/
+review/traces-pilot/

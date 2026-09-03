@@ -12,6 +12,30 @@ the top; check items off by striking them through.*
 Open this file at:
 http://100.76.200.13:8890/lab/tree/review/inbox/INDEX.md
 
+## 2026-09-02 afternoon (Wed; submission is TOMORROW; one GPU night left)
+
+- [ ] **[PREREG-9B.md → Amendment 6](../../PREREG-9B.md)** — PROPOSED hygiene rules
+      (greedy re-runs, persona×item folds, regime column, 20-perm nulls, 3 random
+      seeds, per-fold layer, errored column, random examples, ask-an-LLM). Needs
+      your APPROVED/EDIT line before the write-up cites any of it.
+- [ ] **[04-l1-probes.ipynb](../04-l1-probes.ipynb)** — the FORMAL notebook. Loads
+      `results/probes/formal.json` + `formal-rows.npz` (written once by
+      `production/driftlab/probes_run.py`) and only draws; opens in seconds. Empty
+      until the full driver run finishes (launch after the judge chain frees the CPU).
+- [ ] **[FALSIFICATION-0902.md](FALSIFICATION-0902.md)** — add under F1: temperature-0
+      reps are near-duplicates (55/192 rep pairs identical at round 1; full-360 audit
+      in MORNING-STATUS), so trial-grouped folds leak. Position call still blank.
+- [ ] **Ask-an-LLM baseline** — `results/askllm/judge-qwen9b-self.jsonl`; summary
+      table lands in MORNING-STATUS when the judge chain signs off (~14:15). Judge =
+      the 9B itself reading the visible transcript; read 12 random `why` lines first.
+- [ ] **360-trial fill** — aggressor now 120/cell (104 leak @r1, 16 leave @r2).
+      Subagent verification block in MORNING-STATUS.
+- [ ] **Intervention smoke (needs your GO + free GPU):** `./intervene-smoke-0902.sh <layer> 3 10`
+      — 3 supportive r3 nodes × none/ablate/ablate_random, HF generate. Layer = the
+      formal driver's modal nested layer; read raw samples before the summary.
+- Nightcap full-n numbers from 04/07 (overwritten on disk at 12:50) are saved in
+  `results/MORNING-STATUS.md`.
+
 ## Tonight (executes with Q0 — read at 9 pm / morning)
 
 - [ ] **[07-layer-analysis-leave-vs-leak.ipynb](../07-layer-analysis-leave-vs-leak.ipynb)**
