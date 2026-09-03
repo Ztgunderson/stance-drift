@@ -141,3 +141,22 @@ def test_judge_runner_resume_and_parse(tmp_path):
     n2, _ = jd.run(str(steer), str(out), "http://x", "m", items_path=items, caller=fake)
     assert n2 == 0                                     # resume: nothing re-judged
     J = jd.load_judgments(str(out)); assert J["p__base__none"][("q00", 2)] is True and J["p__base__none"][("q00", 1)] is False
+
+
+def test_pooled_replicates_keep_distinct_judge_rows():
+    from driftlab.steer_summary import disclosure_ladder, paired_items, pooled_judge, split_reps, judge_alone
+    mk = lambda src, reply: {"item_id": "q0", "roots": [2, 3], "leak_round": None, "leave_round": None, "outcome": "held",
+                             "_src": src, "rounds": [{"round": 1, "reply": reply}]}
+    cell = {"persona": "aggressor", "tier": "base", "negation": "N1", "trials": [mk("c1", "keep going"), mk("c2", "keep going")]}
+    J = pooled_judge({"c1": {("q0", 1): True}, "c2": {("q0", 1): False}})
+    pt, s = disclosure_ladder(cell, judge=J)
+    assert [p["first"]["L3_judge"] for p in pt] == [1, None]      # rep-specific, not overwritten
+    assert s["L3_judge"]["k"] == 1
+    ja = judge_alone(cell, J)
+    assert ja["k"] == 1 and ja["confusion"] == {(False, False, True): 1, (False, False, False): 1}
+    reps = split_reps(cell)
+    assert set(reps) == {"c1", "c2"} and all(len(r["trials"]) == 1 for r in reps.values())
+    import pytest
+    with pytest.raises(ValueError):
+        paired_items(cell, reps["c1"])
+    assert paired_items(reps["c1"], reps["c2"], level="L3_judge", judge_a=J, judge_b=J)["a_only"] == 1
