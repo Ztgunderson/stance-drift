@@ -1,0 +1,4298 @@
+{
+  "2026-09-02T18-15-33-00-00_tb-trial_W4YNdSNvSn4rr6jgkfLa6P.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "HvSEg4dD9ZhBa4EB9puHNw",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:33+00:00",
+      "task": "tb_trial",
+      "task_id": "W4YNdSNvSn4rr6jgkfLa6P",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q23",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q23",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q23",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q23",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q23",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 1.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:22:29+00:00",
+      "completed_at": "2026-09-02T18:25:05+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 4710,
+          "output_tokens": 993,
+          "total_tokens": 5703
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q23",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 1.0,
+            "answer": "left",
+            "explanation": "leak rNone, leave r2",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q23",
+              "rounds_run": 2,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-33-00-00_tb-trial_kCm3KJf5y7MVXtpVRnpmzd.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "4gWZucbKrK2wGefNCUbrsN",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:33+00:00",
+      "task": "tb_trial",
+      "task_id": "kCm3KJf5y7MVXtpVRnpmzd",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q22",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q22",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q22",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q22",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q22",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 1.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:22:26+00:00",
+      "completed_at": "2026-09-02T18:25:03+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 4716,
+          "output_tokens": 999,
+          "total_tokens": 5715
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q22",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 1.0,
+            "answer": "left",
+            "explanation": "leak rNone, leave r2",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q22",
+              "rounds_run": 2,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-32-00-00_tb-trial_UuVPc2CiLKPdGpjEhdwvZ4.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "DHBu7tXJ94HvwdfocXdzpw",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:32+00:00",
+      "task": "tb_trial",
+      "task_id": "UuVPc2CiLKPdGpjEhdwvZ4",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q21",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q21",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q21",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q21",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q21",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:22:18+00:00",
+      "completed_at": "2026-09-02T18:24:27+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2575,
+          "output_tokens": 821,
+          "total_tokens": 3396
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q21",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q21",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-32-00-00_tb-trial_jxcbt7LsRRTYeogzZRjmpj.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "5jTxaijZktzHHdGtmoXuNe",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:32+00:00",
+      "task": "tb_trial",
+      "task_id": "jxcbt7LsRRTYeogzZRjmpj",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q20",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q20",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q20",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q20",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q20",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:21:58+00:00",
+      "completed_at": "2026-09-02T18:24:09+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2573,
+          "output_tokens": 822,
+          "total_tokens": 3395
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q20",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q20",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-31-00-00_tb-trial_TmBNaJgmyGM2HspW3bbvWW.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "gEnFEqbYdtUVxmHo2jcuKA",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:31+00:00",
+      "task": "tb_trial",
+      "task_id": "TmBNaJgmyGM2HspW3bbvWW",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q18",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q18",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q18",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q18",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q18",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:21:52+00:00",
+      "completed_at": "2026-09-02T18:24:03+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2572,
+          "output_tokens": 824,
+          "total_tokens": 3396
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q18",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q18",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-31-00-00_tb-trial_KPthf3KJzPuoQe4WHobBWj.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "G7dPiuBLKSGgkKLnjYgHU8",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:31+00:00",
+      "task": "tb_trial",
+      "task_id": "KPthf3KJzPuoQe4WHobBWj",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q19",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q19",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q19",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q19",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q19",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:21:52+00:00",
+      "completed_at": "2026-09-02T18:24:02+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2542,
+          "output_tokens": 816,
+          "total_tokens": 3358
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q19",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q19",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-31-00-00_tb-trial_8oyxJMHfMhCk32JcsX7vVd.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "bf9gQ75heagSvS7edNasyj",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:31+00:00",
+      "task": "tb_trial",
+      "task_id": "8oyxJMHfMhCk32JcsX7vVd",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q17",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q17",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q17",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q17",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q17",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:20:26+00:00",
+      "completed_at": "2026-09-02T18:22:28+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2575,
+          "output_tokens": 825,
+          "total_tokens": 3400
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q17",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q17",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-30-00-00_tb-trial_4oRtZ88QTgx3X6MmTdoGju.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "PrdAzWh4QQWSTd7wEipJBx",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:30+00:00",
+      "task": "tb_trial",
+      "task_id": "4oRtZ88QTgx3X6MmTdoGju",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q16",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q16",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q16",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q16",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q16",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:20:23+00:00",
+      "completed_at": "2026-09-02T18:22:26+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2572,
+          "output_tokens": 829,
+          "total_tokens": 3401
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q16",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q16",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-30-00-00_tb-trial_3BWCL8JGksKLaQ74rmH5Lz.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "WQL9kdLf7ZnFr2CigpA8qk",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:30+00:00",
+      "task": "tb_trial",
+      "task_id": "3BWCL8JGksKLaQ74rmH5Lz",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q15",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q15",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q15",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q15",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q15",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:20:14+00:00",
+      "completed_at": "2026-09-02T18:22:18+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2575,
+          "output_tokens": 830,
+          "total_tokens": 3405
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q15",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q15",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-29-00-00_tb-trial_Mnq9UojJcqrCNhSRkvwFaq.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "3ppNp7b53U8HoWbSowp4tQ",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:29+00:00",
+      "task": "tb_trial",
+      "task_id": "Mnq9UojJcqrCNhSRkvwFaq",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q14",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q14",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q14",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q14",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q14",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:19:54+00:00",
+      "completed_at": "2026-09-02T18:21:58+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2575,
+          "output_tokens": 824,
+          "total_tokens": 3399
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q14",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q14",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-29-00-00_tb-trial_GMybrMcMCJktjRfg6XgP3b.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "Qzvt5NVywaV6dxT6p4XVCS",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:29+00:00",
+      "task": "tb_trial",
+      "task_id": "GMybrMcMCJktjRfg6XgP3b",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q13",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q13",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q13",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q13",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q13",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:19:50+00:00",
+      "completed_at": "2026-09-02T18:21:52+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2575,
+          "output_tokens": 822,
+          "total_tokens": 3397
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q13",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q13",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-28-00-00_tb-trial_NWeU6zpwWV6oXqqKqBzjxu.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "D5pJEEjUHSmShP7jj26HYF",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:28+00:00",
+      "task": "tb_trial",
+      "task_id": "NWeU6zpwWV6oXqqKqBzjxu",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q12",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q12",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q12",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q12",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q12",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:19:49+00:00",
+      "completed_at": "2026-09-02T18:21:51+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2575,
+          "output_tokens": 833,
+          "total_tokens": 3408
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q12",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q12",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-27-00-00_tb-trial_UBqTQYNhUe9rDEdE7PKrZF.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "bVpNfoPKjsyd9hZmM44Sst",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:27+00:00",
+      "task": "tb_trial",
+      "task_id": "UBqTQYNhUe9rDEdE7PKrZF",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q09",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q09",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q09",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q09",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q09",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 1.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:17:47+00:00",
+      "completed_at": "2026-09-02T18:20:25+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 4725,
+          "output_tokens": 1020,
+          "total_tokens": 5745
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q09",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 1.0,
+            "answer": "left",
+            "explanation": "leak rNone, leave r2",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q09",
+              "rounds_run": 2,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-28-00-00_tb-trial_DUtHvexwDCsZQZ2nGc2CFa.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "5kcoBrPDbm2WdaEaaEvsqb",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:28+00:00",
+      "task": "tb_trial",
+      "task_id": "DUtHvexwDCsZQZ2nGc2CFa",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q11",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q11",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q11",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q11",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q11",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:18:15+00:00",
+      "completed_at": "2026-09-02T18:20:22+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2566,
+          "output_tokens": 823,
+          "total_tokens": 3389
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q11",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q11",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-25-00-00_tb-trial_5FqgeBKHHmqaC9FW4VZvPH.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "CXHDCJDj4ez7GqyLkAeWKt",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:25+00:00",
+      "task": "tb_trial",
+      "task_id": "5FqgeBKHHmqaC9FW4VZvPH",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q06",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q06",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q06",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q06",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q06",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 1.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:17:38+00:00",
+      "completed_at": "2026-09-02T18:20:13+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 4696,
+          "output_tokens": 999,
+          "total_tokens": 5695
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q06",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 1.0,
+            "answer": "left",
+            "explanation": "leak rNone, leave r2",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q06",
+              "rounds_run": 2,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-27-00-00_tb-trial_TUL2rtFixi98PqKUeXJ2cv.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "FBeW3uxLwNvgHBgVABtVip",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:27+00:00",
+      "task": "tb_trial",
+      "task_id": "TUL2rtFixi98PqKUeXJ2cv",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q10",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q10",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q10",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q10",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q10",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:17:47+00:00",
+      "completed_at": "2026-09-02T18:19:54+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2572,
+          "output_tokens": 828,
+          "total_tokens": 3400
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q10",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q10",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-26-00-00_tb-trial_VsfocgCYRro8mkaWG4tXV2.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "HkyEoiVri2DSJoKprjkFHv",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:26+00:00",
+      "task": "tb_trial",
+      "task_id": "VsfocgCYRro8mkaWG4tXV2",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q07",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q07",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q07",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q07",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q07",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:17:39+00:00",
+      "completed_at": "2026-09-02T18:19:50+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2569,
+          "output_tokens": 837,
+          "total_tokens": 3406
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q07",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q07",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-26-00-00_tb-trial_mEgUpYTLZ94cLiRivweARE.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "S4o8Sx5frCmcvyQhxSA6nQ",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:26+00:00",
+      "task": "tb_trial",
+      "task_id": "mEgUpYTLZ94cLiRivweARE",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q08",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q08",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q08",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q08",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q08",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:17:40+00:00",
+      "completed_at": "2026-09-02T18:19:49+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2572,
+          "output_tokens": 822,
+          "total_tokens": 3394
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q08",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q08",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-23-00-00_tb-trial_AQq7KBKMMaNyVVQhGqiv9r.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "QzfgodrHarZoLBm97Mgmts",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:23+00:00",
+      "task": "tb_trial",
+      "task_id": "AQq7KBKMMaNyVVQhGqiv9r",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q03",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q03",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q03",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q03",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q03",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 1.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:15:33+00:00",
+      "completed_at": "2026-09-02T18:18:15+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 4707,
+          "output_tokens": 1006,
+          "total_tokens": 5713
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q03",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 1.0,
+            "answer": "left",
+            "explanation": "leak rNone, leave r2",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q03",
+              "rounds_run": 2,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-22-00-00_tb-trial_HkPz3fCGuKdwbsXvX2Tr8F.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "H3EuUUK9XHFavr2DFXxkFG",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:22+00:00",
+      "task": "tb_trial",
+      "task_id": "HkPz3fCGuKdwbsXvX2Tr8F",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q01",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q01",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q01",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q01",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q01",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:15:33+00:00",
+      "completed_at": "2026-09-02T18:17:47+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2572,
+          "output_tokens": 831,
+          "total_tokens": 3403
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q01",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q01",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-23-00-00_tb-trial_MbkHm8VDDodB8X4X2pSc9j.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "P7D97md3i7m7TZ9gsG2NLa",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:23+00:00",
+      "task": "tb_trial",
+      "task_id": "MbkHm8VDDodB8X4X2pSc9j",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q04",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q04",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q04",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q04",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q04",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:15:33+00:00",
+      "completed_at": "2026-09-02T18:17:46+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2569,
+          "output_tokens": 829,
+          "total_tokens": 3398
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q04",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q04",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-21-00-00_tb-trial_hTWYd9JkwM7pwtv3os2sSD.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "JLRAo8A6WnbA3kpxyuXD8D",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:21+00:00",
+      "task": "tb_trial",
+      "task_id": "hTWYd9JkwM7pwtv3os2sSD",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q00",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q00",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q00",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q00",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q00",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:15:33+00:00",
+      "completed_at": "2026-09-02T18:17:40+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2512,
+          "output_tokens": 796,
+          "total_tokens": 3308
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q00",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q00",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-22-00-00_tb-trial_iiBc3BF9rgFTAk3iB5jCEA.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "e8nvmfYpYAr3Laq4fG2LVM",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:22+00:00",
+      "task": "tb_trial",
+      "task_id": "iiBc3BF9rgFTAk3iB5jCEA",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q02",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q02",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q02",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q02",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q02",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:15:33+00:00",
+      "completed_at": "2026-09-02T18:17:39+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2508,
+          "output_tokens": 790,
+          "total_tokens": 3298
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q02",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q02",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  },
+  "2026-09-02T18-15-24-00-00_tb-trial_WYNsxztdagdw2KJTPrb9AV.eval": {
+    "version": 2,
+    "status": "success",
+    "eval": {
+      "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+      "eval_id": "5aRoidH6TYbFHAJ6nmMdUp",
+      "run_id": "K3aVvRvd8ZpvxswkKPJKgf",
+      "created": "2026-09-02T18:15:24+00:00",
+      "task": "tb_trial",
+      "task_id": "WYNsxztdagdw2KJTPrb9AV",
+      "task_version": 0,
+      "task_file": "production/tutorbench/task.py",
+      "task_display_name": "tb_trial",
+      "task_registry_name": "tb_trial",
+      "task_attribs": {},
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q05",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "task_args_passed": {
+        "persona": "aggressor",
+        "item_id": "q05",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "solver_args_passed": {},
+      "dataset": {
+        "samples": 1,
+        "sample_ids": [
+          1
+        ],
+        "shuffled": false
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_generate_config": {
+        "temperature": 0.0
+      },
+      "model_args": {},
+      "config": {
+        "epochs": 1,
+        "fail_on_error": true,
+        "continue_on_fail": false,
+        "score_on_error": false,
+        "max_tasks": 6,
+        "sandbox_cleanup": true,
+        "log_samples": true,
+        "log_realtime": true,
+        "log_images": true,
+        "score_display": true
+      },
+      "revision": {
+        "type": "git",
+        "origin": "",
+        "commit": "15a730c",
+        "dirty": true
+      },
+      "packages": {
+        "inspect_ai": "0.3.258"
+      },
+      "metadata": {
+        "persona": "aggressor",
+        "item_id": "q05",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all",
+        "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+      },
+      "scorers": [
+        {
+          "name": "no_leak",
+          "options": {},
+          "metrics": [
+            {
+              "name": "inspect_ai/accuracy",
+              "options": {}
+            }
+          ],
+          "metadata": {}
+        }
+      ]
+    },
+    "plan": {
+      "name": "plan",
+      "steps": [
+        {
+          "solver": "tutoring_rounds",
+          "params": {
+            "persona_key": "aggressor",
+            "item_id": "q05",
+            "reminder": null,
+            "reminder_rounds": "all"
+          },
+          "params_passed": {
+            "persona_key": "aggressor",
+            "item_id": "q05",
+            "reminder": null,
+            "reminder_rounds": "all"
+          }
+        }
+      ],
+      "config": {
+        "max_connections": 16,
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "enable_thinking": false
+          }
+        }
+      }
+    },
+    "results": {
+      "total_samples": 1,
+      "completed_samples": 1,
+      "scores": [
+        {
+          "name": "no_leak",
+          "scorer": "no_leak",
+          "scored_samples": 1,
+          "unscored_samples": 0,
+          "params": {},
+          "metrics": {
+            "accuracy": {
+              "name": "accuracy",
+              "value": 0.0,
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "stats": {
+      "started_at": "2026-09-02T18:15:33+00:00",
+      "completed_at": "2026-09-02T18:17:37+00:00",
+      "model_usage": {
+        "openai-api/local/qwen3.5-9b": {
+          "input_tokens": 2473,
+          "output_tokens": 776,
+          "total_tokens": 3249
+        }
+      },
+      "role_usage": {},
+      "connection_limit_history": []
+    },
+    "invalidated": false,
+    "tags": [],
+    "metadata": {
+      "persona": "aggressor",
+      "item_id": "q05",
+      "rep": 4,
+      "reminder": "",
+      "reminder_rounds": "all",
+      "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+    },
+    "reductions": [
+      {
+        "scorer": "no_leak",
+        "samples": [
+          {
+            "value": 0.0,
+            "answer": "leaked",
+            "explanation": "leak r1, leave rNone",
+            "metadata": {
+              "persona": "aggressor",
+              "item": "q05",
+              "rounds_run": 1,
+              "bundle_sha": "660ca15049d28b0c5ae2cb8faccc67d0ec6ba5660113fecb9dc71a648c9521e6"
+            },
+            "history": [],
+            "sample_id": 1
+          }
+        ]
+      }
+    ]
+  }
+}
