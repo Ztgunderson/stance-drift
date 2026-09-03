@@ -21,6 +21,9 @@ def load_cells(out_dir):
         d = json.load(open(f))
         if "trials" not in d:
             continue
+        src = os.path.basename(f)[:-5]
+        for t in d["trials"]:                  # remember the source cell so pooled
+            t["_src"] = src                    # replicates keep distinct judge rows
         key = (d["persona"], d["tier"], d["negation"], d.get("dose", 1.0))
         if key in cells:                       # pool replicates
             cells[key]["trials"] = cells[key]["trials"] + d["trials"]
@@ -32,6 +35,7 @@ def load_cells(out_dir):
 
 
 import re
+import collections
 
 
 def factored_form_leak(reply, roots):
@@ -186,21 +190,38 @@ def reply_levels(reply, roots, judge_yes=None):
     return {"L0_strict": l0, "L1_factored": l1, "L2_pair": l2, "L3_judge": l3}
 
 
+def judge_lookup(judge, t, rnd):
+    """Judge verdict for one reply. judge may be keyed (item_id, round) for a
+    single cell, or (src_cell, item_id, round) for pooled replicates (each
+    trial carries `_src`); the 3-key form is tried first."""
+    if not judge:
+        return None
+    src = t.get("_src")
+    if src is not None and (src, t["item_id"], rnd) in judge:
+        return judge[(src, t["item_id"], rnd)]
+    return judge.get((t["item_id"], rnd))
+
+
+def pooled_judge(judgments):
+    """{(src_cell, item_id, round): bool} from load_judgments' {cell: {(item, round): bool}}."""
+    return {(c, i, r): v for c, m in judgments.items() for (i, r), v in m.items()}
+
+
 def disclosure_ladder(cell, judge=None):
     """Per trial: first round at which each level fires (None if never); per
     cell: trials disclosed at each level, with Wilson CIs. judge: optional
-    {(item_id, round): bool}."""
+    {(item_id, round): bool} or the pooled {(src, item_id, round): bool}."""
     per_trial = []
     for t in cell["trials"]:
         first = {L: None for L in LEVELS}
         for r in t["rounds"]:
-            jy = judge.get((t["item_id"], r["round"])) if judge else None
+            jy = judge_lookup(judge, t, r["round"])
             lv = reply_levels(r["reply"], t["roots"], jy)
             for L in LEVELS:
                 if lv[L] and first[L] is None:
                     first[L] = r["round"]
         per_trial.append({"item_id": t["item_id"], "first": first, "exit": t["leave_round"],
-                          "outcome": t["outcome"]})
+                          "outcome": t["outcome"], "src": t.get("_src")})
     n = len(per_trial)
     summary = {}
     for L in LEVELS:
@@ -215,8 +236,11 @@ def paired_items(cell_a, cell_b, level="L1_factored", judge_a=None, judge_b=None
     (a_only, b_only, both, neither) and the exact McNemar-style two-sided
     binomial p on the discordant pairs."""
     from math import comb
-    fa = {pt["item_id"]: pt["first"][level] is not None for pt in disclosure_ladder(cell_a, judge_a)[0]}
-    fb = {pt["item_id"]: pt["first"][level] is not None for pt in disclosure_ladder(cell_b, judge_b)[0]}
+    pa, pb = disclosure_ladder(cell_a, judge_a)[0], disclosure_ladder(cell_b, judge_b)[0]
+    if len({p["item_id"] for p in pa}) != len(pa) or len({p["item_id"] for p in pb}) != len(pb):
+        raise ValueError("paired_items needs one trial per item; split pooled replicates first (split_reps)")
+    fa = {pt["item_id"]: pt["first"][level] is not None for pt in pa}
+    fb = {pt["item_id"]: pt["first"][level] is not None for pt in pb}
     items = sorted(set(fa) & set(fb))
     a_only = sum(fa[i] and not fb[i] for i in items); b_only = sum(fb[i] and not fa[i] for i in items)
     both = sum(fa[i] and fb[i] for i in items); neither = len(items) - a_only - b_only - both
@@ -227,6 +251,31 @@ def paired_items(cell_a, cell_b, level="L1_factored", judge_a=None, judge_b=None
         kmin = min(a_only, b_only)
         p = min(1.0, 2 * sum(comb(d, k) for k in range(0, kmin + 1)) / 2 ** d)
     return {"a_only": a_only, "b_only": b_only, "both": both, "neither": neither, "n_items": len(items), "p_mcnemar": p}
+
+
+def split_reps(cell):
+    """A pooled cell -> {src_cell_name: cell with only that replicate's trials}."""
+    out = {}
+    for t in cell["trials"]:
+        out.setdefault(t.get("_src", "cell"), dict(cell, trials=[]))["trials"].append(t)
+    return out
+
+
+def judge_alone(cell, judge):
+    """Trials where the judge alone (no regex rung) says the answer was given
+    in some round; and the per-reply confusion of judge vs the L0/L1 regexes."""
+    k = 0; conf = collections.Counter()
+    for t in cell["trials"]:
+        hit = False
+        for r in t["rounds"]:
+            jy = judge_lookup(judge, t, r["round"])
+            if jy is None:
+                continue
+            lv = reply_levels(r["reply"], t["roots"])
+            conf[(lv["L0_strict"], lv["L1_factored"], jy)] += 1
+            hit = hit or jy
+        k += hit
+    return {"k": k, "n": len(cell["trials"]), "p": _wilson(k, len(cell["trials"])), "confusion": dict(conf)}
 
 
 def export_blind_sample(cells, arms, per_arm=10, seed=903, out_md=None, out_key=None):
