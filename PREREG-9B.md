@@ -190,6 +190,57 @@ regressor design, applied at our turn level.
    reports are out of scope this week (would require report-conditioning or
    steering interventions on the report channel).
 
+## AMENDMENT 6 — 2026-09-02 ~13:30 — PROPOSED, PENDING USER APPROVAL: randomness, replication and reporting hygiene
+
+*Drafted by Claude after the user asked what Neel's design notes on seeds,
+randomness and retries would say we are overlooking; the user asked whether
+these should be built in and noted in the methods. Nothing here changes a
+hypothesis or an endpoint; it changes what every table must carry. Status:
+proposed until the user writes APPROVED below. Prior text untouched.*
+
+Facts that motivated it (measured 2026-09-02 on the 264-trial cache):
+today is Wednesday Sep 2, one GPU night remains · all trial sweeps run at
+temperature 0, so the 4 expansion reps per item differ only through vLLM
+serving nondeterminism — 55/192 rep pairs have byte-identical round-1
+activations, 19/192 are byte-identical whole trials, outcomes vary in 38/72
+item cells · the preview's best layer moved L29 (72 trials) → L5 (264 trials).
+
+1. **Replicates are "greedy re-runs", never "samples".** Every count that pools
+   reps says so. Cross-validation groups by **persona × item**, never by trial
+   id (near-duplicate trajectories would straddle folds). A seeded
+   temperature-above-0 replicate set (supportive, ≥2 seeds × 24 items) is the
+   controlled replication; it runs only if tonight's queue has room and is
+   labeled as such.
+2. **Decoding regime is a column.** Three regimes exist — greedy trials (vLLM
+   T=0), sampled node branches (vLLM, node_resample defaults), HF `generate`
+   arms (intervention module). No table or bar chart places numbers from two
+   regimes side by side without the regime named per bar; the only valid
+   ablation control is the HF no-hook arm (Arm 2 design, already encoded).
+3. **Null bands are distributions.** Shuffled-label baselines use ≥20 label
+   permutations (seeded) and are plotted as mean ± sd bands, per the
+   REVIEW-CONVENTION averaging rule; a single permutation is not a null.
+4. **Random-direction control uses ≥3 seeds** in the powered run (1 seed
+   allowed in the attended smoke, labeled "smoke").
+5. **Layer is chosen inside each fold** (nested, per Amendment 3) and the
+   write-up reports the per-fold choice and its agreement rate; no single
+   "best layer" is quoted without that.
+6. **Error/empty outcomes are an explicit column** in every node, judge and
+   intervention table (`errored` next to leak / leave / continue); an errored
+   branch is never counted as continue or as a negative.
+7. **Randomly selected examples for the write-up:** one seeded draw
+   (seed 0902) of 3 trials per persona × arm cell, fixed before writing, shown
+   right after the executive summary alongside, not instead of, the reading
+   queue's chosen transcripts.
+8. **Just-ask-an-LLM baseline added to the row set (H0-4/H0-5 rival):** a judge
+   model reads the visible transcript through round t (system instructions +
+   student/tutor turns; no private note channel, no answer roots) and returns
+   P(leak later), P(leave later); scored on exactly the probe's pre-event rows.
+   First judge = Qwen3.5-9B itself (the tutor predicting its own future);
+   a stronger external judge is a parameter swap and is reported separately if
+   run. Module: `production/driftlab/askllm.py` (tested).
+
+USER DECISION (approve / edit / reject, with time): ______
+
 ## Endpoint discipline
 
 Primary endpoint: **leak/hold**. Registered secondary: **exit (end_chat)** — ablation
