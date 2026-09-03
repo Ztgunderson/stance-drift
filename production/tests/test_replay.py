@@ -88,9 +88,9 @@ def test_qwen_template_rejects_mid_conversation_system(tok):
         assistant_end_indices(tok, msgs)
 
 
-# One value per STATE item (7 as of the calculation-axis restore), with the
-# tricky cases covered: a 10 (two digit tokens), a 1 (10-mass split), a 0.
-_VALS = (3, 7, 10, 0, 1, 9, 5)
+# One value per STATE item (9 since the Sep-3 stated-plan items were added),
+# with the tricky cases covered: a 10 (two digit tokens), a 1 (10-mass split), a 0.
+_VALS = (3, 7, 10, 0, 1, 9, 5, 2, 4)
 assert len(_VALS) == len(nb.STATE_ITEMS)
 NOTE = dict(zip(nb.STATE_ITEMS, _VALS))
 NOTE["note"] = "Holding the line for now."

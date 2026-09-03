@@ -235,7 +235,7 @@ def test_reminder_selected_rounds_only():
 def test_notes_instrument_contract():
     from tutorbench.notes import (STATE_ITEMS, TRAIT_ITEMS, NOTE_KEYS,
                                   state_prompt, trait_prompt)
-    assert len(STATE_ITEMS) == 7 and len(TRAIT_ITEMS) == 6
+    assert len(STATE_ITEMS) == 9 and len(TRAIT_ITEMS) == 6
     assert "calculation" in STATE_ITEMS  # continuity axis with old `strategy`
     assert not set(STATE_ITEMS) & set(TRAIT_ITEMS)  # disjoint keys
     assert NOTE_KEYS[-1] == "note"
