@@ -187,3 +187,15 @@ summary table: see the 14:03 block above (rows 849 | errors 0)
 - 15:15 STEER: plan smoke done in 1536s
 - 15:15 STEER: plan=smoke cells=2 items=24 layer=20 dose=1.0 (HF generate)
 - 15:20 STEER: aggressor__base__none__rep2: leak 22/24 leave 2/24 (291.2s; total 291s)
+- 15:31 STEER: aggressor__base__N1__rep2: leak 11/24 leave 13/24 (601.3s; total 935s)
+- 15:31 STEER: plan smoke done in 935s
+- 15:31 QUEUE-V4: GPU cells done; booting vLLM for the judge pass
+- 15:38 QUEUE-V4: vLLM healthy — judge pass (qwen3.5-9b self-judge, 8 workers)
+- 15:54 QUEUE-V4: judge pass done: 1076 rows
+queue-v4 done 15:54
+- 15:54 QUEUE-V5: F2 redo: supportive axis on aggressor at dose 3.31 (norm-matched)
+- 15:54 STEER: plan=smoke cells=1 items=24 layer=20 dose=3.31 (HF generate)
+- 16:17 STEER: aggressor__base__N1__d3.31__axissupportive: leak 14/24 leave 9/24 (1357.1s; total 1370s)
+- 16:17 STEER: plan smoke done in 1370s
+- 16:25 QUEUE-V5: judge resume done: 1125 rows
+queue-v5 done 16:25
