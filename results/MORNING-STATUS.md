@@ -199,3 +199,5 @@ queue-v4 done 15:54
 - 16:17 STEER: plan smoke done in 1370s
 - 16:25 QUEUE-V5: judge resume done: 1125 rows
 queue-v5 done 16:25
+- 11:39 QUEUE-V6: neutral completeness cells (noleak_noleave, random, noleak) — user unlocked scope 09-04
+- 11:39 STEER: plan=smoke cells=3 items=24 layer=20 dose=1.0 (HF generate)
