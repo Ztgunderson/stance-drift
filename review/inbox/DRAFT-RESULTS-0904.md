@@ -192,7 +192,7 @@ Each test was written down with its kill condition before the cell ran (review/i
 | Sign-flip test on the neutral student | aggressor axis, dose −1 | 24 | 0 | 4 | 5 | 7 | 19 |
 | Replicate | N1 rep 2 alone | 24 | 8 | 11 | 15 | 18 | 13 |
 
-(nb15 §7; nb16 §1.) The own-norm cross-persona run used the supportive axis at norm 17 rather than the aggressor's 57 and is reported as mis-specified; the matched run at dose 3.31 is the control. The neutral student's negation and random slots are undefined by construction, since the neutral axis is neutral minus neutral.
+(nb15 §7 and §7b; nb16 §1.) The own-norm cross-persona run used the supportive axis at norm 17 rather than the aggressor's 57 and is reported as mis-specified; the matched run at dose 3.31 is the control. The neutral student's negation and random slots are undefined by construction, since the neutral axis is neutral minus neutral.
 
 Paired per item, negation rep 1 against each comparator:
 
@@ -320,5 +320,5 @@ The same recipe with the supportive student's own axis at its own norm, 17 at ro
 | Aggressor five methods by five detectors, grouped bars | nb16 §1b | exists |
 | Disclosure by rung per arm, per persona | nb16 §1 | exists |
 | First-disclosure round at L0 and L1 per arm | nb16 §3 | exists |
-| Controls and falsification table as one figure | none | to be made, currently spread over nb15 §7 and nb16 §1 |
+| Controls and falsification tests as one figure, four columns, treatment row heavier | nb15 §7b | exists |
 | Hand-label agreement | nb16 §5 | cell exists, waits on the 30 verdicts |
