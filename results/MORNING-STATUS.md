@@ -201,3 +201,9 @@ queue-v4 done 15:54
 queue-v5 done 16:25
 - 11:39 QUEUE-V6: neutral completeness cells (noleak_noleave, random, noleak) — user unlocked scope 09-04
 - 11:39 STEER: plan=smoke cells=3 items=24 layer=20 dose=1.0 (HF generate)
+- 11:56 STEER: neutral__noleak_noleave__none: leak 1/24 leave 24/24 (993.0s; total 993s)
+- 11:58 QUEUE-V6b: neutral/noleak/none only
+- 11:58 STEER: plan=smoke cells=1 items=24 layer=20 dose=1.0 (HF generate)
+- 12:13 STEER: neutral__noleak__none: leak 0/24 leave 24/24 (877.6s; total 878s)
+- 12:13 STEER: plan smoke done in 878s
+- 12:13 QUEUE-V6b: done (exit 0)
