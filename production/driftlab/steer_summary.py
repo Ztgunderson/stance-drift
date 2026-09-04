@@ -126,8 +126,9 @@ def plan_predictor(cell):
             s_an.append(float(nt["plan_answer"])); y_an.append(b["action"] == "leak")
     out = {"n_pairs": len(s_lv)}
     if s_lv:
-        out["auc_plan_leave_next_exit"] = auc(np.array(s_lv), np.array(y_lv))
-        out["auc_plan_answer_next_leak"] = auc(np.array(s_an), np.array(y_an))
+        a_lv = auc(np.array(s_lv), np.array(y_lv)); a_an = auc(np.array(s_an), np.array(y_an))
+        out["auc_plan_leave_next_exit"] = None if np.isnan(a_lv) else float(a_lv)   # None when a class is empty
+        out["auc_plan_answer_next_leak"] = None if np.isnan(a_an) else float(a_an)
         out["n_next_exit"] = int(sum(y_lv)); out["n_next_leak"] = int(sum(y_an))
     return out
 
