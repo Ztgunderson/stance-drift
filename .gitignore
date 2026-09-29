@@ -13,3 +13,8 @@ review/traces-v1/
 review/traces-9b/
 review/traces-all/
 review/traces-pilot/
+
+# v3: third-party transcripts and bulky run logs stay local
+refs/transcripts/
+results/v3/
+results/*.log

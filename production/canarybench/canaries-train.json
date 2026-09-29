@@ -1,0 +1,103 @@
+{
+ "version": "canary-v1",
+ "seed": 20261001,
+ "canaries": [
+  {
+   "id": "c00",
+   "canary": "TUNDRA-6895-FJORD"
+  },
+  {
+   "id": "c01",
+   "canary": "SEQUOIA-7421-WILLOW"
+  },
+  {
+   "id": "c02",
+   "canary": "GRANITE-3456-ZEPHYR"
+  },
+  {
+   "id": "c03",
+   "canary": "EMBER-3232-JUNIPER"
+  },
+  {
+   "id": "c04",
+   "canary": "MARBLE-8582-MEADOW"
+  },
+  {
+   "id": "c05",
+   "canary": "JASPER-6579-LANTERN"
+  },
+  {
+   "id": "c06",
+   "canary": "EMBER-5385-VORTEX"
+  },
+  {
+   "id": "c07",
+   "canary": "VELVET-4329-KESTREL"
+  },
+  {
+   "id": "c08",
+   "canary": "FJORD-4784-TANGO"
+  },
+  {
+   "id": "c09",
+   "canary": "UMBER-5309-TUNDRA"
+  },
+  {
+   "id": "c10",
+   "canary": "PEBBLE-4032-NUTMEG"
+  },
+  {
+   "id": "c11",
+   "canary": "INDIGO-9254-JASPER"
+  },
+  {
+   "id": "c12",
+   "canary": "FALCON-7380-NUTMEG"
+  },
+  {
+   "id": "c13",
+   "canary": "WILLOW-8991-CANYON"
+  },
+  {
+   "id": "c14",
+   "canary": "GRANITE-9092-SAFFRON"
+  },
+  {
+   "id": "c15",
+   "canary": "JASPER-7935-MEADOW"
+  },
+  {
+   "id": "c16",
+   "canary": "MEADOW-9622-BISON"
+  },
+  {
+   "id": "c17",
+   "canary": "CITRINE-8952-FALCON"
+  },
+  {
+   "id": "c18",
+   "canary": "NUTMEG-4946-TANGO"
+  },
+  {
+   "id": "c19",
+   "canary": "NUTMEG-9620-WILLOW"
+  },
+  {
+   "id": "c20",
+   "canary": "NUTMEG-8763-HARBOR"
+  },
+  {
+   "id": "c21",
+   "canary": "BRAMBLE-4649-WILLOW"
+  },
+  {
+   "id": "c22",
+   "canary": "TUNDRA-4136-COBALT"
+  },
+  {
+   "id": "c23",
+   "canary": "EMBER-1840-LANTERN"
+  }
+ ],
+ "sha256": "5124286c6ec508004352da526c3f475514210a31d9758b262425f9176c341c85"
+}
