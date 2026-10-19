@@ -1,0 +1,167 @@
+{
+ "version": "canary-v1",
+ "seed": 20261002,
+ "canaries": [
+  {
+   "id": "c00",
+   "canary": "QUILL-9869-WALRUS"
+  },
+  {
+   "id": "c01",
+   "canary": "INDIGO-6788-KESTREL"
+  },
+  {
+   "id": "c02",
+   "canary": "COBALT-9166-CANYON"
+  },
+  {
+   "id": "c03",
+   "canary": "FJORD-8815-BRAMBLE"
+  },
+  {
+   "id": "c04",
+   "canary": "ZEPHYR-5371-ANCHOR"
+  },
+  {
+   "id": "c05",
+   "canary": "ORCHID-4409-NUTMEG"
+  },
+  {
+   "id": "c06",
+   "canary": "CITRINE-9466-JASPER"
+  },
+  {
+   "id": "c07",
+   "canary": "COBALT-2873-RAVEN"
+  },
+  {
+   "id": "c08",
+   "canary": "TANGO-2793-LANTERN"
+  },
+  {
+   "id": "c09",
+   "canary": "HARBOR-2233-GLACIER"
+  },
+  {
+   "id": "c10",
+   "canary": "FALCON-8439-WALRUS"
+  },
+  {
+   "id": "c11",
+   "canary": "MAGNET-6341-VELVET"
+  },
+  {
+   "id": "c12",
+   "canary": "PEBBLE-4920-WILLOW"
+  },
+  {
+   "id": "c13",
+   "canary": "QUASAR-7502-KESTREL"
+  },
+  {
+   "id": "c14",
+   "canary": "MEADOW-4197-JASPER"
+  },
+  {
+   "id": "c15",
+   "canary": "FALCON-4719-WILLOW"
+  },
+  {
+   "id": "c16",
+   "canary": "PEBBLE-1138-HOLLOW"
+  },
+  {
+   "id": "c17",
+   "canary": "VELVET-7585-WALRUS"
+  },
+  {
+   "id": "c18",
+   "canary": "MARBLE-9881-HOLLOW"
+  },
+  {
+   "id": "c19",
+   "canary": "EMBER-4873-MARBLE"
+  },
+  {
+   "id": "c20",
+   "canary": "BRAMBLE-5804-GLACIER"
+  },
+  {
+   "id": "c21",
+   "canary": "LAGOON-4028-NUTMEG"
+  },
+  {
+   "id": "c22",
+   "canary": "CANYON-8749-MAGNET"
+  },
+  {
+   "id": "c23",
+   "canary": "JUNIPER-2248-HARBOR"
+  },
+  {
+   "id": "c24",
+   "canary": "COBALT-1617-HARBOR"
+  },
+  {
+   "id": "c25",
+   "canary": "THISTLE-3088-FALCON"
+  },
+  {
+   "id": "c26",
+   "canary": "TUNDRA-9363-FALCON"
+  },
+  {
+   "id": "c27",
+   "canary": "COBALT-3394-QUASAR"
+  },
+  {
+   "id": "c28",
+   "canary": "KESTREL-6346-SAFFRON"
+  },
+  {
+   "id": "c29",
+   "canary": "KESTREL-5848-OBSIDIAN"
+  },
+  {
+   "id": "c30",
+   "canary": "MARBLE-8193-JASPER"
+  },
+  {
+   "id": "c31",
+   "canary": "QUILL-3869-ANCHOR"
+  },
+  {
+   "id": "c32",
+   "canary": "JASPER-5227-KESTREL"
+  },
+  {
+   "id": "c33",
+   "canary": "JASPER-8028-VELVET"
+  },
+  {
+   "id": "c34",
+   "canary": "PEBBLE-9227-LAGOON"
+  },
+  {
+   "id": "c35",
+   "canary": "HOLLOW-1321-JASPER"
+  },
+  {
+   "id": "c36",
+   "canary": "SEQUOIA-9242-QUILL"
+  },
+  {
+   "id": "c37",
+   "canary": "QUASAR-1454-OBSIDIAN"
+  },
+  {
+   "id": "c38",
+   "canary": "BRAMBLE-7668-OSPREY"
+  },
+  {
+   "id": "c39",
+   "canary": "VORTEX-2811-LANTERN"
+  }
+ ],
+ "sha256": "5d46e93a21ab65fecfe0e949e650912799f9bfded1adbcb397b074b5fb4ec6b7"
+}

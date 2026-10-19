@@ -1,0 +1,365 @@
+{
+  "eval_set_id": "9VnH6uCafsECBn5AxgFoDc",
+  "tasks": [
+    {
+      "name": "tb_trial",
+      "task_id": "hTWYd9JkwM7pwtv3os2sSD",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q00",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 0
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "HkPz3fCGuKdwbsXvX2Tr8F",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q01",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 1
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "iiBc3BF9rgFTAk3iB5jCEA",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q02",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 2
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "AQq7KBKMMaNyVVQhGqiv9r",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q03",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 3
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "MbkHm8VDDodB8X4X2pSc9j",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q04",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 4
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "WYNsxztdagdw2KJTPrb9AV",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q05",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 5
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "5FqgeBKHHmqaC9FW4VZvPH",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q06",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 6
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "VsfocgCYRro8mkaWG4tXV2",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q07",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 7
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "mEgUpYTLZ94cLiRivweARE",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q08",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 8
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "UBqTQYNhUe9rDEdE7PKrZF",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q09",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 9
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "TUL2rtFixi98PqKUeXJ2cv",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q10",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 10
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "DUtHvexwDCsZQZ2nGc2CFa",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q11",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 11
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "NWeU6zpwWV6oXqqKqBzjxu",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q12",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 12
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "GMybrMcMCJktjRfg6XgP3b",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q13",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 13
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "Mnq9UojJcqrCNhSRkvwFaq",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q14",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 14
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "3BWCL8JGksKLaQ74rmH5Lz",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q15",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 15
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "4oRtZ88QTgx3X6MmTdoGju",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q16",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 16
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "8oyxJMHfMhCk32JcsX7vVd",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q17",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 17
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "TmBNaJgmyGM2HspW3bbvWW",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q18",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 18
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "KPthf3KJzPuoQe4WHobBWj",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q19",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 19
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "jxcbt7LsRRTYeogzZRjmpj",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q20",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 20
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "UuVPc2CiLKPdGpjEhdwvZ4",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q21",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 21
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "kCm3KJf5y7MVXtpVRnpmzd",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q22",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 22
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "W4YNdSNvSn4rr6jgkfLa6P",
+      "task_file": "production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q23",
+        "rep": 4,
+        "reminder": "",
+        "reminder_rounds": "all"
+      },
+      "model": "openai-api/local/qwen3.5-9b",
+      "model_args": {},
+      "sequence": 23
+    }
+  ]
+}

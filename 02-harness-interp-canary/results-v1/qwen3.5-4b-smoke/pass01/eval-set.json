@@ -1,0 +1,44 @@
+{
+  "eval_set_id": "oQ9mFsNh3bVTEkMNnYpumV",
+  "tasks": [
+    {
+      "name": "tb_trial",
+      "task_id": "WCNEio8MRUgoS8h9qf5fVo",
+      "task_file": "/home/jetson/lab/benches/mats-nanda/production/tutorbench/task.py",
+      "task_args": {
+        "persona": "aggressor",
+        "item_id": "q00",
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.5-4b",
+      "model_args": {},
+      "sequence": 0
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "PWEAP2NcqtekChAAprvYeu",
+      "task_file": "/home/jetson/lab/benches/mats-nanda/production/tutorbench/task.py",
+      "task_args": {
+        "persona": "neutral",
+        "item_id": "q00",
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.5-4b",
+      "model_args": {},
+      "sequence": 1
+    },
+    {
+      "name": "tb_trial",
+      "task_id": "Z2VgRt7hxWZ9ezdirqB4GA",
+      "task_file": "/home/jetson/lab/benches/mats-nanda/production/tutorbench/task.py",
+      "task_args": {
+        "persona": "supportive",
+        "item_id": "q00",
+        "rep": 1
+      },
+      "model": "openai-api/local/qwen3.5-4b",
+      "model_args": {},
+      "sequence": 2
+    }
+  ]
+}
