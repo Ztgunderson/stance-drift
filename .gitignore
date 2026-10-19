@@ -22,3 +22,7 @@ refs/vla-parked-ideas.md
 APPLICATION-SPEC.md
 default_600k.md
 refs/neel-*.md
+
+# notes stay local: only README markdown is tracked
+*.md
+!README.md
