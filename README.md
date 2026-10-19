@@ -4,8 +4,8 @@ Follow-up to the Apart sprint project on `main` (tag `apart-v1` = the submitted 
 
 ## What this branch is
 
-- Harness v1: scripted 8-turn student, 24 quadratics, three personas (aggressor / neutral / supportive), `end_chat` tool, six models. Design record: `HARNESS-V1.md`.
-- Interp week on Qwen3.5-9B: residual-stream probes, persona axis at layer 20, steering vs prompt rules. Pre-registration: `PREREG-9B.md`.
+- Harness v1: scripted 8-turn student, 24 quadratics, three personas (aggressor / neutral / supportive), `end_chat` tool, six models.
+- Interp week on Qwen3.5-9B: residual-stream probes, persona axis at layer 20, steering vs prompt rules.
 - Canary v3 pilot: branch `canary-v3` (not yet pushed).
 
 ## Where results live
@@ -19,7 +19,6 @@ Follow-up to the Apart sprint project on `main` (tag `apart-v1` = the submitted 
 - `results/pilot-reminder-v2/` — reminder pilot; `results/pilot-reminder-v1-FAILED-template-400/` is a failed run kept for the record.
 - `review/*.ipynb` — executed analysis notebooks. Six-model harness: `11-prior-work-setup`. Interp, in reading order: `13` → `14` → `12` → `15` → `16`.
 - `review/figures/` — PNGs extracted from notebooks 11, 13, 15, 16 and `hv1-01`.
-- `review/inbox/` — write-up drafts: `CLAIMS-0903.md`, `DRAFT-METHODS-0903.md`, `DRAFT-RESULTS-0904.md`, `FALSIFICATION-*.md`, `HANDLABEL-DISCLOSURE-0903.md` (hand-labels not yet filled).
 - `production/` — tested code: `driftlab/` (analysis, probes, steering) and `tutorbench/` (the harness as an Inspect task).
 
 ## Tests
