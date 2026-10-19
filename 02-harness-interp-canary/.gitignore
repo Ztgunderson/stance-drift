@@ -16,7 +16,6 @@ review/traces-pilot/
 
 # v3: third-party transcripts and bulky run logs stay local
 refs/transcripts/
-results/v3/
 results/*.log
 
 # moved to ../physical-ai/spais-2026/refs/ (2026-09-04); keep out of this repo

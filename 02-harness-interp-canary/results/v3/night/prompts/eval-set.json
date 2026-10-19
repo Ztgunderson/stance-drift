@@ -1,0 +1,143 @@
+{
+  "eval_set_id": "M8v6gSY2Co3tF62TFvdtPg",
+  "tasks": [
+    {
+      "name": "canary",
+      "task_id": "gafRsSPunJnAfRBH4ntiLa",
+      "task_file": "canarybench/task.py",
+      "task_args": {
+        "tone": "neutral",
+        "tier": "base",
+        "rounds": 16,
+        "bundle": "train",
+        "limit": 16,
+        "folds": ""
+      },
+      "model": "steerhf//home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "model_args": {
+        "batch_size": 24,
+        "device": "cuda"
+      },
+      "model_roles": {
+        "defender": "/home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+        "attacker": "/home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a"
+      },
+      "sequence": 0
+    },
+    {
+      "name": "canary",
+      "task_id": "kQWXJFXDP9JWJPjQc57JpT",
+      "task_file": "canarybench/task.py",
+      "task_args": {
+        "tone": "supportive",
+        "tier": "base",
+        "rounds": 16,
+        "bundle": "train",
+        "limit": 16,
+        "folds": ""
+      },
+      "model": "steerhf//home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "model_args": {
+        "batch_size": 24,
+        "device": "cuda"
+      },
+      "model_roles": {
+        "defender": "/home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+        "attacker": "/home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a"
+      },
+      "sequence": 1
+    },
+    {
+      "name": "canary",
+      "task_id": "kNMUYferKnCHnCsLehNCCD",
+      "task_file": "canarybench/task.py",
+      "task_args": {
+        "tone": "aggressor",
+        "tier": "base",
+        "rounds": 16,
+        "bundle": "train",
+        "limit": 16,
+        "folds": ""
+      },
+      "model": "steerhf//home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "model_args": {
+        "batch_size": 24,
+        "device": "cuda"
+      },
+      "model_roles": {
+        "defender": "/home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+        "attacker": "/home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a"
+      },
+      "sequence": 2
+    },
+    {
+      "name": "canary",
+      "task_id": "9ZfsrcmhdNNyXq8r4Xp6Pe",
+      "task_file": "canarybench/task.py",
+      "task_args": {
+        "tone": "aggressor",
+        "tier": "rule",
+        "rounds": 16,
+        "bundle": "train",
+        "limit": 16,
+        "folds": ""
+      },
+      "model": "steerhf//home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "model_args": {
+        "batch_size": 24,
+        "device": "cuda"
+      },
+      "model_roles": {
+        "defender": "/home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+        "attacker": "/home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a"
+      },
+      "sequence": 3
+    },
+    {
+      "name": "canary",
+      "task_id": "i5qrguK3KLpg6Kah2MXyBn",
+      "task_file": "canarybench/task.py",
+      "task_args": {
+        "tone": "aggressor",
+        "tier": "rule_strict",
+        "rounds": 16,
+        "bundle": "train",
+        "limit": 16,
+        "folds": ""
+      },
+      "model": "steerhf//home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "model_args": {
+        "batch_size": 24,
+        "device": "cuda"
+      },
+      "model_roles": {
+        "defender": "/home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+        "attacker": "/home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a"
+      },
+      "sequence": 4
+    },
+    {
+      "name": "canary",
+      "task_id": "MCHaT2KD4i8bmKY3vj9RwU",
+      "task_file": "canarybench/task.py",
+      "task_args": {
+        "tone": "aggressor",
+        "tier": "rule_strict_tone",
+        "rounds": 16,
+        "bundle": "train",
+        "limit": 16,
+        "folds": ""
+      },
+      "model": "steerhf//home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "model_args": {
+        "batch_size": 24,
+        "device": "cuda"
+      },
+      "model_roles": {
+        "defender": "/home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+        "attacker": "/home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a"
+      },
+      "sequence": 5
+    }
+  ]
+}

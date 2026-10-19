@@ -1,0 +1,31 @@
+{
+  "eval_set_id": "kqgqQnx8TRcJg6GTxx6u8R",
+  "tasks": [
+    {
+      "name": "canary",
+      "task_id": "4rZAjWesM8HfshbQvcotPo",
+      "task_file": "canarybench/task.py",
+      "task_args": {
+        "tone": "aggressor",
+        "tier": "base",
+        "rounds": 16,
+        "bundle": "train",
+        "limit": 16,
+        "folds": ""
+      },
+      "model": "steerhf//home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "model_args": {
+        "batch_size": 24,
+        "device": "cuda",
+        "vector": "/home/jetson/lab/benches/canary-v3/data/tutor-aggressor-L20.npz",
+        "dose": 0.5,
+        "layer": 20
+      },
+      "model_roles": {
+        "defender": "/home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+        "attacker": "/home/jetson/.cache/huggingface/hub/models--Qwen--Qwen3.5-9B/snapshots/c202236235762e1c871ad0ccb60c8ee5ba337b9a"
+      },
+      "sequence": 0
+    }
+  ]
+}
