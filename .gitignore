@@ -19,6 +19,15 @@ refs/transcripts/
 results/v3/
 results/*.log
 
+# moved to ../physical-ai/spais-2026/refs/ (2026-09-04); keep out of this repo
+refs/vla-interp-field-survey.md
+refs/vla-parked-ideas.md
+
+# private: never in the public repo (scrubbed from history 2026-10-19)
+APPLICATION-SPEC.md
+default_600k.md
+refs/neel-*.md
+
 # notes stay local: only README markdown is tracked
 *.md
 !README.md

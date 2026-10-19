@@ -1,7 +1,6 @@
 # production/
 
-The tested package behind the review notebooks. See `../REVIEW-CONVENTION.md`
-for the standing rule: logic lives here, claims are reviewed in `../review/`.
+The tested package behind the review notebooks. Logic lives here; claims are reviewed in `../review/`.
 
 ```
 driftlab/
