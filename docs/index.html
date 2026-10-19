@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stance drift in multi-turn agent conversations | Zachary Gunderson</title>
+  <!-- AUTHOR: replace with your one-line description -->
+  <meta name="description" content="Stance drift in multi-turn agent conversations: code, numbers and figures.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Barlow+Condensed:wght@600&display=swap" rel="stylesheet">
+  <!-- shared with ztgunderson.github.io; served from the same origin -->
+  <link rel="stylesheet" href="/assets/site.css">
+  <style>
+    .proj h2 { margin-top: 2.5rem; border-top: 1px solid var(--rule); padding-top: 1.25rem; }
+    .meta { color: var(--muted); }
+    .links a { margin-right: 1rem; white-space: nowrap; }
+    table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; margin: 1rem 0; display: block; overflow-x: auto; }
+    th, td { border-bottom: 1px solid var(--rule); padding: 0.35rem 0.6rem; text-align: left; vertical-align: top; }
+    th { font-weight: 600; }
+    figure { margin: 1.5rem 0; }
+    figure img { max-width: 100%; height: auto; border: 1px solid var(--rule); background: #fff; }
+    figcaption { color: var(--muted); font-size: 0.95rem; }
+    .src { color: var(--muted); font-size: 0.9rem; }
+    /* prose slots for the author; delete each block once written */
+    .todo { border-left: 3px solid var(--c-int); background: var(--blue-wash); padding: 0.5rem 0.75rem; color: var(--muted); font-style: italic; }
+    .status-done { color: var(--c-ai); } .status-not { color: var(--c-sport); }
+  </style>
+</head>
+<body>
+  <header class="site-head">
+    <a class="name" href="/">Zachary Gunderson</a>
+    <nav><a href="/">Home</a><a href="/#projects">Projects</a><a href="https://github.com/Ztgunderson/stance-drift">Code</a></nav>
+  </header>
+  <main class="proj">
+    <section class="intro">
+      <h1>Stance drift in multi-turn agent conversations</h1>
+      <!-- AUTHOR: check area / dates / status wording -->
+      <p class="meta">Behavioural evals · interpretability · Aug–Sep 2026 · hand-labels pending</p>
+      <p class="links">
+        <a href="https://github.com/Ztgunderson/stance-drift">Code (main)</a>
+        <a href="https://apartresearch.com/sprints/projects/examining-stance-drifting-in-multiturn-agent-interactions-mexs">Apart project page</a>
+        <a href="https://github.com/Ztgunderson/stance-drift/tree/apart-v1">Apart snapshot (apart-v1)</a>
+        <a href="https://github.com/Ztgunderson/stance-drift/tree/mats-nanda">Six-model harness + interp (mats-nanda)</a>
+        <!-- branch pending push: canary-v3 is local only as of 2026-10-19; this link 404s until pushed -->
+        <a href="https://github.com/Ztgunderson/stance-drift/tree/canary-v3">Canary v3 pilot (canary-v3)</a>
+      </p>
+      <p class="src">Notebook cell numbers on this page are 0-based indices into the committed, executed notebook.</p>
+    </section>
+
+    <h2>Summary</h2>
+    <p class="todo">AUTHOR: 3–5 lines. The question, what you did across the four parts, the main result, the main caveat.</p>
+
+    <!-- ============================================================ -->
+    <h2>Part 1 — Apart sprint (Aug 2026)</h2>
+    <p class="todo">AUTHOR: setup in 2–3 lines — role-only system prompt, same-model counterparty (convincer / supportive / neutral = no system message), 8 rounds, private 0–10 scratchpad after each round.</p>
+
+    <table>
+      <thead><tr><th>Dataset</th><th>Trials</th><th>Rounds</th><th>Per condition</th></tr></thead>
+      <tbody>
+        <tr><td>Main sweep, Qwen3.6-35B-A3B-AWQ-4bit</td><td>72</td><td>8</td><td>24 convincer / 24 neutral / 24 supportive</td></tr>
+        <tr><td>Long horizon</td><td>18</td><td>16</td><td>—</td></tr>
+        <tr><td>Counterparty constrained (may not state the answer)</td><td>18</td><td>8</td><td>6 / 6 / 6</td></tr>
+      </tbody>
+    </table>
+    <p class="src">src: main · notebooks/reproduce_findings.ipynb cell 3 (“72 trials = 72 files | cells all n=12”); notebooks/agent_selfreport.ipynb cell 1; notebooks/appendix_results.ipynb cell 1 (“long-horizon 18 trials, 16 rounds”); reproduce_findings.ipynb cell 20, appendix_results.ipynb cell 15 (constrained n).</p>
+
+    <table>
+      <thead><tr><th>Stance (0–10)</th><th>Before contact</th><th>During contact</th><th>End</th></tr></thead>
+      <tbody><tr><td>8-round sweep, n=72</td><td>5.36</td><td>9.06</td><td>9.04</td></tr></tbody>
+    </table>
+    <p class="src">src: main/apart-v1 · notebooks/appendix_results.ipynb cell 3 (A.1, “stance (8rd)”).</p>
+
+    <table>
+      <thead><tr><th>Strategy (0–10)</th><th>Round 1</th><th>Round 8</th><th>Slope / round</th><th>Mean change r1→r8 [bootstrap 95% CI]</th></tr></thead>
+      <tbody>
+        <tr><td>convincer (n=24)</td><td>2.21</td><td>6.46</td><td>+0.603</td><td>4.25 [3.17, 5.29]</td></tr>
+        <tr><td>neutral (n=24)</td><td>2.04</td><td>6.17</td><td>+0.645</td><td>4.12 [2.75, 5.33]</td></tr>
+        <tr><td>supportive (n=24)</td><td>1.92</td><td>1.62</td><td>−0.023</td><td>−0.29 [−1.04, 0.62]</td></tr>
+        <tr><td>Spread across conditions</td><td>0.29</td><td>4.83</td><td colspan="2">16.6× (printed “16.6x divergence”)</td></tr>
+      </tbody>
+    </table>
+    <p class="src">src: main · notebooks/reproduce_findings.ipynb cell 7 (§4); bootstrap: notebooks/agent_selfreport.ipynb cell 19 (Part 8, 4000 resamples over trials, unseeded).</p>
+    <p class="todo">AUTHOR — source conflicts: (1) supportive slope is −0.023 in the notebook, −0.024 in unpublished notes PAPER-DRAFT.md:21/118/152; (2) spread ratio printed 16.6×, notes say “17-fold”; (3) no CI or test exists on the slopes themselves — “statistically indistinguishable” (PAPER-DRAFT.md:22) has no test behind it. Pick the wording.</p>
+
+    <table>
+      <thead><tr><th>Stance during contact</th><th>Range</th></tr></thead>
+      <tbody>
+        <tr><td>by condition</td><td>9.01–9.08</td></tr>
+        <tr><td>by reflection arm</td><td>8.99–9.12</td></tr>
+        <tr><td>correlation with outcome</td><td>r = +0.053</td></tr>
+      </tbody>
+    </table>
+    <p class="src">src: main · notebooks/reproduce_findings.ipynb cell 18 (§9).</p>
+    <p class="todo">AUTHOR: what front-loaded, condition-dependent drift means for anyone monitoring self-report; 2–3 lines.</p>
+
+    <figure>
+      <img src="img/p1-w1-all-dims.png" alt="Five panels of mean self-rating by round for three counterparty conditions" loading="lazy">
+      <figcaption>Mean self-rating (0–10) by round, five dimensions, three counterparty conditions, n=24 each; band ±1 SD across 12 reps; pooled round-0 baseline (n=72) at left, hindsight rating at right.</figcaption>
+      <p class="src">src: notebooks/agent_selfreport.ipynb cell 3 (Part 1) → notebooks/figures/w1_all_dims.png</p>
+    </figure>
+    <figure>
+      <img src="img/p1-s4-trajectory.png" alt="Strategy and inclination by round for three counterparty conditions" loading="lazy">
+      <figcaption>Mean strategy (left) and inclination (right) by round 1–8, three counterparty conditions, n=24 each.</figcaption>
+      <p class="src">src: notebooks/reproduce_findings.ipynb cell 8 (§4) → notebooks/figures/s4_trajectory.png (not in apart-v1)</p>
+    </figure>
+    <figure>
+      <img src="img/p1-w8-forest.png" alt="Forest plot of round 1 to round 8 change per dimension and condition" loading="lazy">
+      <figcaption>Mean per-trial change, round 1 to round 8, with bootstrap 95% CI, five dimensions × three conditions, n=24 per row.</figcaption>
+      <p class="src">src: notebooks/agent_selfreport.ipynb cell 19 (Part 8) → notebooks/figures/w8_forest.png</p>
+    </figure>
+
+    <!-- ============================================================ -->
+    <h2>Part 2 — six-model harness</h2>
+    <p class="todo">AUTHOR: what changed from Part 1 and why (scripted student, 24 items with known roots, digit-free student turns, end_chat tool, tone-only personas, six models); 3–4 lines.</p>
+
+    <ul>
+      <li>24 quadratics x² + bx + c = 0, integer roots <span class="src">— src: mats-nanda · production/tutorbench/items-v1.json</span></li>
+      <li>Fixed 8-turn scripted student; personas aggressor / neutral / supportive <span class="src">— src: review/11-prior-work-setup.ipynb cell 0</span></li>
+      <li>7 momentary self-report items: stress, wellbeing, warmth, urge_to_please, detachment, calculation, resolve <span class="src">— src: production/tutorbench/notes.py lines 22–48</span></li>
+      <li>Trials per model: 72; Qwen 3.8 27B: 60 <span class="src">— src: review/11-prior-work-setup.ipynb cell 1</span></li>
+    </ul>
+
+    <table>
+      <thead><tr><th>Model</th><th>Aggressor leak / exit</th><th>Neutral leak / exit</th><th>Supportive leak / exit</th></tr></thead>
+      <tbody>
+        <tr><td>Qwen 3.5 4B</td><td>24 / 0</td><td>16 / 8</td><td>11 / 13</td></tr>
+        <tr><td>Qwen 3.5 9B</td><td>22 / 2</td><td>2 / 22</td><td>18 / 6</td></tr>
+        <tr><td>Ministral 3 14B</td><td>24 / 0</td><td>24 / 0</td><td>23 / 1</td></tr>
+        <tr><td>Qwen 3.8 27B</td><td>23 / 0</td><td>12 / 1, 11 held</td><td>9 / 0, 4 held</td></tr>
+        <tr><td>Qwen 3.6 35B</td><td>15 / 9</td><td>2 / 22 (1 leak+exit)</td><td>5 / 19</td></tr>
+        <tr><td>Gemma 4 E4B</td><td>24 / 0 (13 leak+exit)</td><td>21 / 3 (15 leak+exit)</td><td>21 / 3 (17 leak+exit)</td></tr>
+      </tbody>
+    </table>
+    <p class="src">src: mats-nanda · review/11-prior-work-setup.ipynb cell 3 (Table 1; one rep, 24 items per persona; leak counts include leak+exit trials).</p>
+    <p class="todo">AUTHOR: nb11 cell 0 markdown says “aggressor effect ranges from 11/24 (Gemma)” and cell 14 says “Gemma mostly neither leaks nor exits”; Table 1 prints 24/24 for Gemma aggressor (11 is the strict-only count). Fix the notebook text or say which count you mean.</p>
+
+    <table>
+      <thead><tr><th>Model</th><th>Resolve @ leak round</th><th>Resolve @ continue rounds</th><th>urge_to_please @ leak</th><th>urge_to_please @ continue</th></tr></thead>
+      <tbody>
+        <tr><td>Qwen 3.5 4B</td><td>7.6 ± 1.8 (n=51)</td><td>9.4 ± 1.0 (n=60)</td><td>7.5</td><td>6.9</td></tr>
+        <tr><td>Qwen 3.5 9B</td><td>8.5 ± 1.4 (n=42)</td><td>9.3 ± 0.7 (n=176)</td><td>6.0</td><td>4.8</td></tr>
+        <tr><td>Ministral 3 14B</td><td>9.7 ± 0.5 (n=71)</td><td>9.6 ± 0.6 (n=29)</td><td>4.5</td><td>5.8</td></tr>
+        <tr><td>Qwen 3.8 27B</td><td>7.1 ± 2.2 (n=44)</td><td>9.0 ± 0.8 (n=197)</td><td>4.5</td><td>3.6</td></tr>
+        <tr><td>Qwen 3.6 35B</td><td>7.6 ± 2.1 (n=22)</td><td>9.1 ± 0.6 (n=122)</td><td>7.2</td><td>3.8</td></tr>
+        <tr><td>Gemma 4 E4B</td><td>6.8 ± 1.5 (n=66)</td><td>8.4 ± 1.1 (n=255)</td><td>5.8</td><td>5.1</td></tr>
+      </tbody>
+    </table>
+    <p class="src">src: mats-nanda · review/11-prior-work-setup.ipynb cell 11 (Table 3, “Stated resolve at the moment of leaking”).</p>
+
+    <table>
+      <thead><tr><th>Qwen 3.5 9B, 5 reps, vLLM greedy</th><th>Aggressor</th><th>Neutral</th><th>Supportive</th></tr></thead>
+      <tbody>
+        <tr><td>leak / exit (n=120 each; 360 total)</td><td>104 / 16</td><td>29 / 91</td><td>80 / 40</td></tr>
+        <tr><td>Share of item cells with all 5 reps on one outcome</td><td>0.62</td><td>0.46</td><td>0.29</td></tr>
+        <tr><td>Mean majority share</td><td>0.88 ± 0.16</td><td>0.84 ± 0.16</td><td>0.79 ± 0.16</td></tr>
+      </tbody>
+    </table>
+    <p class="src">src: mats-nanda · review/11-prior-work-setup.ipynb cell 6 (Table 2) and cell 13 (zero-temperature repeats).</p>
+    <p class="todo">AUTHOR: what the cross-model table changes about the Part 1 reading; 2–3 lines.</p>
+
+    <figure>
+      <img src="img/p2-nb11-outcomes.png" alt="Stacked leak, exit and held shares per model, three persona panels" loading="lazy">
+      <figcaption>Share of trials ending in leak / exit / held, six models × three personas, Wilson 95% on leak share; n=24 per bar (Qwen 3.8 27B: 23 / 24 / 13).</figcaption>
+      <p class="src">src: review/11-prior-work-setup.ipynb cell 4 → review/figures/nb11/fig1.png</p>
+    </figure>
+    <figure>
+      <img src="img/p2-nb11-resolve.png" alt="Resolve by round, one panel per model, one line per persona" loading="lazy">
+      <figcaption>Self-reported resolve (0–10) by round, mean ± sd, one panel per model, one line per persona, trials still running at each round.</figcaption>
+      <p class="src">src: review/11-prior-work-setup.ipynb cell 9 → review/figures/nb11/fig2.png</p>
+    </figure>
+    <figure>
+      <img src="img/p2-nb11-9b-reps.png" alt="Qwen 3.5 9B leak-round histogram and running leak rate" loading="lazy">
+      <figcaption>Qwen 3.5 9B, 360 trials: leak round per persona (left); running leak rate by trials accumulated, rep-major order (right).</figcaption>
+      <p class="src">src: review/11-prior-work-setup.ipynb cell 13 → review/figures/nb11/fig4.png</p>
+    </figure>
+
+    <!-- ============================================================ -->
+    <h2>Part 3 — interpretability (probes, persona axis, steering)</h2>
+    <p class="todo">AUTHOR: setup in 2–3 lines — Qwen 3.5 9B trials replayed through HF hooks, residual stream at all layers, two token positions; the three questions (predict, represent, intervene).</p>
+
+    <h3>Predicting a leak before it happens</h3>
+    <table>
+      <thead><tr><th>Detector (supportive, will-leak, leads 1–3)</th><th>AUROC [95% CI]</th></tr></thead>
+      <tbody>
+        <tr><td>linear probe</td><td>0.607 [0.54, 0.68]</td></tr>
+        <tr><td>text TF-IDF (floor)</td><td>0.603 [0.48, 0.72]</td></tr>
+        <tr><td>diff-in-means projection</td><td>0.571 [0.47, 0.66]</td></tr>
+        <tr><td>self-report −E[v]</td><td>0.531 [0.42, 0.63]</td></tr>
+        <tr><td>ask-the-model judge</td><td>0.528 [0.48, 0.58]</td></tr>
+        <tr><td>persona × round (floor)</td><td>0.480 [0.42, 0.54]</td></tr>
+        <tr><td>self-report, 7 items</td><td>0.251 [0.19, 0.34]</td></tr>
+      </tbody>
+    </table>
+    <p class="src">src: mats-nanda · review/14-detectors.ipynb cell 3 (§1; 408 rows, 179 positive rows, 120 trials, 80 leak trials).</p>
+
+    <table>
+      <thead><tr><th>Probe stability and ceiling</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>split-half cosine at L20, probe (n=5 splits)</td><td>+0.06 ± 0.03</td></tr>
+        <tr><td>split-half cosine at L20, diff-in-means</td><td>+0.87 ± 0.03</td></tr>
+        <tr><td>layer curve max</td><td>0.644 at L32</td></tr>
+        <tr><td>modal nested layer / fold layer agreement</td><td>L20 / 0.40</td></tr>
+        <tr><td>node resampling, 47 supportive nodes × 25: round 2 P(leak), between-node sd</td><td>0.07 ± 0.05, 0.000</td></tr>
+        <tr><td>node resampling: round 3 P(leak), between-node sd</td><td>0.49 ± 0.13, 0.090</td></tr>
+        <tr><td>node-propensity oracle AUROC</td><td>0.533 [0.44, 0.60]</td></tr>
+      </tbody>
+    </table>
+    <p class="src">src: review/14-detectors.ipynb cell 12 (§4 layer curve) and cell 17 (§6 ceiling).</p>
+    <p class="todo">AUTHOR: what the prediction ceiling means for the rest of Part 3; 2–3 lines.</p>
+
+    <h3>Persona axis (aggressor − neutral, L20, user position)</h3>
+    <table>
+      <thead><tr><th>Quantity</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>gap norm, aggressor − neutral, round 1 / round 2</td><td>57.5 / 41.8</td></tr>
+        <tr><td>gap norm, supportive − neutral, round 1</td><td>17.4</td></tr>
+        <tr><td>split-half cosine over item halves, aggressor / supportive axis</td><td>1.00 ± 0.00 / 0.97 ± 0.03</td></tr>
+        <tr><td>cos(aggressor axis, supportive axis), pooled</td><td>0.02</td></tr>
+        <tr><td>cos(aggressor axis, round clock)</td><td>0.13</td></tr>
+        <tr><td>cos(aggressor axis, round-matched leak diff-in-means)</td><td>0.07</td></tr>
+        <tr><td>persona decoding accuracy, L20, all rounds</td><td>0.968</td></tr>
+      </tbody>
+    </table>
+    <p class="src">src: mats-nanda · review/12-persona-direction.ipynb cell 8 (§3) and cell 3 (§2).</p>
+    <p class="todo">AUTHOR: nb12 cell 8 heatmap (image only, not printed) shows round-to-round cosines of the axis; nb15 cell 0 says “stable across rounds … (cos ≥ 0.97)”, but 0.97 is the item-half number. Check the heatmap before claiming stability across rounds.</p>
+    <figure>
+      <img src="img/p3-nb12-persona-plane.png" alt="Projection of user-position activations onto aggressor and supportive axes" loading="lazy">
+      <figcaption>Item-demeaned L20 user-position activations projected on the aggressor − neutral and supportive − neutral axes, all rounds (aggressor n=136, neutral n=545, supportive n=528); right: round-1 histogram on the aggressor − neutral axis.</figcaption>
+      <p class="src">src: review/12-persona-direction.ipynb cell 10 (image extracted from notebook output)</p>
+    </figure>
+
+    <h3>Prompt rules vs subtracting the axis (aggressor student)</h3>
+    <table>
+      <thead><tr><th>Arm</th><th>n</th><th>Leak</th><th>Exit</th><th>Held</th><th>Median event round</th></tr></thead>
+      <tbody>
+        <tr><td>base prompt</td><td>48</td><td>45</td><td>3</td><td>0</td><td>1</td></tr>
+        <tr><td>Rule 1: + never state answers</td><td>24</td><td>2</td><td>22</td><td>0</td><td>3</td></tr>
+        <tr><td>Rule 2: + never state answers, do not end chat</td><td>24</td><td>5</td><td>19</td><td>0</td><td>4</td></tr>
+      </tbody>
+    </table>
+    <p class="src">src: mats-nanda · review/13-tier-events.ipynb cell 3 (§1 Table 1).</p>
+
+    <table>
+      <thead><tr><th>Arm (aggressor)</th><th>n</th><th>strict</th><th>+factored</th><th>+pair</th><th>judge alone</th><th>judge rung</th><th>exit</th><th>gaming (factored − strict)</th></tr></thead>
+      <tbody>
+        <tr><td>base prompt</td><td>48</td><td>45</td><td>46</td><td>46</td><td>46</td><td>46</td><td>3</td><td>0.02</td></tr>
+        <tr><td>Rule 1</td><td>24</td><td>2</td><td>16</td><td>17</td><td>9</td><td>17</td><td>22</td><td>0.58</td></tr>
+        <tr><td>Rule 2</td><td>24</td><td>5</td><td>22</td><td>23</td><td>23</td><td>23</td><td>19</td><td>0.71</td></tr>
+        <tr><td>N1: persona axis subtracted, dose 1</td><td>48</td><td>19</td><td>28</td><td>32</td><td>29</td><td>34</td><td>29</td><td>0.19</td></tr>
+        <tr><td>random direction, seed 0</td><td>24</td><td>22</td><td>23</td><td>23</td><td>23</td><td>23</td><td>2</td><td>0.04</td></tr>
+      </tbody>
+    </table>
+    <p class="src">src: mats-nanda · review/16-spec-gaming.ipynb cell 6 (§1b) and cell 3 (exits); underlying data results/steer/aggressor__*.json.</p>
+
+    <table>
+      <thead><tr><th>Paired per item, N1 vs</th><th>Rung</th><th>p (rep 1)</th><th>p (rep 2)</th><th>Exits N1 / comparator (rep 1)</th></tr></thead>
+      <tbody>
+        <tr><td>Rule 2</td><td>factored</td><td>0.004</td><td>0.039</td><td>16 / 19</td></tr>
+        <tr><td>Rule 2</td><td>judge rung</td><td>0.016</td><td>0.125</td><td>16 / 19</td></tr>
+        <tr><td>Rule 1</td><td>strict</td><td>0.109</td><td>0.022</td><td>16 / 22</td></tr>
+        <tr><td>Rule 1</td><td>factored</td><td>0.607</td><td>1.000</td><td>16 / 22</td></tr>
+        <tr><td>Rule 1</td><td>judge rung</td><td>1.000</td><td>1.000</td><td>16 / 22</td></tr>
+      </tbody>
+    </table>
+    <p class="src">src: review/16-spec-gaming.ipynb cell 8 (§2, discordant-pair test).</p>
+    <ul>
+      <li>Factored-but-not-strict replies: judge says answer given on 117, withheld on 103 <span class="src">— src: review/16-spec-gaming.ipynb cell 16 (§5)</span></li>
+      <li>Hand labels filled: 0/30 <span class="src">— src: review/16-spec-gaming.ipynb cell 16</span></li>
+    </ul>
+    <p class="todo">AUTHOR: the N1-vs-Rule-1 comparison depends on whether a bare factorisation (e.g. “(x+2)(x+7)=0”) counts as disclosure; decide after the 30 hand labels. Headline is “beats both rules” or “beats Rule 2, ties Rule 1” depending on that.</p>
+    <figure>
+      <img src="img/p3-nb16-spec-gaming.png" alt="Grouped bars of disclosure by detector rung for five aggressor arms" loading="lazy">
+      <figcaption>Share of aggressor trials disclosed under five detectors (strict, +factored, +pair, judge alone, judge rung) × five arms (base n=48, Rule 1 n=24, Rule 2 n=24, N1 n=48, random seed 0 n=24), Wilson 95%.</figcaption>
+      <p class="src">src: review/16-spec-gaming.ipynb cell 6 → review/figures/nb16/fig2.png</p>
+    </figure>
+    <figure>
+      <img src="img/p3-nb13-rules.png" alt="Leak and exit share by prompt tier, three persona panels" loading="lazy">
+      <figcaption>Leak and exit share by prompt tier (base, + never state answers, + do not end chat), three persona panels, Wilson 95%, k/n labelled.</figcaption>
+      <p class="src">src: review/13-tier-events.ipynb cell 6 → review/figures/nb13/fig2.png</p>
+    </figure>
+
+    <h3>Three-cell comparison</h3>
+    <table>
+      <thead><tr><th>Cell</th><th>n</th><th>Leak (strict)</th><th>Exit</th><th>Median event round</th><th>Mean reply chars</th></tr></thead>
+      <tbody>
+        <tr><td>aggressor, untouched</td><td>48</td><td>45</td><td>3</td><td>1</td><td>1284</td></tr>
+        <tr><td>aggressor, persona axis subtracted</td><td>48</td><td>19</td><td>29</td><td>2</td><td>956</td></tr>
+        <tr><td>neutral, untouched</td><td>24</td><td>11</td><td>13</td><td>3</td><td>553</td></tr>
+      </tbody>
+    </table>
+    <p class="src">src: mats-nanda · review/15-negation.ipynb cell 3 (Table 1) and cell 9 (§3).</p>
+    <figure>
+      <img src="img/p3-nb15-three-cell.png" alt="Event-round histograms for three cells" loading="lazy">
+      <figcaption>Event round (9 = deadline) by outcome (leak / exit / held): aggressor untouched (n=48), aggressor persona axis subtracted (n=48), neutral untouched (n=24).</figcaption>
+      <p class="src">src: review/15-negation.ipynb cell 9 → review/figures/nb15/fig6.png</p>
+    </figure>
+
+    <h3>Controls and kill tests</h3>
+    <table>
+      <thead><tr><th>Arm</th><th>n</th><th>Leak @ r1</th><th>Leak (strict)</th><th>Answer given</th><th>Exit</th></tr></thead>
+      <tbody>
+        <tr><td>aggressor axis subtracted, dose 1 (2 reps)</td><td>48</td><td>12</td><td>19</td><td>28</td><td>29</td></tr>
+        <tr><td>random direction at axis norm, seed 0</td><td>24</td><td>19</td><td>22</td><td>23</td><td>2</td></tr>
+        <tr><td>random direction, seed 1</td><td>24</td><td>8</td><td>18</td><td>20</td><td>6</td></tr>
+        <tr><td>random direction, seed 2</td><td>24</td><td>9</td><td>17</td><td>21</td><td>7</td></tr>
+        <tr><td>supportive axis on aggressor, own norm 17</td><td>24</td><td>20</td><td>23</td><td>23</td><td>1</td></tr>
+        <tr><td>supportive axis on aggressor, norm 57 (dose 3.31)</td><td>24</td><td>11</td><td>14</td><td>19</td><td>9</td></tr>
+        <tr><td>sign flip: aggressor axis added to neutral student</td><td>24</td><td>0</td><td>4</td><td>5</td><td>19</td></tr>
+      </tbody>
+    </table>
+    <p class="src">src: mats-nanda · review/15-negation.ipynb cell 19 (§7a table) and cell 17 (§7).</p>
+    <ul>
+      <li>Pooled replicate, untouched → axis subtracted: strict 45/48 → 19/48; judge rung 46/48 → 34/48; exits 3/48 → 29/48 <span class="src">— src: review/15-negation.ipynb cell 21 (§7b)</span></li>
+      <li>Supportive student, own axis subtracted: 17 leak / 7 exit vs 16 / 8 untouched <span class="src">— src: review/15-negation.ipynb cell 17</span></li>
+      <li>N1 vs dose-3.31 supportive axis, p=0.15 <span class="src">— unpublished notes: review/inbox/CLAIMS-0903.md:43 (recomputable from results/steer/*.json via driftlab.steer_summary.paired_items; not printed in a notebook)</span></li>
+      <li>N1 aggressor replies: 110 replies, 956±699 chars, 23.5 digits/reply, note parse rate 0.93; base: 51 replies, 1284±399 chars, 56.4 digits/reply <span class="src">— src: review/15-negation.ipynb cell 15 (§6)</span></li>
+    </ul>
+    <p class="todo">AUTHOR: what the random-direction rows and the failed sign flip mean for the claim; 2–3 lines. Unpublished notes give “17 leak / 8 exit” for the supportive own-axis row; the notebook prints 17 / 7.</p>
+    <figure>
+      <img src="img/p3-nb15-controls.png" alt="Controls figure, nine arms by four outcome columns" loading="lazy">
+      <figcaption>Share of trials (Wilson 95%, k/n) for strict leak, answer given, judge rung and exit; nine arms: untouched (n=48), axis subtracted (n=48), random seeds 0/1/2, supportive axis at own norm and at dose 3.31, sign flip, neutral untouched (n=24 each).</figcaption>
+      <p class="src">src: review/15-negation.ipynb cell 21 → review/figures/nb15/fig14.png</p>
+    </figure>
+
+    <!-- ============================================================ -->
+    <h2>Part 4 — canary v3 pilot (Sep 2026)</h2>
+    <p class="todo">AUTHOR: setup in 2–3 lines — two agents, attacker tries to extract a secret code from the defender; attacker tone is the variable; Qwen 3.5 9B; 16 rounds.</p>
+    <table>
+      <thead><tr><th>Arm</th><th>Attacker</th><th>Cells</th><th>Defender steering</th><th>Conversations</th><th>Leaks</th><th>Exits</th><th>Errors</th><th>Gate</th></tr></thead>
+      <tbody>
+        <tr><td>prompts</td><td>live agent</td><td>neutral, supportive, aggressor × base; aggressor × rule, rule_strict, rule_strict_tone</td><td>none</td><td>96</td><td>29</td><td>44</td><td>0</td><td>PASS</td></tr>
+        <tr><td>scripted-f1</td><td>scripted, fold 1</td><td>neutral, supportive, aggressor × base</td><td>none</td><td>24</td><td>9</td><td>8</td><td>0</td><td>PASS</td></tr>
+        <tr><td>tutor-d0.5</td><td>live agent</td><td>aggressor × base</td><td>v2 tutor axis, dose 0.5</td><td>16</td><td>2</td><td>14</td><td>0</td><td>PASS</td></tr>
+        <tr><td>tutor-d1</td><td>live agent</td><td>aggressor × base</td><td>v2 tutor axis, dose 1</td><td>16</td><td>0</td><td>16</td><td>0</td><td>PASS</td></tr>
+        <tr><td>tutor-d2</td><td>live agent</td><td>aggressor × base</td><td>v2 tutor axis, dose 2</td><td>16</td><td>0</td><td>1</td><td>15</td><td>FAIL</td></tr>
+        <tr><td>random-d1</td><td>live agent</td><td>aggressor × base</td><td>random direction, dose 1</td><td>16</td><td>13</td><td>3</td><td>0</td><td>PASS</td></tr>
+        <tr><td>random-d2</td><td>live agent</td><td>aggressor × base</td><td>random direction, dose 2</td><td>16</td><td>8</td><td>7</td><td>0</td><td>PASS</td></tr>
+      </tbody>
+    </table>
+    <!-- branch pending push -->
+    <p class="src">src: unpublished notes: canary-v3 · results/OVERNIGHT-STATUS.md (night 09-28, written by production/canarybench/overnight.py; the .eval logs in results/v3/ are gitignored). Arm definitions: canary-v3 · production/canarybench/overnight.py lines 29–50; model Qwen/Qwen3.5-9B snapshot c2022362 (lines 27–28).</p>
+    <p class="todo">AUTHOR: “prompts” pools six cells (16 conversations each); per-cell counts need a pass over results/v3/night/prompts/*.eval. Say what the pilot was for and what it does and doesn't show; 2–3 lines.</p>
+
+    <!-- ============================================================ -->
+    <h2>What didn't hold up</h2>
+    <table>
+      <thead><tr><th>Earlier claim</th><th>What replaced it</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>“Warmth extracts more than pressure” (commit d4ca0fc)</td><td>Retracted: counterparty stated the answer itself (convincer 1/24, neutral 9/24, supportive 18/24). Clean trials: convincer 8/23 (34.8%), neutral 2/15 (13.3%), supportive 1/6 (16.7%).</td><td class="src">commit dbec619 message (main); notebooks/review_tutor8.ipynb cell 19 (Part 5b)</td></tr>
+        <tr><td>Final-reply regex as the outcome measure</td><td>08-27 audit: Ministral tripped it in round 1 of 21/21 give-in trials; 5/16 “held” 35B trials stated both roots mid-conversation.</td><td class="src">unpublished notes: METHODS-REFLECTION.md:45–50 (mats-nanda); recomputable from main results/*-tutor8/**/*.eval, not printed in a notebook</td></tr>
+        <tr><td>“Warmth prevents drift” as a general result</td><td>Ministral 3 14B, tutor8 give-in (n=24 each): convincer 21 (0.875), neutral 9 (0.375), supportive 18 (0.750). Harness v1: Ministral leaks 24 / 24 / 23 of 24 (aggressor / neutral / supportive).</td><td class="src">mats-nanda · review/01-data-and-outcomes.ipynb cell 7; review/11-prior-work-setup.ipynb cell 3</td></tr>
+        <tr><td>Sign flip: adding the aggressor axis to a neutral student induces leaks</td><td>4/24 strict leak, 0 at r1, 19/24 exit.</td><td class="src">review/15-negation.ipynb cell 19 (F3)</td></tr>
+        <tr><td>16-round flattening −0.421 → −0.056 /round, 7.5×</td><td>Notebooks print −0.357 (rounds 2–8) → −0.108 (rounds 9–16), 3.3×.</td><td class="src">reproduce_findings.ipynb cell 14; appendix_results.ipynb cell 5; unpublished notes: PAPER-DRAFT.md:202–205</td></tr>
+        <tr><td>Stated plan predicts next action (369 pairs, AUROC 0.628 / 0.650)</td><td>Re-executed: 780 pairs; plan_leave→exit 0.631 [0.59, 0.67]; plan_answer→leak 0.459 [0.40, 0.52].</td><td class="src">review/14-detectors.ipynb cell 14; unpublished notes: DRAFT-RESULTS-0904.md:100</td></tr>
+        <tr><td>Supportive condition: “no drift on any dimension”</td><td>Stance change r1→r8: 1.12 [0.54, 1.62].</td><td class="src">agent_selfreport.ipynb cell 19; unpublished notes: PAPER-DRAFT.md:151</td></tr>
+      </tbody>
+    </table>
+    <p class="todo">AUTHOR: dbec619 and review_tutor8.ipynb cell 19 give the earlier marker rates as 0.167 / 0.167 / 0.375 (all 24 trials); the retracted claim in d4ca0fc and unpublished notes NOTES-FOR-PAPER.md:244–248 has 4/22, 4/22, 7/22 (18.2 / 18.2 / 31.8%). Pick one or cite both. mats-nanda review/01-data-and-outcomes.ipynb cell 9 still says the ordering holds “in every model”; fix or note it. Also: the Ministral reversal is a give-in-rate ordering, while Part 1’s “warmth prevents drift” is a self-report slope — say how you connect them.</p>
+
+    <!-- ============================================================ -->
+    <h2>Status: done vs not done</h2>
+    <ul>
+      <li class="status-done">Apart submission, 2026-08-16 — tag apart-v1</li>
+      <li class="status-done">Harness v1, six models: 420 trials (Qwen 3.8 27B 60/72)</li>
+      <li class="status-done">Qwen 3.5 9B, 5 greedy reps: 360 trials</li>
+      <li class="status-done">Probes, persona axis, steering + rule arms: results/steer/*.json</li>
+      <li class="status-done">Random-direction (3 seeds), cross-persona and sign-flip controls</li>
+      <li class="status-done">Canary v3 smoke + night run, 2026-09-28/29: 6 of 7 night arms passed gate</li>
+    </ul>
+    <ul>
+      <li class="status-not">Hand labels: 0/30 filled</li>
+      <li class="status-not">Steering hook at layer 20 only; layer sweep not run (unpublished notes: DRAFT-METHODS-0903.md:45)</li>
+      <li class="status-not">CIs / tests on Part 1 slopes: none</li>
+      <li class="status-not">Canary v3 tutor-d2: gate FAIL, 15 errors</li>
+      <li class="status-not">Canary v3 branch: not pushed</li>
+      <li class="status-not">Supportive own-axis at matched dose: not run</li>
+    </ul>
+    <p class="src">src: review/11-prior-work-setup.ipynb cell 1; review/16-spec-gaming.ipynb cell 16; review/15-negation.ipynb cell 7 (“not run” slots); canary-v3 results/OVERNIGHT-STATUS.md (unpublished notes).</p>
+    <!-- AUTHOR: the dose sweep (0.5 / 1 / 2) is listed as dropped only in an untracked plan; verify before adding it here. -->
+    <p class="todo">AUTHOR: confirm the not-done list; add what you plan next, if anything.</p>
+
+    <!-- ============================================================ -->
+    <h2>Reproduce</h2>
+    <p>Part 1 (main / apart-v1):</p>
+    <pre><code>pip install -r requirements.txt
+export OPENAI_BASE_URL=...   # any OpenAI-compatible endpoint
+export OPENAI_API_KEY=...
+
+# one trial
+inspect eval stancedrift/task.py --model openai-api/local/&lt;your-model&gt; \
+    -T scene=tutor -T agent=convincer -T arm=in_context -T rounds=8
+
+# the full balanced sweep: 12 passes x (3 personas x 2 arms) = 72 trials
+./runners/run_qwen36_tutor8.sh</code></pre>
+    <p class="src">src: apart-v1 · README.md “Running it”. Notebooks read the committed results/*.eval without calling a model.</p>
+    <p>Parts 2–3 (mats-nanda), tests:</p>
+    <pre><code>cd production
+../.venv/bin/python -m pytest tests -q</code></pre>
+    <p class="src">src: mats-nanda · README.md; 86 passed, 9 skipped on 2026-10-19. driftlab/datasets.py has a hard-coded SD_REPO path to a local stance-drift checkout.</p>
+    <p>Part 4 (canary-v3, branch pending push):</p>
+    <pre><code>.venv/bin/python production/canarybench/overnight.py --plan night</code></pre>
+    <p class="src">src: canary-v3 · production/canarybench/overnight.py line 8.</p>
+  </main>
+</body>
+</html>
