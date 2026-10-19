@@ -26,7 +26,7 @@ jupyter.log
 release/
 
 # llama.cpp/vLLM server stdout — machine-local, not results. Run logs (results/*.log) stay committed.
-results/*-serve.log
+**/results/*-serve.log
 
 # notes stay local: only README markdown is tracked
 *.md
