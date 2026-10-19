@@ -47,7 +47,7 @@ notebooks/
   review_tutor8.ipynb   the main analysis (executed, figures embedded)
   figures/              every figure as PNG
 results/            .eval transcripts — the data, committed deliberately
-docs/               project page: https://ztgunderson.github.io/stance-drift/
+../docs/            project page: https://ztgunderson.github.io/stance-drift/
 ```
 
 **The `.eval` files are committed on purpose.** They are the evidence behind

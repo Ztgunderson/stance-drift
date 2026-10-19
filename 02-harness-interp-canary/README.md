@@ -1,12 +1,12 @@
-# stance-drift — `mats-nanda` branch
+# 02 — six-model harness, interpretability, canary v3
 
-Follow-up to the Apart sprint project on `main` (tag `apart-v1` = the submitted snapshot).
+Follow-up to the Apart sprint study in `../01-apart-sprint/` (tag `apart-v1` = the submitted snapshot).
 
-## What this branch is
+## What this folder is
 
 - Harness v1: scripted 8-turn student, 24 quadratics, three personas (aggressor / neutral / supportive), `end_chat` tool, six models.
 - Interp week on Qwen3.5-9B: residual-stream probes, persona axis at layer 20, steering vs prompt rules.
-- Canary v3 pilot: branch `canary-v3` (not yet pushed).
+- Canary v3 pilot: `production/canarybench/`, run logs in `results/v3/`.
 
 ## Where results live
 
