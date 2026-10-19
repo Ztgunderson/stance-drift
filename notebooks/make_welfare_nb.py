@@ -519,7 +519,7 @@ display(HTML(f\'\'\'
      style="font-size:1.1em">⬇ Download all {len(figs)} figures ({kb:.0f} KB zip)</a></b></p>
   <details><summary>or grab them individually</summary><ul>{rows}</ul></details>
   <p style="color:#666;font-size:.9em">From another machine, prefix with this
-  server, e.g.<br><code>http://<tailscale-ip>:8889/files/notebooks/{bundle.name}?token=&lt;token&gt;</code></p>
+  server, e.g.<br><code>http://&lt;tailscale-ip&gt;:8889/files/notebooks/{bundle.name}?token=&lt;token&gt;</code></p>
 </div>\'\'\'))'''))
 
 C.append(md("""## What to take from this

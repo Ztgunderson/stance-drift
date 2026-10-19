@@ -24,3 +24,6 @@ jupyter.log
 
 # Minimal share-repo, has its own git history.
 release/
+
+# llama.cpp/vLLM server stdout — machine-local, not results. Run logs (results/*.log) stay committed.
+results/*-serve.log
