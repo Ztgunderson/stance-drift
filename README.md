@@ -47,8 +47,7 @@ notebooks/
   review_tutor8.ipynb   the main analysis (executed, figures embedded)
   figures/              every figure as PNG
 results/            .eval transcripts — the data, committed deliberately
-NOTES-FOR-PAPER.md  methods, findings, limitations, corrections
-STATUS.md           where the current work is
+docs/               project page: https://ztgunderson.github.io/stance-drift/
 ```
 
 **The `.eval` files are committed on purpose.** They are the evidence behind
@@ -132,7 +131,7 @@ reboot clears it. Observed twice.
 published Jetson `llama_cpp:latest-jetson-orin` tag now ships CUDA 13.0; on a
 CUDA 12.6 driver it warns once, ignores `-ngl`, and then serves **correct answers
 at 0.34 tok/s on CPU**. Nothing downstream distinguishes that from a working
-deployment. See `NOTES-FOR-PAPER.md` §1.
+deployment.
 
 ---
 
@@ -149,7 +148,7 @@ convincer, 75% supportive), so contamination varies *in lockstep with the
 condition being compared*. Correcting for it inverted the persona ordering.
 
 `SD_CP_NO_ANSWER=1` forbids the counterparty from stating or working toward the
-answer, which fixes it at the source. Full write-up in `NOTES-FOR-PAPER.md` §4e.
+answer, which fixes it at the source. Details on the project page.
 **The self-report dimensions are unaffected; only the behavioural outcome is.**
 
 ---
