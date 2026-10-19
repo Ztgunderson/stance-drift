@@ -13,8 +13,9 @@ import sys
 
 import numpy as np
 
-SD_REPO = "/home/jetson/lab/existing/jetson-llm/stance-drift"
 BENCH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# the Apart-sprint study sits next to this one in the same repo
+SD_REPO = os.environ.get("SD_REPO", os.path.join(os.path.dirname(BENCH), "01-apart-sprint"))
 CACHE_ROOT = os.path.join(BENCH, "microscope", "cache")
 
 # model key -> results/cache directory name (identical by construction)
