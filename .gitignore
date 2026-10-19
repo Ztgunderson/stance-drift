@@ -18,3 +18,7 @@ review/traces-pilot/
 refs/transcripts/
 results/v3/
 results/*.log
+
+# notes stay local: only README markdown is tracked
+*.md
+!README.md
