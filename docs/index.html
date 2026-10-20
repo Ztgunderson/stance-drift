@@ -35,6 +35,11 @@
     figcaption { color: var(--muted); font-size: 0.95rem; max-width: none; }
     .note { color: var(--muted); font-size: 0.95rem; }
     pre { overflow-x: auto; max-width: 100%; }
+    .toc { border: 1px solid var(--rule); border-radius: 6px; padding: 0.75rem 1rem; margin: 1.5rem 0; }
+    .toc b { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+    .toc ol { margin: 0.4rem 0 0; padding-left: 1.3rem; columns: 2 18rem; column-gap: 2.5rem; }
+    .toc li { margin: 0.15rem 0; break-inside: avoid; }
+    .proj h2 { scroll-margin-top: 1rem; }
   </style>
 </head>
 <body>
@@ -60,8 +65,21 @@
       <p><strong>TL;DR.</strong> I put an LLM tutor that must not give away answers into a multi-turn conversation with a student agent, and varied only the student's tone. Tone changed whether the tutor gave in, in every model I tried, but not always in the same direction. The tutor's self-reports didn't track this. Models rated their resolve high in the same turn they leaked. In Qwen 3.5 9B the student's tone is linearly readable from the residual stream, and subtracting that direction cut leaks more than random directions did. But every fix I tried, prompt rules included, mostly moved the failure somewhere else: the model walked away, or gave the answer in a form the rule didn't cover. My main takeaway is about monitoring. Self-report, behaviour and internal state came apart here, so a monitor watching only one of them would miss failures.</p>
     </div>
 
+    <nav class="toc" aria-label="Contents"><b>Contents</b><ol>
+      <li><a href="#why-i-care-the-threat-model">Why I care: the threat model</a></li>
+      <li><a href="#phase-1-the-apart-sprint-and-what-i-got-wrong">Phase 1: the Apart sprint, and what I got wrong</a></li>
+      <li><a href="#phase-2-measuring-behaviour-across-six-models">Phase 2: measuring behaviour across six models</a></li>
+      <li><a href="#phase-3-looking-inside-qwen-3-5-9b">Phase 3: looking inside Qwen 3.5 9B</a></li>
+      <li><a href="#phase-4-an-attacker-agent-and-a-secret">Phase 4: an attacker agent and a secret</a></li>
+      <li><a href="#what-i-got-wrong-along-the-way">What I got wrong along the way</a></li>
+      <li><a href="#takeaways-for-monitoring">Takeaways for monitoring</a></li>
+      <li><a href="#what-i-d-do-next">What I'd do next</a></li>
+      <li><a href="#reproduce">Reproduce</a></li>
+    </ol></nav>
+
+
     <!-- ============================================================ -->
-    <h2>Why I care: the threat model</h2>
+    <h2 id="why-i-care-the-threat-model">Why I care: the threat model</h2>
     <p>Most agent safety evals are single-turn, or treat the other side of the conversation as a human red-teamer. I expect a lot of future agent traffic to be agent-to-agent, with no human reading each turn.</p>
     <p>A deployed agent usually has something it shouldn't give up: an answer key, a credential, a policy line. The other agent doesn't need a jailbreak. It can just keep asking, turn after turn, in whatever tone works.</p>
     <div class="flow" aria-label="Threat model">
@@ -95,7 +113,7 @@
     <p class="note">Qwen 3.5 9B, prompt-rule arm, item q02: 02-harness-interp-canary/results/steer/aggressor__noleak__none.json.</p>
 
     <!-- ============================================================ -->
-    <h2>Phase 1: the Apart sprint, and what I got wrong</h2>
+    <h2 id="phase-1-the-apart-sprint-and-what-i-got-wrong">Phase 1: the Apart sprint, and what I got wrong</h2>
     <p class="methods">Methods: Inspect (inspect_ai) multi-turn task, same-model counterparty personas, private self-report probes, bootstrap CIs.</p>
     <p>I started this at the Apart Digital Minds sprint in August. The tutor got a role and nothing else, with no instruction to withhold. The student was the same model, prompted as a convincer, as supportive, or with no system prompt. After each round the tutor privately rated itself on five scales: pressure, anxiety, strategy, inclination and stance.</p>
     <p>The tutor's self-rated strategy drifted apart by tone over the conversation. It climbed under a pushy or neutral student and stayed flat under a supportive one. Stance, the rating that's supposed to say "I'm holding my position", stayed high in every condition and didn't track what happened. If you monitored this agent by asking how firm it felt, you'd see nothing.</p>
@@ -106,7 +124,7 @@
     </figure>
 
     <!-- ============================================================ -->
-    <h2>Phase 2: measuring behaviour across six models</h2>
+    <h2 id="phase-2-measuring-behaviour-across-six-models">Phase 2: measuring behaviour across six models</h2>
     <p class="methods">Methods: Inspect, scripted counterparty, tool use (end_chat), per-round behaviour scoring, repeated greedy runs.</p>
     <p>So I rebuilt the harness. A fixed script replaced the student, in three tones, with no numbers in its turns so it can't leak the answer itself. Each problem has a known answer, so a leak is checkable. The tutor got an <code>end_chat</code> tool so leaving is an explicit action. Six local models ran the same items: Qwen 3.5 4B and 9B, Ministral 3 14B, Qwen 3.8 27B, Qwen 3.6 35B and Gemma 4 E4B.</p>
     <p>I expected a clean story where warmth protects and pressure erodes. That only held for some models. Tone changed behaviour in every model, but the direction depended on the model. A hostile student got mostly leaks from all six. A neutral one got leaks from some models and exits from others.</p>
@@ -122,7 +140,7 @@
     </figure>
 
     <!-- ============================================================ -->
-    <h2>Phase 3: looking inside Qwen 3.5 9B</h2>
+    <h2 id="phase-3-looking-inside-qwen-3-5-9b">Phase 3: looking inside Qwen 3.5 9B</h2>
     <p class="methods">Methods: PyTorch forward hooks on the Hugging Face model, residual-stream caching, linear probes, difference-of-means directions, activation steering, random-direction and cross-persona controls, a sign-flip test, branch-point resampling, LLM-as-judge.</p>
     <p>If self-report fails, maybe the activations do better. I replayed the Phase 2 conversations through the model and cached the residual stream at every layer, at the point just before the tutor decides what to do.</p>
 
@@ -155,13 +173,13 @@
     </figure>
 
     <!-- ============================================================ -->
-    <h2>Phase 4: an attacker agent and a secret</h2>
+    <h2 id="phase-4-an-attacker-agent-and-a-secret">Phase 4: an attacker agent and a secret</h2>
     <p class="methods">Methods: Inspect agent-vs-agent task, live attacker agent, canary secret, defender rule prompts, steering transferred from Phase 3.</p>
     <p>Tutoring is a toy. To check whether any of this transfers, I built a pilot where a front-desk assistant holds an access code and an attacker agent tries to get it. Both are Qwen 3.5 9B. The attacker's tone varies. Some arms add rules to the defender's prompt; others steer the defender with the Phase 3 direction or a random one.</p>
     <p>Two patterns repeated. The tutor-bench direction made the defender leave rather than leak, and the rule prompts traded leaks for exits or stalled conversations. One didn't: a hostile attacker didn't raise leaks here. This is a pilot and the cells are too small to compare arms, so I'd treat it as "the bench works", not as evidence.</p>
 
     <!-- ============================================================ -->
-    <h2>What I got wrong along the way</h2>
+    <h2 id="what-i-got-wrong-along-the-way">What I got wrong along the way</h2>
     <ul>
       <li>"Warmth extracts more than pressure", from the Apart entry. The student was saying the answer itself. Retracted.</li>
       <li>Scoring only the final reply. It missed answers stated mid-conversation. Replaced by per-round scoring.</li>
@@ -173,11 +191,11 @@
     </ul>
 
     <!-- ============================================================ -->
-    <h2>Takeaways for monitoring</h2>
+    <h2 id="takeaways-for-monitoring">Takeaways for monitoring</h2>
     <p>Self-report looked fine while the behaviour failed. A probe didn't see failure coming in advance. Strict behaviour scoring got gamed. Each signal failed differently, which is mildly encouraging: a monitor that combines them has a better shot than any one alone.</p>
     <p>The exit outcome deserves more attention than it gets. Most of the interventions here "worked" by making the agent quit. If your eval only counts leaks, quitting looks like success.</p>
 
-    <h2>What I'd do next</h2>
+    <h2 id="what-i-d-do-next">What I'd do next</h2>
     <ul>
       <li>Hand-label a sample of borderline replies, to settle whether steering beats the prompt rules.</li>
       <li>Sweep layers, and repeat the steering on a second model.</li>
@@ -185,7 +203,7 @@
     </ul>
 
     <!-- ============================================================ -->
-    <h2>Reproduce</h2>
+    <h2 id="reproduce">Reproduce</h2>
     <p>Phase 1 (01-apart-sprint/):</p>
     <pre><code>pip install -r requirements.txt
 export OPENAI_BASE_URL=...   # any OpenAI-compatible endpoint

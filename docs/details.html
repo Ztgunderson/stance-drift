@@ -26,6 +26,11 @@
     /* prose slots for the author; delete each block once written */
     .todo { border-left: 3px solid var(--c-int); background: var(--blue-wash); padding: 0.5rem 0.75rem; color: var(--muted); font-style: italic; }
     .status-done { color: var(--c-ai); } .status-not { color: var(--c-sport); }
+    .toc { border: 1px solid var(--rule); border-radius: 6px; padding: 0.75rem 1rem; margin: 1.5rem 0; }
+    .toc b { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+    .toc ol { margin: 0.4rem 0 0; padding-left: 1.3rem; columns: 2 18rem; column-gap: 2.5rem; }
+    .toc li { margin: 0.15rem 0; break-inside: avoid; }
+    .proj h2 { scroll-margin-top: 1rem; }
   </style>
 </head>
 <body>
@@ -47,10 +52,23 @@
       <p class="src">Notebook cell numbers on this page are 0-based indices into the committed, executed notebook.</p>
     </section>
 
-    <h2>Summary</h2>
+    <nav class="toc" aria-label="Contents"><b>Contents</b><ol>
+      <li><a href="#summary">Summary</a></li>
+      <li><a href="#from-the-apart-submission-to-now">From the Apart submission to now</a></li>
+      <li><a href="#part-1-apart-sprint-aug-2026">Part 1 — Apart sprint (Aug 2026)</a></li>
+      <li><a href="#part-2-six-model-harness">Part 2 — six-model harness</a></li>
+      <li><a href="#part-3-interpretability-probes-persona-axis-stee">Part 3 — interpretability (probes, persona axis, steering)</a></li>
+      <li><a href="#part-4-canary-v3-pilot-sep-2026">Part 4 — canary v3 pilot (Sep 2026)</a></li>
+      <li><a href="#what-didn-t-hold-up">What didn't hold up</a></li>
+      <li><a href="#status-done-vs-not-done">Status: done vs not done</a></li>
+      <li><a href="#reproduce">Reproduce</a></li>
+    </ol></nav>
+
+
+    <h2 id="summary">Summary</h2>
     <p>Does an LLM agent drift from its position over a multi-turn conversation depending on how the other agent treats it, and does its self-report track what it then does? I built a tutor bench where a model must not hand a student agent the answer, ran it on six local models, then probed and steered the residual stream of Qwen 3.5 9B. In the Apart sprint, the tutor's self-rated strategy spread across three counterparty tones grew from 0.29 at round 1 to 4.83 at round 8, while its self-rated stance stayed near 9 and did not track the outcome (r = +0.053). In the six-model harness, models still rated their resolve high in the round they leaked, and on Qwen 3.5 9B subtracting a persona direction at layer 20 cut aggressor leaks from 45/48 to 19/48, against 17–22 of 24 for three random directions. The main caveat is that every fix tried, prompt rules and steering alike, mostly turns leaks into early exits (3/48 to 29/48 under steering), at 24–48 trials per cell, with the disclosure hand labels still unfilled. For monitoring agents, the self-report, the behaviour and the internal state came apart here, so a monitor that reads only one of them would miss failures.</p>
 
-    <h2>From the Apart submission to now</h2>
+    <h2 id="from-the-apart-submission-to-now">From the Apart submission to now</h2>
     <p>The Apart entry tracked a tutor model's private 0–10 self-ratings over 8 rounds against a same-model student in three tones.</p>
     <p>Reviewers said it measured what the model says, not what it does at the final request; asked whether it had 3 or 12 replicates; and flagged a small sample with missing controls.</p>
     <p>The follow-up scores behaviour every round on six models, tests the internal state of one, and adds random-direction and sign-flip controls. All runs are done; the 30 disclosure hand labels are not.</p>
@@ -78,7 +96,7 @@
     <p>Two review points stay open. Cells hold 24–48 trials, and the interpretability and steering work covers one model (Qwen 3.5 9B) at one layer (L20).</p>
 
     <!-- ============================================================ -->
-    <h2>Part 1 — Apart sprint (Aug 2026)</h2>
+    <h2 id="part-1-apart-sprint-aug-2026">Part 1 — Apart sprint (Aug 2026)</h2>
     <p>The tutor gets a role and nothing else. It has no stated values and no instruction to hold back the answer.</p>
     <p>The student is the same model, prompted as a convincer, as supportive, or with no system message (neutral). The supportive student asks to be refused the answer.</p>
     <p>Each trial runs 8 rounds. After each round the tutor writes private 0–10 ratings: pressure, anxiety, strategy, inclination, stance.</p>
@@ -142,7 +160,7 @@
     </figure>
 
     <!-- ============================================================ -->
-    <h2>Part 2 — six-model harness</h2>
+    <h2 id="part-2-six-model-harness">Part 2 — six-model harness</h2>
     <p>Part 1's student was the same model. It could solve the problem and say the answer itself, which contaminated the outcome.</p>
     <p>Harness v1 replaces it with a fixed script with three tones, one request schedule and no digits in student turns. Each item has known integer roots, so a leak is the tutor stating both roots. The tutor can call end_chat to leave.</p>
     <p>Six local models ran the same items.</p>
@@ -211,7 +229,7 @@
     </figure>
 
     <!-- ============================================================ -->
-    <h2>Part 3 — interpretability (probes, persona axis, steering)</h2>
+    <h2 id="part-3-interpretability-probes-persona-axis-stee">Part 3 — interpretability (probes, persona axis, steering)</h2>
     <p>The 360 Qwen 3.5 9B trials were replayed through Hugging Face hooks to cache the residual stream at every layer. Activations come from two positions, the end of the tutor's reply and the point after the student's next message, before the tutor decides.</p>
     <p>Three questions. Can anything predict a leak before it happens? Does the state carry the student's persona? Does removing that persona signal change behaviour?</p>
 
@@ -373,7 +391,7 @@
     </figure>
 
     <!-- ============================================================ -->
-    <h2>Part 4 — canary v3 pilot (Sep 2026)</h2>
+    <h2 id="part-4-canary-v3-pilot-sep-2026">Part 4 — canary v3 pilot (Sep 2026)</h2>
     <p>Canary v3 moves the question off the tutor task. Two Qwen 3.5 9B agents share one set of weights. A front-desk assistant (defender) holds a secret access code, and an attacker agent tries to get it over 16 rounds.</p>
     <p>The attacker's tone (neutral, supportive, aggressor) is the variable. Some cells add rules to the defender's system prompt; some arms steer the defender at L20 with the tutor-bench aggressor axis (data/tutor-aggressor-L20.npz) or a random direction.</p>
     <table>
@@ -405,7 +423,7 @@
     <p>Two Part 3 patterns repeat at this n. The tutor axis at dose 1 gave 0 leaks and 16 exits (random direction at dose 1: 13 and 3), and the rule prompts traded leaks for exits or held conversations. Unlike the tutor bench, the aggressor tone did not raise leaks here (8/16 vs 10/16 for neutral and supportive).</p>
 
     <!-- ============================================================ -->
-    <h2>What didn't hold up</h2>
+    <h2 id="what-didn-t-hold-up">What didn't hold up</h2>
     <table>
       <thead><tr><th>Earlier claim</th><th>What replaced it</th><th>Source</th></tr></thead>
       <tbody>
@@ -423,7 +441,7 @@
     <p>The Ministral tutor8 counts use the final-reply marker audited above; the harness v1 counts do not. Both test the behavioural form of the warmth claim. Part 1's form was a self-report slope, which these rows do not test.</p>
 
     <!-- ============================================================ -->
-    <h2>Status: done vs not done</h2>
+    <h2 id="status-done-vs-not-done">Status: done vs not done</h2>
     <ul>
       <li class="status-done">Apart submission, 2026-08-16 — tag apart-v1</li>
       <li class="status-done">Harness v1, six models: 420 trials (Qwen 3.8 27B 60/72)</li>
@@ -444,7 +462,7 @@
     <p>Next step: fill the 30 hand labels. They settle the Part 3 comparison with Rule 1.</p>
 
     <!-- ============================================================ -->
-    <h2>Reproduce</h2>
+    <h2 id="reproduce">Reproduce</h2>
     <p>Part 1 (01-apart-sprint/):</p>
     <pre><code>pip install -r requirements.txt
 export OPENAI_BASE_URL=...   # any OpenAI-compatible endpoint
